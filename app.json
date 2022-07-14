@@ -1,0 +1,43 @@
+{
+  "id": "8d751890-73a2-4219-8770-7fcaced7ef5e",
+  "name": "GIMCustom",
+  "publisher": "GIM",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {"id": "551d85cb-2152-4144-9464-a16791aff492", 
+      "name": "COSMO Licensing", 
+      "publisher": "Cosmo Consult", 
+      "version": "1.5.0.86008"},
+      {"id": "86a7fe06-b61b-4649-9c4f-12704e8282c5", 
+      "name": "COSMO Graphical Extension", 
+      "publisher": "Cosmo Consult", 
+      "version": " 2.11.87644.0"},
+      {"id": "1b26c6f6-4689-4dc3-af55-f39e95a781f8", 
+        "name": "COSMO Advanced Manufacturing Pack", 
+        "publisher": "Cosmo Consult", 
+        "version": "3.2.95462.0"}
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "19.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 59999
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "8.0",
+  "target": "OnPrem"
+}

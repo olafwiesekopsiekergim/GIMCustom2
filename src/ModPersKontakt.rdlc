@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>AAMAAH1SUW/aMBB+n7T/YPkJpNQkERQ04VZbgA11CxWEdg+8mOQ6eThxZjsp2a+fnRLWVWJPvjt/
+d999nz29PeYC1aA0lwXFAfExgiKVGS9+UFyZp6sJvr15/2763Si2hlIqo7+yRlZmA4ozwX+DQn/D
+h/OgIQnJyE37p4RRzHKg+JvMCLq3N+TqThaGHQxGkQ2UFElTWsAM6vmxVKA1ecVMtstXaeihC7Da
+cXkdNaKoW8dDUSVMpcDWCqhsi/DQfbUXPL2DJpEHcOhsnLIJTEJ//DSEoW9FzLguBWsuL39iXkgV
+s/os+ZpYQ0kY+NcYrfY/ITWxpHjk+2FwLlwcueAgskfYW3drnsJWCYqjD7uttrBdoYDnNhgH4WQ3
+A30wstx9FCJhewGamKPB9tUQmn5iRabb0CZLA3lwegJnN0vf+v4iYMYMc1jXbMWfsnY2xe0x8kf+
+m5sHDs8Ub1brZBl/7kUyL1nRtGTeOZHEczyeq/bR45f5et5riaNVvEl6zgFZ9PvOz18LLgyo1gVN
+sW3FaJnZb4RPajpxaNDJG7T6XnQPOuHTwX++7s0f</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+      </Body>
+      <Width>6.5in</Width>
+      <Page />
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Invalid</rd:ReportUnitType>
+</Report>

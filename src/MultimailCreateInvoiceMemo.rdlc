@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>NQcAAJ2VXW/aMBiF7yftP1i+AomFJIOCJtKqg9BFpVAFaHeBNJnwtvLqxMx2WNmvn/MBBAioIlf+
+OH59/PhY6dy8hwytQEjKIwdbhokRRAFf0OjVwbF6+dLGN9efP3V+KkF8WHKh5ICseazGIChh9B8I
+tGs+bQs1DNtoJtX2hjAakhAc/BAzRUNCGeoKIAqQF604DaD+ACHHqMsjJTibrJda24OV+74UIKVR
+MGFMvULXrqETslWybW3jAjlo46yGutpELECPRRDrJayGHuM5o8E9rCf8DRL1ohWQNrRts/XSgIap
+z9OjcsnI+kPnyE30uRiS1RbElaExG7ZlXmE0mv+GQA25g5umaTW3Ax+p3qfAFs8w1/hXenQqmIO7
+32ZTqTeaRQJoqBsty27PeiDfFF/ObhmbkDkDaah3hfW1ItT5TqKFTJu64ykIrfyOUmXTalkt0zq4
+kuxAPaJIsiCpoLnkvXTZ4eq9yScKfx08HvkTb3hXGXKjipG30AHBuY0DV0fOurFUXB/uQldWO9tP
+p/GRCIjURpQM7vkuGCjxdOTr7tfAh1cq1cXWGs2zrNIYJDHWGqiikd9z/cqtDCBK3msVPf9wfbcy
+5rEIQBtYgNMdDceTypPr399O+9VqEsk/fcq0wzQ9UsMs1szAfC0Ds4V+QOAEmDI4riayvvTSWmfJ
+pKVRkqWPUOl7g4nWFLBsSg9o9ObgbTWtdAe9Sl/wEO22yCg1yigVI1BCZAML1ctw1VNex3zrpckr
+VafI7Ry5Fyl4vTiLtpl99tX59xuHcxAnsWfTeQ6tas6ueUnCjqBlCOz9V3oE6xDUvqI4u5vp1M/8
+767/Aw==</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+      </Body>
+      <Width>6.5in</Width>
+      <Page />
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Invalid</rd:ReportUnitType>
+</Report>

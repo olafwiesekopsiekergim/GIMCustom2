@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>XxIAAK2YbW/iRhDH31fqd7D8opdIPmOvn1t8JxJCE5VABORaqakiYybEl8Wm6zWF+/S364cL+Mj2
+bBFFYb2s9/+bmfXMON2P2xWWNkDSKIl9WVc1WYI4TBZRvPTljD69d+WPH37+qfsXJcEE1gmh6TDY
+JRmdAokCHH0BIr0OP33byFSRavHdDqZkaRSswJevaPQClEo9wgdYCrK0GsvSZRJTkuDZbs1W9mFz
+tV0TSFN1D0G9v9m7RIr0xrINF1UqBsmXKi5FuswwzQiwuRgydgtWpLtsjqPwD9jNkhfgqxdOGLjg
+Is15MsHUmDX9KF3jYPcDVpQIg4SMgs2rE1RD1bhbxvPPENJR4suWpnno28T/bzyIAC/+hDnz+iYK
+4Z5gX7789eE+ZRoPMYFoxQaOjtyHPqQvNFk/9DCeBXMMqUq3lNmwjnwZWWbFeB9H1JdnENPndPzU
+u40wZntQILJ0G5BlFKdsuc5cxn6RVvxhGCxKvtzjkVckZ01ldkokqXsRxIs0H7KLGworvQw5H9di
+W/imH9CAf8nvZHDlVQ7MqPgHcmrznyL4z5en48nsZvT72ShRz6XxpH81OeulIcT87J5z4/4dRJiZ
+kTuM2cDWKcwlIYnWlAVDmUJAwmdpb0qWbhYsRnLJXzNnz6QjZlwki11hQmEvv9b3nX0N0fKZDnyZ
+OW8IG8D5qFPfHFX+iikseQzauUwrfpAtdl22mgM55r3bYMvuIQEtjm3hGXZM7wLCDkq1JZ/MA7tn
+xRGvNfccOuo507ZUY99710E6ju8ITNmjk4NSkoFcU2bapWqdScw1gy29SLYV1sGkfhDaYRLmjhrg
+JGAPhW4pJmKcU5YSBzzxORqb4OQHD423pkVwpkDzM1ro9K+Gl9eTxzIH6Prj4+EpqZ2WpuCaAFxT
+DFdTnT1y12pPrgnJjabknhjccFXzNOCekNtsyu0KuZFnq/ppuF0ht9WU2xFzW4bqnobbEXLbTblt
+Mbeuq9ZpuG0ht9OU2xJy67bH26dTcFtCbrcptynmRrbqnYbbFHJ7TbkNIbdrqvZpsA0htq415UZC
+7oLyFNxIzN28ZAq5tWPQ1wn50sPRkhX2ITzR/GWClhOXrA3h7VGLwnTcsG7njS6h28kNPmxxOt/3
+OKzLwNkqfqPxmSYZCYG/pFQ8ZyXP37r+j/LulyX97d150WcZbfuCsicQaWk1LbNtJS+ruEDLq0lZ
+LWtvWXcFSm5NyW5ZLctKKVByakpOy/pW1jaBkl1TcltWpLIaCZSsmpLXsoaU9UOgZNaU8m60Tdov
+U75AyqhL6S1TdZWmBVqoroVaptcqtYoe4LrWjySL77V4tqtnqyLRode334Mkt58GX7/pdgT/Gfrw
+FQ==</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+      </Body>
+      <Width>6.5in</Width>
+      <Page />
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Invalid</rd:ReportUnitType>
+</Report>

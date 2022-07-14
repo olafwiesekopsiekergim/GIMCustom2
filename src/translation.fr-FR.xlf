@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="fr-FR" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 1734918028 - NamedType 1850564191" size-unit="char" translate="yes" xml:space="preserve">
+          <source>I hereby acknowledge the following: With the shutdown of the automatic check function, the operator is now responsible for monitoring and regulating the 3-month maintenance interval recommended by the manufacturer.</source>
+          <target>Par la présente, j'ai bien noté le suivant: Par la déconnexion de la fonction d'autocontrôle, l'opérateur assume la responsabilité de surveiller et réguler l'intervalle de maintenance de trois mois recommandé par le fabricant.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Vereinbarung DueSi - NamedType DUE001</note>
+        </trans-unit>
+        <trans-unit id="Report 1734918028 - NamedType 3125957425" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date/Signature</source>
+          <target>Date/Signature</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Vereinbarung DueSi - NamedType DUE003</note>
+        </trans-unit>
+        <trans-unit id="Report 1172339207 - Method 453101034 - NamedType 1195352358" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A1</source>
+          <target>A1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Imp/Exp Excel Item ExtTxt - Method GetA1 - NamedType Text016</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
