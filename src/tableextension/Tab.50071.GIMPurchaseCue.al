@@ -1,5 +1,5 @@
 /// <summary>
-/// TableExtension GIMPurchaseCue (ID 50071) extends Record Purchase Cue.
+/// TableExtension "GIMPurchaseCue" (ID 50071) extends Record Purchase Cue.
 /// </summary>
 tableextension 50071 GIMPurchaseCue extends "Purchase Cue"
 {

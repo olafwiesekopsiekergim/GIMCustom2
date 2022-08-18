@@ -146,92 +146,92 @@ table 50046 "RMDHist Erfolgreich&Fehlerhaft"
     {
     }
 
-    trigger OnInsert()
-    var
-        lDoit: Boolean;
-    begin
-        //c/gw/200410
-        lDoit := (("Record Type" = "Record Type"::Fehlerhaft)
-              or ((Art = Art::"offene-VA-Kontrolle") and (StrPos(Bemerkung, '!!! Differenzen !!!') = 1))
-              or ((Art = Art::Bestandskontrolle) and (StrPos(Bemerkung, '!!! Differenzen !!!') = 1)));
-        if lDoit then
-            SendEMail(Rec);
-    end;
+    // trigger OnInsert()
+    // var
+    //     lDoit: Boolean;
+    // begin
+    //     //c/gw/200410
+    //     lDoit := (("Record Type" = "Record Type"::Fehlerhaft)
+    //           or ((Art = Art::"offene-VA-Kontrolle") and (StrPos(Bemerkung, '!!! Differenzen !!!') = 1))
+    //           or ((Art = Art::Bestandskontrolle) and (StrPos(Bemerkung, '!!! Differenzen !!!') = 1)));
+    //     if lDoit then
+    //         SendEMail(Rec);
+    // end;
 
-    //[Scope('OnPrem')]
-    procedure SendEMail("pRMDHistFehlerhafterEinträge": Record "RMDHist Erfolgreich&Fehlerhaft")
-    var
-        RecRef: RecordRef;
-        lRMDEinrichtungRec: Record "RMD Einrichtung";
-        lZuordnungsnr: Integer;
-        lMail: Codeunit "SMTP Mail";
-    begin
-        exit;
+    // //[Scope('OnPrem')]
+    // procedure SendEMail("pRMDHistFehlerhafterEinträge": Record "RMDHist Erfolgreich&Fehlerhaft")
+    // var
+    //     RecRef: RecordRef;
+    //     lRMDEinrichtungRec: Record "RMD Einrichtung";
+    //     lZuordnungsnr: Integer;
+    //     lMail: Codeunit "SMTP Mail";
+    // begin
+    //     exit;
 
-        RecRef.GetTable(pRMDHistFehlerhafterEinträge);
-        lRMDEinrichtungRec.Get;
-        case pRMDHistFehlerhafterEinträge.Art of
+    //     RecRef.GetTable(pRMDHistFehlerhafterEinträge);
+    //     lRMDEinrichtungRec.Get;
+    //     case pRMDHistFehlerhafterEinträge.Art of
 
-            pRMDHistFehlerhafterEinträge.Art::"VA-Packzettel":
-                lZuordnungsnr := lRMDEinrichtungRec."VA EMail Zuordnungsnr.";
-            pRMDHistFehlerhafterEinträge.Art::"VA-Umlagerung":
-                lZuordnungsnr := lRMDEinrichtungRec."VA EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::"VA-Packzettel":
+    //             lZuordnungsnr := lRMDEinrichtungRec."VA EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::"VA-Umlagerung":
+    //             lZuordnungsnr := lRMDEinrichtungRec."VA EMail Zuordnungsnr.";
 
-            pRMDHistFehlerhafterEinträge.Art::"RM-Packzettel":
-                lZuordnungsnr := lRMDEinrichtungRec."RM EMail Zuordnungsnr.";
-            pRMDHistFehlerhafterEinträge.Art::"RM-Umlagerung":
-                lZuordnungsnr := lRMDEinrichtungRec."RM EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::"RM-Packzettel":
+    //             lZuordnungsnr := lRMDEinrichtungRec."RM EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::"RM-Umlagerung":
+    //             lZuordnungsnr := lRMDEinrichtungRec."RM EMail Zuordnungsnr.";
 
-            pRMDHistFehlerhafterEinträge.Art::Artikelstamm:
-                lZuordnungsnr := lRMDEinrichtungRec."ART EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::Artikelstamm:
+    //             lZuordnungsnr := lRMDEinrichtungRec."ART EMail Zuordnungsnr.";
 
-            pRMDHistFehlerhafterEinträge.Art::Bestandskontrolle:
-                lZuordnungsnr := lRMDEinrichtungRec."BK EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::Bestandskontrolle:
+    //             lZuordnungsnr := lRMDEinrichtungRec."BK EMail Zuordnungsnr.";
 
-            pRMDHistFehlerhafterEinträge.Art::"offene-VA-Kontrolle":
-                lZuordnungsnr := lRMDEinrichtungRec."oVA EMail Zuordnungsnr.";
+    //         pRMDHistFehlerhafterEinträge.Art::"offene-VA-Kontrolle":
+    //             lZuordnungsnr := lRMDEinrichtungRec."oVA EMail Zuordnungsnr.";
 
-        //                                                                            --- [  S P E Z I E L L E S  ] ---
-        // da gibts noch den SPEZIEALAUFTRAG     aber keine Art                   <- erst mal weggelassen Stand:20.04.10
-        // da gibts noch die pRMDHistFehlerhafterEinträge.Art::Bestellung         <- erst mal weggelassen Stand:20.04.10
-        //                                                                   Teile wie in anderen Bereichen aber schon eingebaut
+    //     //                                                                            --- [  S P E Z I E L L E S  ] ---
+    //     // da gibts noch den SPEZIEALAUFTRAG     aber keine Art                   <- erst mal weggelassen Stand:20.04.10
+    //     // da gibts noch die pRMDHistFehlerhafterEinträge.Art::Bestellung         <- erst mal weggelassen Stand:20.04.10
+    //     //                                                                   Teile wie in anderen Bereichen aber schon eingebaut
 
-        end;
-        if lZuordnungsnr > 0 then begin
-            //*--------------------------------------------------------------------------------- SMTP REIN
+    //     end;
+    //     if lZuordnungsnr > 0 then begin
+    //         //*--------------------------------------------------------------------------------- SMTP REIN
 
-            //lMail.CreateMessage(SenderName,SenderAddress,Recipients,Subject,Body,HtmlFormatted)
-            lMail.CreateMessage('RMD Server', 'navision@dueperthal.de', GetEmail_An(lZuordnungsnr), GetEmail_Betreff(lZuordnungsnr), '', true);
-            lMail.AppendBody(GetEmail_Body(lZuordnungsnr
-                                          , pRMDHistFehlerhafterEinträge
-                                          , GetEmail_URL(PAGE::"RMDHist Erfolgreich", RecRef)
-                                          , GetEmail_LinkText));
-            if GetEmail_Kopie(lZuordnungsnr).Count <> 0 then
-                lMail.AddCC(GetEmail_Kopie(lZuordnungsnr));
-            if GetEmail_BlindKopie(lZuordnungsnr).count <> 0 then
-                lMail.AddBCC(GetEmail_BlindKopie(lZuordnungsnr));
-            // Test
-            //IF GetEmail_Dateiname(lZuordnungsnr) <> '' THEN
-            //  lMail.AddAttachment(GetEmail_Dateiname(lZuordnungsnr),'');
-            lMail.Send();
-            //*--------------------------------------------------------------------------------- SMTP REIN
-            /* *--------------------------------------------------------------------------------- MAPI RAUS
-              Mailversand( GetEmail_An(lZuordnungsnr)
-                         , GetEmail_Kopie(lZuordnungsnr)
-                         , GetEmail_BlindKopie(lZuordnungsnr)
-                         , GetEmail_Betreff(lZuordnungsnr)
-                         //, GetEmail_URL(FORM::"RMDHist Erfolgreich", RecRef)
-                         , GetEmail_Body( lZuordnungsnr
-                                        , pRMDHistFehlerhafterEinträge
-                                        , GetEmail_URL(FORM::"RMDHist Erfolgreich", RecRef)
-                                        , GetEmail_LinkText)
-                         // , GetEmail_LinkText
-                         , GetEmail_Dateiname(lZuordnungsnr)
-                         , GetEMail_SofortVersand);
-              *--------------------------------------------------------------------------------- MAPI RAUS */
-        end;
+    //         //lMail.CreateMessage(SenderName,SenderAddress,Recipients,Subject,Body,HtmlFormatted)
+    //         lMail.CreateMessage('RMD Server', 'navision@dueperthal.de', GetEmail_An(lZuordnungsnr), GetEmail_Betreff(lZuordnungsnr), '', true);
+    //         lMail.AppendBody(GetEmail_Body(lZuordnungsnr
+    //                                       , pRMDHistFehlerhafterEinträge
+    //                                       , GetEmail_URL(PAGE::"RMDHist Erfolgreich", RecRef)
+    //                                       , GetEmail_LinkText));
+    //         if GetEmail_Kopie(lZuordnungsnr).Count <> 0 then
+    //             lMail.AddCC(GetEmail_Kopie(lZuordnungsnr));
+    //         if GetEmail_BlindKopie(lZuordnungsnr).count <> 0 then
+    //             lMail.AddBCC(GetEmail_BlindKopie(lZuordnungsnr));
+    //         // Test
+    //         //IF GetEmail_Dateiname(lZuordnungsnr) <> '' THEN
+    //         //  lMail.AddAttachment(GetEmail_Dateiname(lZuordnungsnr),'');
+    //         lMail.Send();
+    //         //*--------------------------------------------------------------------------------- SMTP REIN
+    //         /* *--------------------------------------------------------------------------------- MAPI RAUS
+    //           Mailversand( GetEmail_An(lZuordnungsnr)
+    //                      , GetEmail_Kopie(lZuordnungsnr)
+    //                      , GetEmail_BlindKopie(lZuordnungsnr)
+    //                      , GetEmail_Betreff(lZuordnungsnr)
+    //                      //, GetEmail_URL(FORM::"RMDHist Erfolgreich", RecRef)
+    //                      , GetEmail_Body( lZuordnungsnr
+    //                                     , pRMDHistFehlerhafterEinträge
+    //                                     , GetEmail_URL(FORM::"RMDHist Erfolgreich", RecRef)
+    //                                     , GetEmail_LinkText)
+    //                      // , GetEmail_LinkText
+    //                      , GetEmail_Dateiname(lZuordnungsnr)
+    //                      , GetEMail_SofortVersand);
+    //           *--------------------------------------------------------------------------------- MAPI RAUS */
+    //     end;
 
-    end;
+    // end;
 
     //[Scope('OnPrem')]
     procedure GetEmail_An(pZuordnungsnr: Integer): list of [text]
@@ -339,79 +339,79 @@ table 50046 "RMDHist Erfolgreich&Fehlerhaft"
     end;
 
     //[Scope('OnPrem')]
-    procedure GetEmail_URL(FormID: Integer; RecRef: RecordRef): Text[1024]
-    var
-        TargetText: Text[250];
-        ViewText: Text[250];
-        SortingText: Text[250];
-        KeyRef: KeyRef;
-        "Zähler": Integer;
-        FieldRef: FieldRef;
-        WhereText: Text[1024];
-        FilterVorhanden: Boolean;
-        PositionText: Text[250];
-        lURLText: Text[1024];
-    begin
-        // neue Funktion, diese wird aus on insert ggf. aufgerufen
-        /*
-           URLErstellung
-          'Quelle: MH\20.04.10     der Quelle sei Dank'
-        */
-        //  - http://msdn.microsoft.com/en-us/library/dd338856.aspx
-        //  - http://msdn.microsoft.com/en-us/library/dd338670.aspx
+    // procedure GetEmail_URL(FormID: Integer; RecRef: RecordRef): Text[1024]
+    // var
+    //     TargetText: Text[250];
+    //     ViewText: Text[250];
+    //     SortingText: Text[250];
+    //     KeyRef: KeyRef;
+    //     "Zähler": Integer;
+    //     FieldRef: FieldRef;
+    //     WhereText: Text[1024];
+    //     FilterVorhanden: Boolean;
+    //     PositionText: Text[250];
+    //     lURLText: Text[1024];
+    // begin
+    //     // neue Funktion, diese wird aus on insert ggf. aufgerufen
+    //     /*
+    //        URLErstellung
+    //       'Quelle: MH\20.04.10     der Quelle sei Dank'
+    //     */
+    //     //  - http://msdn.microsoft.com/en-us/library/dd338856.aspx
+    //     //  - http://msdn.microsoft.com/en-us/library/dd338670.aspx
 
-        /*
-        // Navision Links versenden - Beispielprogrammierung...
-        Item.GET('1000');
-        Recordref_.GETTABLE(Item);
-        MESSAGE ('URL:_%1_',URLErstellung(FORM::"Item Card",Recordref_));
-        */
+    //     /*
+    //     // Navision Links versenden - Beispielprogrammierung...
+    //     Item.GET('1000');
+    //     Recordref_.GETTABLE(Item);
+    //     MESSAGE ('URL:_%1_',URLErstellung(FORM::"Item Card",Recordref_));
+    //     */
 
 
-        TargetText := 'target=Form ' + Format(FormID);
-        ViewText := 'view=';
-        SortingText := 'SORTING(';
-        KeyRef := RecRef.KeyIndex(RecRef.CurrentKeyIndex);
-        for Zähler := 1 to KeyRef.FieldCount do begin
-            FieldRef := KeyRef.FieldIndex(Zähler);
-            SortingText += 'Field' + Format(FieldRef.Number);
-            if Zähler = KeyRef.FieldCount then
-                SortingText += ')'
-            else
-                SortingText += ',';
-        end;
+    //     TargetText := 'target=Form ' + Format(FormID);
+    //     ViewText := 'view=';
+    //     SortingText := 'SORTING(';
+    //     KeyRef := RecRef.KeyIndex(RecRef.CurrentKeyIndex);
+    //     for Zähler := 1 to KeyRef.FieldCount do begin
+    //         FieldRef := KeyRef.FieldIndex(Zähler);
+    //         SortingText += 'Field' + Format(FieldRef.Number);
+    //         if Zähler = KeyRef.FieldCount then
+    //             SortingText += ')'
+    //         else
+    //             SortingText += ',';
+    //     end;
 
-        WhereText := '%20WHERE(';
-        FilterVorhanden := false;
-        if RecRef.HasFilter then begin
-            for Zähler := 1 to RecRef.FieldCount do begin
-                FieldRef := RecRef.FieldIndex(Zähler);
-                if FieldRef.GetFilter <> '' then begin
-                    WhereText += 'Field' + Format(FieldRef.Number) + '=1(' + FieldRef.GetFilter + '),';
-                end;
-                if Zähler = RecRef.FieldCount then
-                    WhereText := DelStr(WhereText, StrLen(WhereText)) + ')';
-            end;
-        end else
-            WhereText := '';
-        PositionText := 'position=';
-        KeyRef := RecRef.KeyIndex(1);
-        for Zähler := 1 to KeyRef.FieldCount do begin
-            FieldRef := KeyRef.FieldIndex(Zähler);
-            PositionText += 'Field' + Format(FieldRef.Number) + '=0(' + Format(FieldRef.Value) + ')';
-            if Zähler <> KeyRef.FieldCount then
-                PositionText += ',';
-        end;
+    //     WhereText := '%20WHERE(';
+    //     FilterVorhanden := false;
+    //     if RecRef.HasFilter then begin
+    //         for Zähler := 1 to RecRef.FieldCount do begin
+    //             FieldRef := RecRef.FieldIndex(Zähler);
+    //             if FieldRef.GetFilter <> '' then begin
+    //                 WhereText += 'Field' + Format(FieldRef.Number) + '=1(' + FieldRef.GetFilter + '),';
+    //             end;
+    //             if Zähler = RecRef.FieldCount then
+    //                 WhereText := DelStr(WhereText, StrLen(WhereText)) + ')';
+    //         end;
+    //     end else
+    //         WhereText := '';
+    //     PositionText := 'position=';
+    //     KeyRef := RecRef.KeyIndex(1);
+    //     for Zähler := 1 to KeyRef.FieldCount do begin
+    //         FieldRef := KeyRef.FieldIndex(Zähler);
+    //         PositionText += 'Field' + Format(FieldRef.Number) + '=0(' + Format(FieldRef.Value) + ')';
+    //         if Zähler <> KeyRef.FieldCount then
+    //             PositionText += ',';
+    //     end;
 
-        lURLText := GetNAVUrl + '&' + TargetText + '&' + ViewText + SortingText + WhereText + '&' + PositionText;
-        while StrPos(lURLText, ' ') > 0 do
-            lURLText := CopyStr(lURLText, 1, StrPos(lURLText, ' ') - 1) + '%20' + CopyStr(lURLText, StrPos(lURLText, ' ') + 1);
-        while StrPos(lURLText, '&') > 0 do
-            lURLText := CopyStr(lURLText, 1, StrPos(lURLText, '&') - 1) + '%26' + CopyStr(lURLText, StrPos(lURLText, '&') + 1);
+    //     lURLText := GetNAVUrl + '&' + TargetText + '&' + ViewText + SortingText + WhereText + '&' + PositionText;
+    //     while StrPos(lURLText, ' ') > 0 do
+    //         lURLText := CopyStr(lURLText, 1, StrPos(lURLText, ' ') - 1) + '%20' + CopyStr(lURLText, StrPos(lURLText, ' ') + 1);
+    //     while StrPos(lURLText, '&') > 0 do
+    //         lURLText := CopyStr(lURLText, 1, StrPos(lURLText, '&') - 1) + '%26' + CopyStr(lURLText, StrPos(lURLText, '&') + 1);
 
-        exit(DelChr(lURLText, '<>', ' '));
+    //     exit(DelChr(lURLText, '<>', ' '));
 
-    end;
+    // end;
 
     //[Scope('OnPrem')]
     procedure GetEmail_LinkText(): Text[100]
@@ -430,17 +430,17 @@ table 50046 "RMDHist Erfolgreich&Fehlerhaft"
         exit(lEMailPerRMDBelegSetupRec."EMail Dateiname");
     end;
 
-    local procedure GetNAVUrl(): Text
-    var
-        Uri: dotnet uri;
-        UriPartial: DotNet UriPartial;
-        UrlString: Text;
-    begin
-        UrlString := GetUrl(CLIENTTYPE::Windows);
-        Uri := Uri.Uri(UrlString);
-        UrlString := Uri.GetLeftPart(UriPartial.Path) + Uri.Query;
+    // local procedure GetNAVUrl(): Text
+    // var
+    //     Uri: dotnet uri;
+    //     UriPartial: DotNet UriPartial;
+    //     UrlString: Text;
+    // begin
+    //     UrlString := GetUrl(CLIENTTYPE::Windows);
+    //     Uri := Uri.Uri(UrlString);
+    //     UrlString := Uri.GetLeftPart(UriPartial.Path) + Uri.Query;
 
-        exit(UrlString);
-    end;
+    //     exit(UrlString);
+    // end;
 }
 

@@ -833,74 +833,74 @@ table 50045 "RMD Einrichtung"
         Test: Label 'ftp://home119525691.1and1-data.host';
 
     //[Scope('OnPrem')]
-    procedure FTP_Control_ART()
-    var
-        FileRec: Record File;
-    begin
-        ClearDirectory(FileRec);
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Exportpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "ART Datei-Matchcode"));
-        if FileRec.Find('-') then
-            repeat
-                StartFile(false, FileRec.Path + FileRec.Name, FileRec.Name); // FALSE = not Import
+    // procedure FTP_Control_ART()
+    // var
+    //     FileRec: Record File;
+    // begin
+    //     ClearDirectory(FileRec);
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Exportpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "ART Datei-Matchcode"));
+    //     if FileRec.Find('-') then
+    //         repeat
+    //             StartFile(false, FileRec.Path + FileRec.Name, FileRec.Name); // FALSE = not Import
 
-                if FILE.Copy(FileRec.Path + FileRec.Name, StrSubstNo('%1%2%3', "Root Directory", "ART Archivpfad", FileRec.Name)) then
-                    Erase(FileRec.Path + FileRec.Name);
-            until FileRec.Next = 0;
-    end;
-
-    //[Scope('OnPrem')]
-    procedure FTP_Control_VA()
-    var
-        FileRec: Record File;
-        ArtikelBuchBlattVorlageRec: Record "Item Journal Template";
-    begin
-        ClearDirectory(FileRec);
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Exportpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "VA Datei-Matchcode"));
-        if FileRec.Find('-') then
-            repeat
-                StartFile(false, FileRec.Path + FileRec.Name, FileRec.Name);
-
-                ArtikelBuchBlattVorlageRec.SetRange(Type, ArtikelBuchBlattVorlageRec.Type::RMDUmlagerung);
-                if ArtikelBuchBlattVorlageRec.Get(DelChr(CopyStr(FileRec.Name, 1, 10), '>', '_')) then begin
-
-                    if FILE.Copy(FileRec.Path + FileRec.Name
-                                , StrSubstNo('%1%2%3', "Root Directory", "VA Archivpfad (Umlagerung)", FileRec.Name))
-                    then
-                        Erase(FileRec.Path + FileRec.Name);
-                end else begin
-
-                    if FILE.Copy(FileRec.Path + FileRec.Name
-                                , StrSubstNo('%1%2%3', "Root Directory", "VA Archivpfad (Pakzettel)", FileRec.Name))
-                    then
-                        Erase(FileRec.Path + FileRec.Name);
-                end;
-            until FileRec.Next = 0;
-    end;
+    //             if FILE.Copy(FileRec.Path + FileRec.Name, StrSubstNo('%1%2%3', "Root Directory", "ART Archivpfad", FileRec.Name)) then
+    //                 Erase(FileRec.Path + FileRec.Name);
+    //         until FileRec.Next = 0;
+    // end;
 
     //[Scope('OnPrem')]
-    procedure FTP_Control_RM(var FileRec: Record File): Boolean
-    var
-        ArtikelBuchBlattVorlageRec: Record "Item Journal Template";
-    begin
-        RMs_Ggf_ZuerstBuchen;   // <- betreff ältere bereits rückgemeldete
+    // procedure FTP_Control_VA()
+    // var
+    //     FileRec: Record File;
+    //     ArtikelBuchBlattVorlageRec: Record "Item Journal Template";
+    // begin
+    //     ClearDirectory(FileRec);
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Exportpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "VA Datei-Matchcode"));
+    //     if FileRec.Find('-') then
+    //         repeat
+    //             StartFile(false, FileRec.Path + FileRec.Name, FileRec.Name);
 
-        ClearDirectory(FileRec);
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "RM Datei-Matchcode"));
-        if not FileRec.Find('-') then; // <- Semikolon Signifikant   // Habe es eingesetzt weil sonst nicht von RMD abgeholt wird,
-        StartFiles(true, '*.*', '');                                          // z. B. (wie passiert) Umbuchungen manuell erledigt (gebucht) werden
-                                                                              // und das zurückkommende .rm-File im Import nicht manuell verschoben
-        ClearDirectory(FileRec);                                       // wird, dort sozusagen hängen bleibt   >>>   //c/gw/10092013   <<<
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "RM Datei-Matchcode"));
-        exit(FileRec.Find('-'));
-    end;
+    //             ArtikelBuchBlattVorlageRec.SetRange(Type, ArtikelBuchBlattVorlageRec.Type::RMDUmlagerung);
+    //             if ArtikelBuchBlattVorlageRec.Get(DelChr(CopyStr(FileRec.Name, 1, 10), '>', '_')) then begin
+
+    //                 if FILE.Copy(FileRec.Path + FileRec.Name
+    //                             , StrSubstNo('%1%2%3', "Root Directory", "VA Archivpfad (Umlagerung)", FileRec.Name))
+    //                 then
+    //                     Erase(FileRec.Path + FileRec.Name);
+    //             end else begin
+
+    //                 if FILE.Copy(FileRec.Path + FileRec.Name
+    //                             , StrSubstNo('%1%2%3', "Root Directory", "VA Archivpfad (Pakzettel)", FileRec.Name))
+    //                 then
+    //                     Erase(FileRec.Path + FileRec.Name);
+    //             end;
+    //         until FileRec.Next = 0;
+    // end;
+
+    //[Scope('OnPrem')]
+    // procedure FTP_Control_RM(var FileRec: Record File): Boolean
+    // var
+    //     ArtikelBuchBlattVorlageRec: Record "Item Journal Template";
+    // begin
+    //     RMs_Ggf_ZuerstBuchen;   // <- betreff ältere bereits rückgemeldete
+
+    //     ClearDirectory(FileRec);
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "RM Datei-Matchcode"));
+    //     if not FileRec.Find('-') then; // <- Semikolon Signifikant   // Habe es eingesetzt weil sonst nicht von RMD abgeholt wird,
+    //     StartFiles(true, '*.*', '');                                          // z. B. (wie passiert) Umbuchungen manuell erledigt (gebucht) werden
+    //                                                                           // und das zurückkommende .rm-File im Import nicht manuell verschoben
+    //     ClearDirectory(FileRec);                                       // wird, dort sozusagen hängen bleibt   >>>   //c/gw/10092013   <<<
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "RM Datei-Matchcode"));
+    //     exit(FileRec.Find('-'));
+    // end;
 
     //[Scope('OnPrem')]
     procedure RMs_Ggf_ZuerstBuchen()
@@ -1034,340 +1034,340 @@ table 50045 "RMD Einrichtung"
     end;
 
     //[Scope('OnPrem')]
-    procedure FTP_Control_BK(var FileRec: Record File): Boolean
-    begin
-        ClearDirectory(FileRec);
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
-        if not FileRec.Find('-') then begin
+    // procedure FTP_Control_BK(var FileRec: Record File): Boolean
+    // begin
+    //     ClearDirectory(FileRec);
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
+    //     if not FileRec.Find('-') then begin
 
-            ClearDirectory(FileRec);
-            FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-            FileRec.SetRange("Is a file", true);
-            FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "BK Datei-Matchcode"));
-            if not FileRec.Find('-') then begin
-                StartFiles(true, '*.*', '');
+    //         ClearDirectory(FileRec);
+    //         FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //         FileRec.SetRange("Is a file", true);
+    //         FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "BK Datei-Matchcode"));
+    //         if not FileRec.Find('-') then begin
+    //             StartFiles(true, '*.*', '');
 
-                ClearDirectory(FileRec);
-                FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-                FileRec.SetRange("Is a file", true);
-                FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
-                if not FileRec.Find('-') then begin
+    //             ClearDirectory(FileRec);
+    //             FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //             FileRec.SetRange("Is a file", true);
+    //             FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
+    //             if not FileRec.Find('-') then begin
 
-                    ClearDirectory(FileRec);
-                    FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-                    FileRec.SetRange("Is a file", true);
-                    FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "BK Datei-Matchcode"));
-                    exit(FileRec.Find('-'));
+    //                 ClearDirectory(FileRec);
+    //                 FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //                 FileRec.SetRange("Is a file", true);
+    //                 FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "BK Datei-Matchcode"));
+    //                 exit(FileRec.Find('-'));
 
-                end else
-                    exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
+    //             end else
+    //                 exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
 
-            end else
-                exit(true);
+    //         end else
+    //             exit(true);
 
-        end else
-            exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
-    end;
-
-    //[Scope('OnPrem')]
-    procedure FTP_Control_oVA(var FileRec: Record File): Boolean
-    begin
-        ClearDirectory(FileRec);
-        FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-        FileRec.SetRange("Is a file", true);
-        FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
-        if not FileRec.Find('-') then begin
-
-            ClearDirectory(FileRec);
-            FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-            FileRec.SetRange("Is a file", true);
-            FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "oVA Datei-Matchcode"));
-            if not FileRec.Find('-') then begin
-                StartFiles(true, '*.*', '');
-
-                ClearDirectory(FileRec);
-                FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-                FileRec.SetRange("Is a file", true);
-                FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
-                if not FileRec.Find('-') then begin
-                    ClearDirectory(FileRec);
-                    FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
-                    FileRec.SetRange("Is a file", true);
-                    FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "oVA Datei-Matchcode"));
-                    exit(FileRec.Find('-'));
-
-                end else
-                    exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
-
-            end else
-                exit(true);
-
-        end else
-            exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
-    end;
+    //     end else
+    //         exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
+    // end;
 
     //[Scope('OnPrem')]
-    procedure StartFile(Import: Boolean; FileList: Text; FileName: Text)
-    var
-        Dummy: Integer;
-        StartBatch: File;
-        WshShell: Automation;
-        WshMode: Integer;
-        WaitForEndOfCommand: Boolean;
-        ReturnCode: Integer;
-        ConstDiskFileName: Text[1024];
-        FromDiskFileName: Text[1024];
-        FileMgt: Codeunit "File Management";
-    begin
-        if Import then
-            DownloadFile(Host + '/' + "RemoteDirectory RMDtoDÜPERTHAL" + '/' + FileName, FileList, Login, Passwort, true)
-        else
-            UploadFile(FileList, Host + '/' + "RemoteDirectory DÜPERTHALtoRMD" + '/' + FileName, Login, Passwort);
-    end;
+    // procedure FTP_Control_oVA(var FileRec: Record File): Boolean
+    // begin
+    //     ClearDirectory(FileRec);
+    //     FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //     FileRec.SetRange("Is a file", true);
+    //     FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
+    //     if not FileRec.Find('-') then begin
+
+    //         ClearDirectory(FileRec);
+    //         FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //         FileRec.SetRange("Is a file", true);
+    //         FileRec.SetFilter(Name, StrSubstNo('%1%2', '@', "oVA Datei-Matchcode"));
+    //         if not FileRec.Find('-') then begin
+    //             StartFiles(true, '*.*', '');
+
+    //             ClearDirectory(FileRec);
+    //             FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //             FileRec.SetRange("Is a file", true);
+    //             FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "RM Datei-Matchcode"));
+    //             if not FileRec.Find('-') then begin
+    //                 ClearDirectory(FileRec);
+    //                 FileRec.SetRange(Path, StrSubstNo('%1%2', "Root Directory", "Allgemeiner Importpfad"));
+    //                 FileRec.SetRange("Is a file", true);
+    //                 FileRec.SetFilter(Name, StrSubstNo('%1*%2', '@', "oVA Datei-Matchcode"));
+    //                 exit(FileRec.Find('-'));
+
+    //             end else
+    //                 exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
+
+    //         end else
+    //             exit(true);
+
+    //     end else
+    //         exit(false); // Weil erst einmal alle anderen Sachen bearbeitet werden müssen  · am Ende kommt BK zu Zuge
+    // end;
 
     //[Scope('OnPrem')]
-    procedure StartFiles(Import: Boolean; FileList: Text; FileName: Text)
-    var
-        Dummy: Integer;
-        StartBatch: File;
-        WshShell: Automation;
-        WshMode: Integer;
-        WaitForEndOfCommand: Boolean;
-        ReturnCode: Integer;
-        ConstDiskFileName: Text[1024];
-        FromDiskFileName: Text[1024];
-        FileMgt: Codeunit "File Management";
-    begin
-        if Import then
-            DownloadFiles(Host + '/' + "RemoteDirectory RMDtoDÜPERTHAL" + '/', "Root Directory" + '/' + "Allgemeiner Importpfad", Login, Passwort)
-        else
-            UploadFiles(FileList, Host + '/' + "RemoteDirectory DÜPERTHALtoRMD", Login, Passwort);
-    end;
+    // procedure StartFile(Import: Boolean; FileList: Text; FileName: Text)
+    // var
+    //     Dummy: Integer;
+    //     StartBatch: File;
+    //     WshShell: Automation;
+    //     WshMode: Integer;
+    //     WaitForEndOfCommand: Boolean;
+    //     ReturnCode: Integer;
+    //     ConstDiskFileName: Text[1024];
+    //     FromDiskFileName: Text[1024];
+    //     FileMgt: Codeunit "File Management";
+    // begin
+    //     if Import then
+    //         DownloadFile(Host + '/' + "RemoteDirectory RMDtoDÜPERTHAL" + '/' + FileName, FileList, Login, Passwort, true)
+    //     else
+    //         UploadFile(FileList, Host + '/' + "RemoteDirectory DÜPERTHALtoRMD" + '/' + FileName, Login, Passwort);
+    // end;
 
     //[Scope('OnPrem')]
-    procedure ClearDirectory(var FileRec: Record File)
-    begin
-        FileRec.SetRange(Path, 'C:\');
-        FileRec.SetRange(Name, '*.*');
-        if FileRec.Find('-') then;     // FIND ist hier wichtig unbedingt drinlassen
-    end;
+    // procedure StartFiles(Import: Boolean; FileList: Text; FileName: Text)
+    // var
+    //     Dummy: Integer;
+    //     StartBatch: File;
+    //     WshShell: Automation;
+    //     WshMode: Integer;
+    //     WaitForEndOfCommand: Boolean;
+    //     ReturnCode: Integer;
+    //     ConstDiskFileName: Text[1024];
+    //     FromDiskFileName: Text[1024];
+    //     FileMgt: Codeunit "File Management";
+    // begin
+    //     if Import then
+    //         DownloadFiles(Host + '/' + "RemoteDirectory RMDtoDÜPERTHAL" + '/', "Root Directory" + '/' + "Allgemeiner Importpfad", Login, Passwort)
+    //     else
+    //         UploadFiles(FileList, Host + '/' + "RemoteDirectory DÜPERTHALtoRMD", Login, Passwort);
+    // end;
 
     //[Scope('OnPrem')]
-    procedure "------------------------------"()
-    begin
-    end;
+    // procedure ClearDirectory(var FileRec: Record File)
+    // begin
+    //     FileRec.SetRange(Path, 'C:\');
+    //     FileRec.SetRange(Name, '*.*');
+    //     if FileRec.Find('-') then;     // FIND ist hier wichtig unbedingt drinlassen
+    // end;
+
+    // //[Scope('OnPrem')]
+    // procedure "------------------------------"()
+    // begin
+    // end;
+
+    // //[Scope('OnPrem')]
+    // procedure Transfer2GailingFTP(FileList: Text[250])
+    // var
+    //     Dummy: Integer;
+    //     StartBatch: File;
+    //     SalesReceivablesSetupRec: Record "Sales & Receivables Setup";
+    //     GAILING: Label 'ftp://217.5.203.42/dueperthal';
+    //     Host: Label '217.5.203.42';
+    //     Login: Label 'dueperthalftp';
+    //     PW: Label 'ki37ut2p';
+    //     "RemoteDirectory DUEP2GAILING": Label 'ftp:/düperthal';
+    // begin
+    //     SalesReceivablesSetupRec.Get;
+    //     StartBatch.WriteMode(true);
+    //     StartBatch.TextMode(true);
+    //     StartBatch.Create(StrSubstNo('%1GailPut.bat', SalesReceivablesSetupRec.Datenbereitstellungspfad));
+    //     StartBatch.Write('@setlocal');
+    //     StartBatch.Write('set confirm-close=no');
+    //     StartBatch.Write('set NCFTPDIR=' + "NCFTP Directory"); // kann doch ins Feld mit rein, desh. HIER RAUS -> + 'Users'...'Users-Test');
+    //     StartBatch.Write('@echo off');
+    //     StartBatch.Write('ncftpput.exe'
+    //                     + ' -u ' + Login
+    //                     + ' -p ' + Passwort
+    //                     + ' -a'
+    //                     + ' ' + Host
+    //                     + ' ' + "RemoteDirectory DUEP2GAILING"
+    //                     + ' ' + FileList);
+    //     StartBatch.Write('@echo on');
+    //     StartBatch.Write('@endlocal');
+    //     StartBatch.Close;
+
+    //     if Shell(StrSubstNo('%1GailPut.bat', "Root Directory", SalesReceivablesSetupRec.Datenbereitstellungspfad)) = Dummy then;
+    // end;
 
     //[Scope('OnPrem')]
-    procedure Transfer2GailingFTP(FileList: Text[250])
-    var
-        Dummy: Integer;
-        StartBatch: File;
-        SalesReceivablesSetupRec: Record "Sales & Receivables Setup";
-        GAILING: Label 'ftp://217.5.203.42/dueperthal';
-        Host: Label '217.5.203.42';
-        Login: Label 'dueperthalftp';
-        PW: Label 'ki37ut2p';
-        "RemoteDirectory DUEP2GAILING": Label 'ftp:/düperthal';
-    begin
-        SalesReceivablesSetupRec.Get;
-        StartBatch.WriteMode(true);
-        StartBatch.TextMode(true);
-        StartBatch.Create(StrSubstNo('%1GailPut.bat', SalesReceivablesSetupRec.Datenbereitstellungspfad));
-        StartBatch.Write('@setlocal');
-        StartBatch.Write('set confirm-close=no');
-        StartBatch.Write('set NCFTPDIR=' + "NCFTP Directory"); // kann doch ins Feld mit rein, desh. HIER RAUS -> + 'Users'...'Users-Test');
-        StartBatch.Write('@echo off');
-        StartBatch.Write('ncftpput.exe'
-                        + ' -u ' + Login
-                        + ' -p ' + Passwort
-                        + ' -a'
-                        + ' ' + Host
-                        + ' ' + "RemoteDirectory DUEP2GAILING"
-                        + ' ' + FileList);
-        StartBatch.Write('@echo on');
-        StartBatch.Write('@endlocal');
-        StartBatch.Close;
+    // procedure ____________________()
+    // begin
+    // end;
 
-        if Shell(StrSubstNo('%1GailPut.bat', "Root Directory", SalesReceivablesSetupRec.Datenbereitstellungspfad)) = Dummy then;
-    end;
+    // //[Scope('OnPrem')]
+    // procedure KOMMENTAR()
+    // begin
+    // end;
 
-    //[Scope('OnPrem')]
-    procedure ____________________()
-    begin
-    end;
+    //     local procedure UploadFile(FileNameToUpload: Text; UploadToFtp: Text; Login: Text; Password: Text)
+    //     var
+    //         FTPRequest: DotNet FtpWebRequest;
+    //         Credentials: DotNet NetworkCredential;
+    //         RealFileStream: DotNet FileStream;
+    //         FileStream: DotNet File;
+    //         SimpleStream: DotNet Stream;
+    //     begin
+    //         FTPRequest := FTPRequest.Create(UploadToFtp);
+    //         Credentials := Credentials.NetworkCredential(Login, Password);
+    //         FTPRequest.Credentials := Credentials;
 
-    //[Scope('OnPrem')]
-    procedure KOMMENTAR()
-    begin
-    end;
+    //         FTPRequest.KeepAlive := true;
+    //         FTPRequest.Method := 'STOR';
+    //         FTPRequest.UsePassive := true;
+    //         FTPRequest.UseBinary := true;
+    //         FTPRequest.UsePassive := false;
 
-    local procedure UploadFile(FileNameToUpload: Text; UploadToFtp: Text; Login: Text; Password: Text)
-    var
-        FTPRequest: DotNet FtpWebRequest;
-        Credentials: DotNet NetworkCredential;
-        RealFileStream: DotNet FileStream;
-        FileStream: DotNet File;
-        SimpleStream: DotNet Stream;
-    begin
-        FTPRequest := FTPRequest.Create(UploadToFtp);
-        Credentials := Credentials.NetworkCredential(Login, Password);
-        FTPRequest.Credentials := Credentials;
+    //         RealFileStream := FileStream.OpenRead(FileNameToUpload);
+    //         SimpleStream := FTPRequest.GetRequestStream;
+    //         RealFileStream.CopyTo(SimpleStream);
+    //         SimpleStream.Close;
+    //         RealFileStream.Close;
+    //     end;
 
-        FTPRequest.KeepAlive := true;
-        FTPRequest.Method := 'STOR';
-        FTPRequest.UsePassive := true;
-        FTPRequest.UseBinary := true;
-        FTPRequest.UsePassive := false;
+    //     //[Scope('OnPrem')]
+    //     procedure DownloadFile(FTPAddressFile: Text; DownloadToFile: Text; Login: Text; Password: Text; DeleteAfterDownload: Boolean)
+    //     var
+    //         FTPRequest: DotNet FtpWebRequest;
+    //         Credentials: DotNet NetworkCredential;
+    //         FileStream: DotNet File;
+    //         SimpleStream: DotNet Stream;
+    //         FTPResponse: DotNet FtpWebResponse;
+    //         ResponseStream: DotNet Stream;
+    //     begin
+    //         if IsFolder(FTPAddressFile) then
+    //             exit;
 
-        RealFileStream := FileStream.OpenRead(FileNameToUpload);
-        SimpleStream := FTPRequest.GetRequestStream;
-        RealFileStream.CopyTo(SimpleStream);
-        SimpleStream.Close;
-        RealFileStream.Close;
-    end;
+    //         FTPRequest := FTPRequest.Create(FTPAddressFile);
+    //         Credentials := Credentials.NetworkCredential(Login, Password);
+    //         FTPRequest.Credentials := Credentials;
 
-    //[Scope('OnPrem')]
-    procedure DownloadFile(FTPAddressFile: Text; DownloadToFile: Text; Login: Text; Password: Text; DeleteAfterDownload: Boolean)
-    var
-        FTPRequest: DotNet FtpWebRequest;
-        Credentials: DotNet NetworkCredential;
-        FileStream: DotNet File;
-        SimpleStream: DotNet Stream;
-        FTPResponse: DotNet FtpWebResponse;
-        ResponseStream: DotNet Stream;
-    begin
-        if IsFolder(FTPAddressFile) then
-            exit;
+    //         FTPRequest.KeepAlive := true;
+    //         FTPRequest.Method := 'RETR';
+    //         FTPRequest.UsePassive := true;
+    //         FTPRequest.UseBinary := true;
+    //         FTPRequest.UsePassive := false;
 
-        FTPRequest := FTPRequest.Create(FTPAddressFile);
-        Credentials := Credentials.NetworkCredential(Login, Password);
-        FTPRequest.Credentials := Credentials;
+    //         FTPResponse := FTPRequest.GetResponse;
+    //         ResponseStream := FTPResponse.GetResponseStream();
+    //         SimpleStream := FileStream.Create(DownloadToFile);
+    //         ResponseStream.CopyTo(SimpleStream);
+    //         SimpleStream.Close;
+    //         ResponseStream.Close;
+    //         FTPResponse.Close;
+    //         if DeleteAfterDownload then begin
+    //             DeleteFile(FTPAddressFile, Login, Password);
+    //         end;
+    //     end;
 
-        FTPRequest.KeepAlive := true;
-        FTPRequest.Method := 'RETR';
-        FTPRequest.UsePassive := true;
-        FTPRequest.UseBinary := true;
-        FTPRequest.UsePassive := false;
+    //     //[Scope('OnPrem')]
+    //     procedure DownloadFiles(FTPAddressWithFolder: Text; DownloadToFolder: Text; FTPUserID: Text; FTPPassword: Text)
+    //     var
+    //         Counter: Integer;
+    //         FilesCount: Integer;
+    //         FilesList: DotNet ArrayList;
+    //     begin
+    //         FilesCount := GetFilesList(FTPAddressWithFolder, FTPUserID, FTPPassword, FilesList);
+    //         if FilesCount > 0 then begin
+    //             for Counter := 0 to FilesCount - 1 do begin
+    //                 DownloadFile(FTPAddressWithFolder + GetFilename(Counter, FilesList), DownloadToFolder + GetFilename(Counter, FilesList), FTPUserID, FTPPassword, true);//TRUE TO DELETE
+    //             end;
+    //         end;
+    //     end;
 
-        FTPResponse := FTPRequest.GetResponse;
-        ResponseStream := FTPResponse.GetResponseStream();
-        SimpleStream := FileStream.Create(DownloadToFile);
-        ResponseStream.CopyTo(SimpleStream);
-        SimpleStream.Close;
-        ResponseStream.Close;
-        FTPResponse.Close;
-        if DeleteAfterDownload then begin
-            DeleteFile(FTPAddressFile, Login, Password);
-        end;
-    end;
+    //     //[Scope('OnPrem')]
+    //     procedure UploadFiles(UploadFromFolder: Text; UploadToFTPAddressWithFolder: Text; FTPUserID: Text; FTPPassword: Text)
+    //     var
+    //         Files: Record File;
+    //     begin
+    //         Files.Reset;
+    //         Files.SetRange(Path, UploadFromFolder);
+    //         Files.SetRange("Is a file", true);
+    //         if Files.Find('-') then begin
+    //             repeat
+    //                 UploadFile(Files.Path + Files.Name, UploadToFTPAddressWithFolder + Files.Name, FTPUserID, FTPPassword);
+    //             until Files.Next = 0;
+    //         end;
+    //     end;
 
-    //[Scope('OnPrem')]
-    procedure DownloadFiles(FTPAddressWithFolder: Text; DownloadToFolder: Text; FTPUserID: Text; FTPPassword: Text)
-    var
-        Counter: Integer;
-        FilesCount: Integer;
-        FilesList: DotNet ArrayList;
-    begin
-        FilesCount := GetFilesList(FTPAddressWithFolder, FTPUserID, FTPPassword, FilesList);
-        if FilesCount > 0 then begin
-            for Counter := 0 to FilesCount - 1 do begin
-                DownloadFile(FTPAddressWithFolder + GetFilename(Counter, FilesList), DownloadToFolder + GetFilename(Counter, FilesList), FTPUserID, FTPPassword, true);//TRUE TO DELETE
-            end;
-        end;
-    end;
+    //     //[Scope('OnPrem')]
+    //     procedure DeleteFile(FTPAddressFile: Text; Login: Text; Password: Text): Boolean
+    //     var
+    //         Deleted: Boolean;
+    //         FTPRequest: DotNet FtpWebRequest;
+    //         Credentials: DotNet NetworkCredential;
+    //         StatusCode: DotNet FtpStatusCode;
+    //         FTPResponse: DotNet FtpWebResponse;
+    //     begin
+    //         Clear(Deleted);
+    //         FTPRequest := FTPRequest.Create(FTPAddressFile);
+    //         Credentials := Credentials.NetworkCredential(Login, Password);
+    //         FTPRequest.Credentials := Credentials;
 
-    //[Scope('OnPrem')]
-    procedure UploadFiles(UploadFromFolder: Text; UploadToFTPAddressWithFolder: Text; FTPUserID: Text; FTPPassword: Text)
-    var
-        Files: Record File;
-    begin
-        Files.Reset;
-        Files.SetRange(Path, UploadFromFolder);
-        Files.SetRange("Is a file", true);
-        if Files.Find('-') then begin
-            repeat
-                UploadFile(Files.Path + Files.Name, UploadToFTPAddressWithFolder + Files.Name, FTPUserID, FTPPassword);
-            until Files.Next = 0;
-        end;
-    end;
+    //         FTPRequest.KeepAlive := true;
+    //         FTPRequest.Method := 'DELE';
+    //         FTPRequest.UsePassive := true;
+    //         FTPRequest.UseBinary := true;
+    //         FTPRequest.UsePassive := false;
 
-    //[Scope('OnPrem')]
-    procedure DeleteFile(FTPAddressFile: Text; Login: Text; Password: Text): Boolean
-    var
-        Deleted: Boolean;
-        FTPRequest: DotNet FtpWebRequest;
-        Credentials: DotNet NetworkCredential;
-        StatusCode: DotNet FtpStatusCode;
-        FTPResponse: DotNet FtpWebResponse;
-    begin
-        Clear(Deleted);
-        FTPRequest := FTPRequest.Create(FTPAddressFile);
-        Credentials := Credentials.NetworkCredential(Login, Password);
-        FTPRequest.Credentials := Credentials;
+    //         FTPResponse := FTPRequest.GetResponse;
+    //         StatusCode := FTPResponse.StatusCode;
 
-        FTPRequest.KeepAlive := true;
-        FTPRequest.Method := 'DELE';
-        FTPRequest.UsePassive := true;
-        FTPRequest.UseBinary := true;
-        FTPRequest.UsePassive := false;
+    //         if FTPResponse.StatusCode.ToString() = StatusCode.FileActionOK.ToString() then begin
+    //             Deleted := true;
+    //         end;
+    //         FTPResponse.Close;
+    //         exit(Deleted);
+    //     end;
 
-        FTPResponse := FTPRequest.GetResponse;
-        StatusCode := FTPResponse.StatusCode;
+    //     //[Scope('OnPrem')]
+    //     procedure GetFilesList(FTPAddress: Text; Login: Text; Password: Text; var FilesList: DotNet ArrayList): Integer
+    //     var
+    //         FTPRequest: DotNet FtpWebRequest;
+    //         Credentials: DotNet NetworkCredential;
+    //         FTPResponse: DotNet FtpWebResponse;
+    //         ResponseStream: DotNet Stream;
+    //         StreamReader: DotNet StreamReader;
+    //     begin
+    //         FTPRequest := FTPRequest.Create(FTPAddress);
+    //         Credentials := Credentials.NetworkCredential(Login, Password);
+    //         FTPRequest.Credentials := Credentials;
 
-        if FTPResponse.StatusCode.ToString() = StatusCode.FileActionOK.ToString() then begin
-            Deleted := true;
-        end;
-        FTPResponse.Close;
-        exit(Deleted);
-    end;
+    //         FTPRequest.Method := 'NLST';
+    //         FTPRequest.UseBinary := true;
+    //         FTPRequest.KeepAlive := false;
+    //         FTPRequest.UsePassive := false;
+    //         FTPResponse := FTPRequest.GetResponse;
+    //         ResponseStream := FTPResponse.GetResponseStream();
+    //         StreamReader := StreamReader.StreamReader(ResponseStream);
+    //         FilesList := FilesList.ArrayList;
+    //         while not StreamReader.EndOfStream do begin
+    //             FilesList.Add(StreamReader.ReadLine);
+    //         end;
 
-    //[Scope('OnPrem')]
-    procedure GetFilesList(FTPAddress: Text; Login: Text; Password: Text; var FilesList: DotNet ArrayList): Integer
-    var
-        FTPRequest: DotNet FtpWebRequest;
-        Credentials: DotNet NetworkCredential;
-        FTPResponse: DotNet FtpWebResponse;
-        ResponseStream: DotNet Stream;
-        StreamReader: DotNet StreamReader;
-    begin
-        FTPRequest := FTPRequest.Create(FTPAddress);
-        Credentials := Credentials.NetworkCredential(Login, Password);
-        FTPRequest.Credentials := Credentials;
+    //         StreamReader.Close;
+    //         ResponseStream.Close;
+    //         FTPResponse.Close;
+    //         exit(FilesList.Count);
+    //     end;
 
-        FTPRequest.Method := 'NLST';
-        FTPRequest.UseBinary := true;
-        FTPRequest.KeepAlive := false;
-        FTPRequest.UsePassive := false;
-        FTPResponse := FTPRequest.GetResponse;
-        ResponseStream := FTPResponse.GetResponseStream();
-        StreamReader := StreamReader.StreamReader(ResponseStream);
-        FilesList := FilesList.ArrayList;
-        while not StreamReader.EndOfStream do begin
-            FilesList.Add(StreamReader.ReadLine);
-        end;
+    //     //[Scope('OnPrem')]
+    //     procedure GetFilename(Index: Integer; var FilesList: DotNet ArrayList): Text
+    //     begin
+    //         exit(Format(FilesList.Item(Index)));
+    //     end;
 
-        StreamReader.Close;
-        ResponseStream.Close;
-        FTPResponse.Close;
-        exit(FilesList.Count);
-    end;
-
-    //[Scope('OnPrem')]
-    procedure GetFilename(Index: Integer; var FilesList: DotNet ArrayList): Text
-    begin
-        exit(Format(FilesList.Item(Index)));
-    end;
-
-    local procedure IsFolder(NameTocheck: Text): Boolean
-    var
-        NameLength: Integer;
-    begin
-        NameLength := StrLen(NameTocheck);
-        if NameLength = 0 then
-            exit(true);
-        exit(CopyStr(NameTocheck, NameLength) in ['/', '.']);
-    end;
+    //     local procedure IsFolder(NameTocheck: Text): Boolean
+    //     var
+    //         NameLength: Integer;
+    //     begin
+    //         NameLength := StrLen(NameTocheck);
+    //         if NameLength = 0 then
+    //             exit(true);
+    //         exit(CopyStr(NameTocheck, NameLength) in ['/', '.']);
+    //     end;
 }
 

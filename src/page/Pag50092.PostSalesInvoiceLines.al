@@ -51,10 +51,10 @@ page 50092 "Post. Sales Invoice Lines"
                 {
                     Caption = 'Salesperson Code';
                 }
-                field("SalesInvoiceHeader.""Salesperson Code 2"""; SalesInvoiceHeader."Salesperson Code 2")
-                {
-                    Caption = 'Salesperson Code 2';
-                }
+                // field("SalesInvoiceHeader.""Salesperson Code 2"""; SalesInvoiceHeader."Salesperson Code 2")
+                // {
+                //     Caption = 'Salesperson Code 2';
+                // }
                 field("SalesInvoiceHeader.""Ship-to Name"""; SalesInvoiceHeader."Ship-to Name")
                 {
                     Caption = 'Ship-to Name';

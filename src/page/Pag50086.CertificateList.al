@@ -1,7 +1,7 @@
-page 50086 "Certificate List"
+page 50086 "GIMCertificate List"
 {
     Caption = 'Certificates';
-    CardPageID = Certificate;
+    CardPageID = GIMCertificate;
     Editable = false;
     PageType = List;
     SourceTable = "Acceptance Protocol Header";
@@ -47,13 +47,13 @@ page 50086 "Certificate List"
                     Caption = 'Print Blank Certificate';
                     Image = Print;
 
-                    trigger OnAction()
-                    var
-                        Certificate: Report Zertifikat;
-                    begin
-                        Certificate.SetBlankReport(true, Rec.Code);
-                        Certificate.RunModal;
-                    end;
+                    // trigger OnAction()
+                    // var
+                    //     Certificate: Report Zertifikat;
+                    // begin
+                    //     Certificate.SetBlankReport(true, Rec.Code);
+                    //     Certificate.RunModal;
+                    // end;
                 }
             }
         }

@@ -1,4 +1,4 @@
-page 50087 "Certificate"
+page 50087 "GIMCertificate"
 {
     // P0036 06.04.16 CCBIE.ARE New object
 
@@ -49,13 +49,15 @@ page 50087 "Certificate"
                     Caption = 'Print Blank Certificate';
                     Image = Print;
 
-                    trigger OnAction()
-                    var
-                        Certificate: Report Zertifikat;
-                    begin
-                        Certificate.SetBlankReport(true, Rec.Code);
-                        Certificate.RunModal;
-                    end;
+                    //TODO Report Zertifikat implementieren
+
+                    // trigger OnAction()
+                    // var
+                    //     Certificate: Report Zertifikat;
+                    // begin
+                    //     Certificate.SetBlankReport(true, Rec.Code);
+                    //     Certificate.RunModal;
+                    // end;
                 }
             }
         }

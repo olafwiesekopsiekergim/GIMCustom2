@@ -39,10 +39,10 @@ page 50093 "Post. Sales Credit Memo Lines"
                 {
                     Caption = 'Salesperson Code';
                 }
-                field("SalesCrMemoHeader.""Salesperson Code 2"""; SalesCrMemoHeader."Salesperson Code 2")
-                {
-                    Caption = 'Salesperson Code 2';
-                }
+                // field("SalesCrMemoHeader.""Salesperson Code 2"""; SalesCrMemoHeader."Salesperson Code 2")
+                // {
+                //     Caption = 'Salesperson Code 2';
+                // }
                 field("SalesCrMemoHeader.""Ship-to Name"""; SalesCrMemoHeader."Ship-to Name")
                 {
                     Caption = 'Ship-to Name';

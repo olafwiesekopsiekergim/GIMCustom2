@@ -48,10 +48,10 @@ page 50096 "Arch. Sales Lines 2"
                 {
                     Caption = 'Salesperson Code';
                 }
-                field("SalesHeader.""Salesperson Code 2"""; SalesHeader."Salesperson Code 2")
-                {
-                    Caption = 'Salesperson Code 2';
-                }
+                // field("SalesHeader.""Salesperson Code 2"""; SalesHeader."Salesperson Code 2")
+                // {
+                //     Caption = 'Salesperson Code 2';
+                // }
                 field("SalesHeader.""Bill-to Name"""; SalesHeader."Bill-to Name")
                 {
                     Caption = 'Ship-to Name';
@@ -245,7 +245,7 @@ page 50096 "Arch. Sales Lines 2"
         end else
             Item.Init;
 
-        VK2 := SalesHeader."Salesperson Code 2";
+        // VK2 := SalesHeader."Salesperson Code 2";
         Internetanfrage := SalesHeader.Webrequest;
     end;
 

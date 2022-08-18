@@ -1,3 +1,6 @@
+/// <summary>
+/// Page GIMPrüfzertifikatszeilen (ID 50059).
+/// </summary>
 page 50059 "GIMPrüfzertifikatszeilen"
 {
     Editable = false;
@@ -46,14 +49,14 @@ page 50059 "GIMPrüfzertifikatszeilen"
             action(RefreshQuery)
             {
                 Caption = 'Aktualisiere Abfrage';
-                Image = "Query";
+                // Image = "Query";
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
 
                 trigger OnAction()
                 begin
-                    FillTempTable;
+                    // FillTempTable;
                 end;
             }
         }
@@ -61,42 +64,42 @@ page 50059 "GIMPrüfzertifikatszeilen"
 
     trigger OnOpenPage()
     begin
-        FillTempTable;
+        // FillTempTable;
     end;
 
     var
         fltDocumentNo: Code[20];
         fltDocumentType: Option Quote,"Order";
 
-    local procedure FillTempTable()
-    var
-        GIMServiceAnswer: Query GIMServiceAnswers;
-        i: Integer;
-    begin
+    // local procedure FillTempTable()
+    // var
+    //     GIMServiceAnswer: Query GIMServiceAnswers;
+    //     i: Integer;
+    // begin
 
-        GIMServiceAnswer.SetRange(GIMServiceAnswer.Document_Type, fltDocumentType);
-        GIMServiceAnswer.SetRange(GIMServiceAnswer.Document_No, fltDocumentNo);
-        GIMServiceAnswer.Open;
+    //     GIMServiceAnswer.SetRange(GIMServiceAnswer.Document_Type, fltDocumentType);
+    //     GIMServiceAnswer.SetRange(GIMServiceAnswer.Document_No, fltDocumentNo);
+    //     GIMServiceAnswer.Open;
 
-        Rec.DeleteAll;
-        while GIMServiceAnswer.Read do begin
-            Rec.Init;
-            i := i + 1;
-            Rec.PK := i;
-            Rec."Document Type" := GIMServiceAnswer.Document_Type;
-            Rec."Document No." := GIMServiceAnswer.Document_No;
-            Rec."Service Item No." := GIMServiceAnswer.Service_Item_No;
-            Rec.Question := GIMServiceAnswer.Description;
-            Rec.Answer := GIMServiceAnswer.Answer;
-            Rec.Insert;
-        end;
-    end;
+    //     Rec.DeleteAll;
+    //     while GIMServiceAnswer.Read do begin
+    //         Rec.Init;
+    //         i := i + 1;
+    //         Rec.PK := i;
+    //         Rec."Document Type" := GIMServiceAnswer.Document_Type;
+    //         Rec."Document No." := GIMServiceAnswer.Document_No;
+    //         Rec."Service Item No." := GIMServiceAnswer.Service_Item_No;
+    //         Rec.Question := GIMServiceAnswer.Description;
+    //         Rec.Answer := GIMServiceAnswer.Answer;
+    //         Rec.Insert;
+    //     end;
+    // end;
 
-    [Scope('OnPrem')]
-    procedure SetDocument(ServotionArchServHeader: Record "Servotion Arch Serv. Header")
-    begin
-        fltDocumentType := ServotionArchServHeader."Document Type";
-        fltDocumentNo := ServotionArchServHeader."No.";
-    end;
+    // [Scope('OnPrem')]
+    // procedure SetDocument(ServotionArchServHeader: Record "Servotion Arch Serv. Header")
+    // begin
+    //     fltDocumentType := ServotionArchServHeader."Document Type";
+    //     fltDocumentNo := ServotionArchServHeader."No.";
+    // end;
 }
 

@@ -42,13 +42,13 @@ page 50034 "Acceptance Protocol"
                     Caption = 'Print Blank Certificate';
                     Image = Print;
 
-                    trigger OnAction()
-                    var
-                        Certificate: Report Zertifikat;
-                    begin
-                        Certificate.SetBlankReport(true, Rec.Code);
-                        Certificate.RunModal;
-                    end;
+                    //     trigger OnAction()
+                    //     var
+                    //         Certificate: Report Zertifikat;
+                    //     begin
+                    //         Certificate.SetBlankReport(true, Rec.Code);
+                    //         Certificate.RunModal;
+                    //     end;
                 }
             }
         }

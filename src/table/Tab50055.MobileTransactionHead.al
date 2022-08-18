@@ -137,37 +137,37 @@ table 50055 "Mobile Transaction Head"
         until MobileTransactionHead.Next = 0;
     end;
 
-    [Scope('OnPrem')]
-    procedure Post(var MobileTransactionHead2: Record "Mobile Transaction Head")
-    var
-        MobileTransactionHead: Record "Mobile Transaction Head";
-        MobileTransProcTimer: Codeunit "Mobile Trans. Proc. Timer";
-    begin
-        //+LM2.00.08
-        // IF CODEUNIT.RUN(CODEUNIT::"Mobile Trans. Proc. Work",MobTransHdr) THEN BEGIN
-        //  MobTransHdr.Status := 42;
-        //  MobTransHdr."Message Type" := MobTransHdr."Message Type"::Info;
-        //  MobTransHdr."Message Text" := '';
-        // END ELSE BEGIN
-        //  MobTransHdr.Status := 99;
-        //  MobTransHdr."Message Type" := MobTransHdr."Message Type"::Error;
-        //  MobTransHdr."Message Text" := COPYSTR(GETLASTERRORTEXT,1,MAXSTRLEN(MobTransHdr."Message Text"));
-        // END;
-        // MobTransHdr.MODIFY;
-        // MobTransLine.SETRANGE("Transaction No.",MobTransHdr."No.");
-        // IF MobTransLine.FINDSET THEN BEGIN
-        //  REPEAT
-        //    MobTransEff.SETRANGE("Posting No.",MobTransLine."No.");
-        //    MobTransEff.DELETEALL;
-        //  UNTIL MobTransLine.NEXT = 0;
-        //  MobTransLine.MODIFYALL(Status,MobTransHdr.Status);
-        // END;
-        MobileTransactionHead.Copy(MobileTransactionHead2);
-        MobileTransactionHead.SetRecFilter;
-        MobileTransProcTimer.SetSingleRecordPost(MobileTransactionHead);
-        MobileTransProcTimer.Code;
-        //-LM2.00.08
-    end;
+    // [Scope('OnPrem')]
+    // procedure Post(var MobileTransactionHead2: Record "Mobile Transaction Head")
+    // var
+    //     MobileTransactionHead: Record "Mobile Transaction Head";
+    //     MobileTransProcTimer: Codeunit "Mobile Trans. Proc. Timer";
+    // begin
+    //     //+LM2.00.08
+    //     // IF CODEUNIT.RUN(CODEUNIT::"Mobile Trans. Proc. Work",MobTransHdr) THEN BEGIN
+    //     //  MobTransHdr.Status := 42;
+    //     //  MobTransHdr."Message Type" := MobTransHdr."Message Type"::Info;
+    //     //  MobTransHdr."Message Text" := '';
+    //     // END ELSE BEGIN
+    //     //  MobTransHdr.Status := 99;
+    //     //  MobTransHdr."Message Type" := MobTransHdr."Message Type"::Error;
+    //     //  MobTransHdr."Message Text" := COPYSTR(GETLASTERRORTEXT,1,MAXSTRLEN(MobTransHdr."Message Text"));
+    //     // END;
+    //     // MobTransHdr.MODIFY;
+    //     // MobTransLine.SETRANGE("Transaction No.",MobTransHdr."No.");
+    //     // IF MobTransLine.FINDSET THEN BEGIN
+    //     //  REPEAT
+    //     //    MobTransEff.SETRANGE("Posting No.",MobTransLine."No.");
+    //     //    MobTransEff.DELETEALL;
+    //     //  UNTIL MobTransLine.NEXT = 0;
+    //     //  MobTransLine.MODIFYALL(Status,MobTransHdr.Status);
+    //     // END;
+    //     MobileTransactionHead.Copy(MobileTransactionHead2);
+    //     MobileTransactionHead.SetRecFilter;
+    //     MobileTransProcTimer.SetSingleRecordPost(MobileTransactionHead);
+    //     MobileTransProcTimer.Code;
+    //     //-LM2.00.08
+    // end;
 
     [Scope('OnPrem')]
     procedure ShowSourceDocument()

@@ -1,8 +1,8 @@
 table 50059 "Mobile Stock Control Function"
 {
     Caption = 'Mobile Stock Control Function';
-    DrillDownPageID = 70004;
-    LookupPageID = 70004;
+    // DrillDownPageID = 70004;
+    // LookupPageID = 70004;
 
     fields
     {

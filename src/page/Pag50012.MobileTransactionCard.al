@@ -88,20 +88,20 @@ page 50012 "Mobile Transaction Card"
     {
         area(processing)
         {
-            action(Post)
-            {
-                Caption = 'Post';
-                Enabled = AdminAllowed;
-                Image = Post;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
+            // action(Post)
+            // {
+            //     Caption = 'Post';
+            //     Enabled = AdminAllowed;
+            //     Image = Post;
+            //     Promoted = true;
+            //     PromotedCategory = Process;
+            //     PromotedIsBig = true;
 
-                trigger OnAction()
-                begin
-                    SinglePost;
-                end;
-            }
+            //     trigger OnAction()
+            //     begin
+            //         SinglePost;
+            //     end;
+            // }
             action(SetToUnprocessed)
             {
                 Caption = 'Set To Unprocessed';
@@ -170,28 +170,28 @@ page 50012 "Mobile Transaction Card"
     var
         AdminAllowed: Boolean;
 
-    local procedure SinglePost()
-    begin
-        //+LM2.00.08
-        // IF NOT (Status IN [9,10]) THEN
-        //  FIELDERROR(Status);
-        // IF CODEUNIT.RUN(CODEUNIT::"Mobile Trans. Proc. Work",Rec) THEN
-        //  Status := 42
-        // ELSE
-        //  Status := 99;
-        // MODIFY;
-        // MobTransLine.SETRANGE("Transaction No.","No.");
-        // IF MobTransLine.FINDSET THEN BEGIN
-        //  REPEAT
-        //    MobTransEff.SETRANGE("Posting No.",MobTransLine."No.");
-        //    MobTransEff.DELETEALL;
-        //  UNTIL MobTransLine.NEXT = 0;
-        //  MobTransLine.MODIFYALL(Status,Status);
-        // END;
-        Post(Rec);
-        if Rec.Status = 99 then
-            //-LM2.00.08
-            Message(GetLastErrorText);
-    end;
+    // local procedure SinglePost()
+    // begin
+    //     //+LM2.00.08
+    //     // IF NOT (Status IN [9,10]) THEN
+    //     //  FIELDERROR(Status);
+    //     // IF CODEUNIT.RUN(CODEUNIT::"Mobile Trans. Proc. Work",Rec) THEN
+    //     //  Status := 42
+    //     // ELSE
+    //     //  Status := 99;
+    //     // MODIFY;
+    //     // MobTransLine.SETRANGE("Transaction No.","No.");
+    //     // IF MobTransLine.FINDSET THEN BEGIN
+    //     //  REPEAT
+    //     //    MobTransEff.SETRANGE("Posting No.",MobTransLine."No.");
+    //     //    MobTransEff.DELETEALL;
+    //     //  UNTIL MobTransLine.NEXT = 0;
+    //     //  MobTransLine.MODIFYALL(Status,Status);
+    //     // END;
+    //     Post(Rec);
+    //     if Rec.Status = 99 then
+    //         //-LM2.00.08
+    //         Message(GetLastErrorText);
+    // end;
 }
 

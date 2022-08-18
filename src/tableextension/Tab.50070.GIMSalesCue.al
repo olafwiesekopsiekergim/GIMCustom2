@@ -1,4 +1,4 @@
-tableextension 50070 GIMSalesCue extends "Sales Cue"
+tableextension 50070 "GIMSalesCue" extends "Sales Cue"
 {
     fields
     {

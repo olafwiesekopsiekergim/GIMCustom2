@@ -17,89 +17,90 @@ tableextension 50012 "GIM Purchase Line" extends "Purchase Line"
         myInt: Integer;
 
     //[Scope('Internal')]
-    procedure CheckFixedAssetSerialNo()
-    var
-        LicPermission: Record "License Permission";
-        MachineFAManagement: Codeunit "Machine FA Management";
-    begin
-        // >> #RENW17.00:T201
-        LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
-        if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
-            // << #RENW17.00:T201
+    // procedure CheckFixedAssetSerialNo()
+    // var
+    //     LicPermission: Record "License Permission";
+    //     MachineFAManagement: Codeunit "Machine FA Management";
+    // begin
+    //     // >> #RENW17.00:T201
+    //     LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
+    //     if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
+    //         // << #RENW17.00:T201
 
-            // >> #RENW16.00.02:R062
-            MachineFAManagement.PurchL_CheckFixedAssetSerialNo(Rec);
-            // << #RENW16.00.02:R062
+    //         // >> #RENW16.00.02:R062
+    //         MachineFAManagement.PurchL_CheckFixedAssetSerialNo(Rec);
+    //         // << #RENW16.00.02:R062
 
-            // >> #RENW17.00:T201
-        end;
-        // << #RENW17.00:T201
-    end;
+    //         // >> #RENW17.00:T201
+    //     end;
+    //     // << #RENW17.00:T201
+    // end;
+
+    // //[Scope('Internal')]
+    // procedure MachGetFAPostingGroup()
+    // var
+    //     LicPermission: Record "License Permission";
+    // begin
+    //     // >> #RENW17.00:T201
+    //     LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
+    //     if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
+    //         // << #RENW17.00:T201
+
+    //         // >> #RENW16.00.02:R062
+    //         MachineFAManagement.PurchLine_GetFAPostingGroup(Rec);
+    //         // << #RENW16.00.02:R062
+
+    //         // >> #RENW17.00:T201
+    //     end;
+    //     // << #RENW17.00:T201
+    // end;
+
+    // //[Scope('Internal')]
+    // procedure FAOnValidate(CurrFieldNo: Integer)
+    // var
+    //     LicPermission: Record "License Permission";
+    // begin
+    //     // >> #RENW17.00:T201
+    //     LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
+    //     if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
+    //         // << #RENW17.00:T201
+
+    //         // >> #RENW16.00.02:R062
+    //         case CurrFieldNo of
+
+    //             FieldNo("Item Fixed Asset Purchase"):
+    //                 begin
+    //                     MachineFAManagement.PurchL_ItemFAPurchOnVal(Rec, xRec);
+    //                 end;
+
+    //             FieldNo("Item Fixed Asset No."):
+    //                 begin
+    //                     MachineFAManagement.PurchLine_ItemFANoOnVal(Rec);
+    //                 end;
+
+    //         end;
+    //         // << #RENW16.00.02:R062
+
+    //         // >> #RENW17.00:T201
+    //     end;
+    //     // << #RENW17.00:T201
+    // end;
+
 
     //[Scope('Internal')]
-    procedure MachGetFAPostingGroup()
-    var
-        LicPermission: Record "License Permission";
-    begin
-        // >> #RENW17.00:T201
-        LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
-        if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
-            // << #RENW17.00:T201
-
-            // >> #RENW16.00.02:R062
-            MachineFAManagement.PurchLine_GetFAPostingGroup(Rec);
-            // << #RENW16.00.02:R062
-
-            // >> #RENW17.00:T201
-        end;
-        // << #RENW17.00:T201
-    end;
-
-    //[Scope('Internal')]
-    procedure FAOnValidate(CurrFieldNo: Integer)
-    var
-        LicPermission: Record "License Permission";
-    begin
-        // >> #RENW17.00:T201
-        LicPermission.Get(LicPermission."Object Type"::Codeunit, CODEUNIT::"Machine FA Management");
-        if LicPermission."Execute Permission" = LicPermission."Execute Permission"::Yes then begin
-            // << #RENW17.00:T201
-
-            // >> #RENW16.00.02:R062
-            case CurrFieldNo of
-
-                FieldNo("Item Fixed Asset Purchase"):
-                    begin
-                        MachineFAManagement.PurchL_ItemFAPurchOnVal(Rec, xRec);
-                    end;
-
-                FieldNo("Item Fixed Asset No."):
-                    begin
-                        MachineFAManagement.PurchLine_ItemFANoOnVal(Rec);
-                    end;
-
-            end;
-            // << #RENW16.00.02:R062
-
-            // >> #RENW17.00:T201
-        end;
-        // << #RENW17.00:T201
-    end;
-
-
-    //[Scope('Internal')]
+    //TODO Missing Module COMSOL TG Verwaltung
     procedure "automPosNrzählen"(var EKZeile: Record "Purchase Line")
     var
         EinkZeile2: Record "Purchase Line";
-        comTGcheck: Record "COMSOL TG Verwaltung";
+    // comTGcheck: Record "COMSOL TG Verwaltung";
     begin
         // >> P0012
-        if not comTGcheck.PosNrAutomatisch then exit;
+        // if not comTGcheck.PosNrAutomatisch then exit;
 
         if CurrFieldNo = FieldNo(Position) then exit;
 
         /*c*//*autom. Pos. hochzählen*/
-        if (EkZeile.Type <> EKZeile.Type::"") and (EKZeile.Position = '') then begin
+        if (EkZeile.Type <> EKZeile.Type::" ") and (EKZeile.Position = '') then begin
             EinkZeile2 := Rec;
             EinkZeile2.CopyFilters(EKZeile);
             /*---EinkZeile2.SETFILTER(Art, '<>0');---*/
@@ -111,9 +112,9 @@ tableextension 50012 "GIM Purchase Line" extends "Purchase Line"
                 else
                     EKZeile.Position := '';
                 if EKZeile.Position = '' then
-                    EKZeile.Position := comTGcheck.PosNrDefault();
+                    ; // EKZeile.Position := comTGcheck.PosNrDefault();
             end else
-                EKZeile.Position := comTGcheck.PosNrDefault();
+                ; // EKZeile.Position := comTGcheck.PosNrDefault();
         end;
         EKZeile.Validate(Position);
         if EKZeile.Modify then;
