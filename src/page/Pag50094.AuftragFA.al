@@ -24,12 +24,14 @@ page 50094 "Auftrag-FA"
                     Editable = ESACC_F1_Editable;
                     HideValue = ESACC_F1_HideValue;
                     Visible = ESACC_F1_Visible;
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
                     Editable = ESACC_F3_Editable;
                     HideValue = ESACC_F3_HideValue;
                     Visible = ESACC_F3_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Description 5"; "Description 5")
                 // {
@@ -40,20 +42,24 @@ page 50094 "Auftrag-FA"
                     Editable = ESACC_F10_Editable;
                     HideValue = ESACC_F10_HideValue;
                     Visible = ESACC_F10_Visible;
+                    ApplicationArea = All;
                 }
                 field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     Editable = ESACC_F2_Editable;
                     HideValue = ESACC_F2_HideValue;
                     Visible = ESACC_F2_Visible;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Sell-to Country/Region Code"""; SalesHeader."Sell-to Country/Region Code")
                 {
                     Caption = 'Sell-to Country/Region Code';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Salesperson Code"""; SalesHeader."Salesperson Code")
                 {
                     Caption = 'Salesperson Code';
+                    ApplicationArea = All;
                 }
                 // field("SalesHeader.""Salesperson Code 2"""; SalesHeader."Salesperson Code 2")
                 // {
@@ -62,75 +68,89 @@ page 50094 "Auftrag-FA"
                 field("SalesHeader.""Bill-to Name"""; SalesHeader."Bill-to Name")
                 {
                     Caption = 'Ship-to Name';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Name"""; SalesHeader."Ship-to Name")
                 {
                     Caption = 'Lief. an Name';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Post Code"""; SalesHeader."Ship-to Post Code")
                 {
                     Caption = 'Ship-to Post Code';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to City"""; SalesHeader."Ship-to City")
                 {
                     Caption = 'Ship-to City';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Creation Date"""; SalesHeader."Creation Date")
                 {
                     Caption = 'Erstelluingsdatum Auftrag';
+                    ApplicationArea = All;
                 }
                 field(Type; Rec.Type)
                 {
                     Editable = ESACC_F5_Editable;
                     HideValue = ESACC_F5_HideValue;
                     Visible = ESACC_F5_Visible;
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
                     Editable = ESACC_F6_Editable;
                     HideValue = ESACC_F6_HideValue;
                     Visible = ESACC_F6_Visible;
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
                     Editable = ESACC_F11_Editable;
                     HideValue = ESACC_F11_HideValue;
                     Visible = ESACC_F11_Visible;
+                    ApplicationArea = All;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     Editable = ESACC_F7_Editable;
                     HideValue = ESACC_F7_HideValue;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field(Reserve; Rec.Reserve)
                 {
                     Editable = ESACC_F96_Editable;
                     HideValue = ESACC_F96_HideValue;
                     Visible = ESACC_F96_Visible;
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     Editable = ESACC_F15_Editable;
                     HideValue = ESACC_F15_HideValue;
                     Visible = ESACC_F15_Visible;
+                    ApplicationArea = All;
                 }
                 field("Reserved Qty. (Base)"; Rec."Reserved Qty. (Base)")
                 {
                     HideValue = ESACC_F5495_HideValue;
                     Visible = ESACC_F5495_Visible;
+                    ApplicationArea = All;
                 }
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     Editable = ESACC_F5407_Editable;
                     HideValue = ESACC_F5407_HideValue;
                     Visible = ESACC_F5407_Visible;
+                    ApplicationArea = All;
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     Editable = ESACC_F22_Editable;
                     HideValue = ESACC_F22_HideValue;
                     Visible = ESACC_F22_Visible;
+                    ApplicationArea = All;
                 }
                 field("Line Amount"; Rec."Line Amount")
                 {
@@ -138,50 +158,59 @@ page 50094 "Auftrag-FA"
                     Editable = ESACC_F103_Editable;
                     HideValue = ESACC_F103_HideValue;
                     Visible = ESACC_F103_Visible;
+                    ApplicationArea = All;
                 }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     Editable = ESACC_F75_Editable;
                     HideValue = ESACC_F75_HideValue;
                     Visible = ESACC_F75_Visible;
+                    ApplicationArea = All;
                 }
                 field("Item.""Item Category Code"""; Item."Item Category Code")
                 {
                     Caption = 'Item Category Code';
+                    ApplicationArea = All;
                 }
                 field("Job No."; Rec."Job No.")
                 {
                     Editable = ESACC_F45_Editable;
                     HideValue = ESACC_F45_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Work Type Code"; Rec."Work Type Code")
                 {
                     Editable = ESACC_F52_Editable;
                     HideValue = ESACC_F52_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""fix-Termin Lieferung"""; SalesHeader."fix-Termin Lieferung")
                 {
                     Caption = 'fix-Termin Lieferung';
+                    ApplicationArea = All;
                 }
                 field("Requested Delivery Date"; Rec."Requested Delivery Date")
                 {
                     Editable = ESACC_F5790_Editable;
                     HideValue = ESACC_F5790_HideValue;
                     Visible = ESACC_F5790_Visible;
+                    ApplicationArea = All;
                 }
                 field("Promised Delivery Date"; Rec."Promised Delivery Date")
                 {
                     Editable = ESACC_F5791_Editable;
                     HideValue = ESACC_F5791_HideValue;
                     Visible = ESACC_F5791_Visible;
+                    ApplicationArea = All;
                 }
                 field("Outstanding Quantity"; Rec."Outstanding Quantity")
                 {
                     Editable = ESACC_F16_Editable;
                     HideValue = ESACC_F16_HideValue;
                     Visible = ESACC_F16_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Description 4"; "Description 4")
                 // {
@@ -209,6 +238,7 @@ page 50094 "Auftrag-FA"
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+F7';
                     Visible = ESACC_C23_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     var
@@ -228,6 +258,7 @@ page 50094 "Auftrag-FA"
                     PromotedCategory = Process;
                     PromotedIsBig = true;
                     Visible = ESACC_C32_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -244,6 +275,7 @@ page 50094 "Auftrag-FA"
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+Ctrl+I';
                     Visible = ESACC_C6500_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin

@@ -14,29 +14,37 @@ page 50059 "GIMPrüfzertifikatszeilen"
         {
             field("Filter Dokumentart"; fltDocumentType)
             {
+                ApplicationArea = All;
             }
             field("Filter Document No."; fltDocumentNo)
             {
+                ApplicationArea = All;
             }
             repeater(Group)
             {
                 field(PK; Rec.PK)
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Service Item No."; Rec."Service Item No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Question; Rec.Question)
                 {
+                    ApplicationArea = All;
                 }
                 field(Answer; Rec.Answer)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -53,6 +61,7 @@ page 50059 "GIMPrüfzertifikatszeilen"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ApplicationArea = All;
 
                 trigger OnAction()
                 begin

@@ -11,15 +11,19 @@ page 50009 "Messeübersicht"
             {
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Name; Rec.Name)
                 {
+                    ApplicationArea = All;
                 }
                 field(Beginn; Rec.Beginn)
                 {
+                    ApplicationArea = All;
                 }
                 field(Ende; Rec.Ende)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

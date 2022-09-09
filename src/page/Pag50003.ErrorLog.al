@@ -21,21 +21,27 @@ page 50003 "Error Log"
             {
                 field("Error No."; Rec."Error No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Entry No."; Rec."Entry No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Error Description"; Rec."Error Description")
                 {
+                    ApplicationArea = All;
                 }
                 field("Attached to Entry No."; Rec."Attached to Entry No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Inserted at"; Rec."Inserted at")
                 {
+                    ApplicationArea = All;
                 }
                 field("Inserted by"; Rec."Inserted by")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

@@ -22,102 +22,135 @@ page 50001 "Hanning Stammdatenübergabe"
             {
                 field("Check OK"; Rec."Check OK")
                 {
+                    ApplicationArea = All;
                 }
                 field("Error exists"; Rec."Error exists")
                 {
+                    ApplicationArea = All;
                 }
                 field("Error No."; Rec."Error No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Zeitstempel; Rec.Zeitstempel)
                 {
+                    ApplicationArea = All;
                 }
                 field(Konto_qual; Rec.Konto_qual)
                 {
+                    ApplicationArea = All;
                 }
                 field(Konto_nummer; Rec.Konto_nummer)
                 {
+                    ApplicationArea = All;
                 }
                 field(Name; Rec.Name)
                 {
+                    ApplicationArea = All;
                 }
                 field(Suchbegriff; Rec.Suchbegriff)
                 {
+                    ApplicationArea = All;
                 }
                 field(Name2; Rec.Name2)
                 {
+                    ApplicationArea = All;
                 }
                 field(Adresse; Rec.Adresse)
                 {
+                    ApplicationArea = All;
                 }
                 field(Adresse2; Rec.Adresse2)
                 {
+                    ApplicationArea = All;
                 }
                 field(PLZ_Code; Rec.PLZ_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Ort; Rec.Ort)
                 {
+                    ApplicationArea = All;
                 }
                 field(Land; Rec.Land)
                 {
+                    ApplicationArea = All;
                 }
                 field(Telefon; Rec.Telefon)
                 {
+                    ApplicationArea = All;
                 }
                 field(Fax; Rec.Fax)
                 {
+                    ApplicationArea = All;
                 }
                 field(e_Mail; Rec.e_Mail)
                 {
+                    ApplicationArea = All;
                 }
                 field(Homepage; Rec.Homepage)
                 {
+                    ApplicationArea = All;
                 }
                 field(Zlg_Bedingungscode; Rec.Zlg_Bedingungscode)
                 {
+                    ApplicationArea = All;
                 }
                 field("Verkäufer_Einkäufer"; Rec.Verkäufer_Einkäufer)
                 {
+                    ApplicationArea = All;
                 }
                 field(UST_ID; Rec.UST_ID)
                 {
+                    ApplicationArea = All;
                 }
                 field("Geschäftsbuchungsgruppe"; Rec.Geschäftsbuchungsgruppe)
                 {
+                    ApplicationArea = All;
                 }
                 field("MWST_Geschäftsbuchungsgruppe"; Rec.MWST_Geschäftsbuchungsgruppe)
                 {
+                    ApplicationArea = All;
                 }
                 field(DEB_KRED_Buchungsgruppe; Rec.DEB_KRED_Buchungsgruppe)
                 {
+                    ApplicationArea = All;
                 }
                 field(Sprache; Rec.Sprache)
                 {
+                    ApplicationArea = All;
                 }
                 field("Unsere Kontonr."; Rec."Unsere Kontonr.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Geschäftsbereich"; Rec.Geschäftsbereich)
                 {
+                    ApplicationArea = All;
                 }
                 field("Kostenträger"; Rec.Kostenträger)
                 {
+                    ApplicationArea = All;
                 }
                 field(Bankname; Rec.Bankname)
                 {
+                    ApplicationArea = All;
                 }
                 field(BLZ; Rec.BLZ)
                 {
+                    ApplicationArea = All;
                 }
                 field(Bankkontonummer; Rec.Bankkontonummer)
                 {
+                    ApplicationArea = All;
                 }
                 field(IBAN; Rec.IBAN)
                 {
+                    ApplicationArea = All;
                 }
                 field(Swift; Rec.Swift)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -135,6 +168,7 @@ page 50001 "Hanning Stammdatenübergabe"
                 RunObject = Page "Error Log";
                 RunPageLink = "Error No." = FIELD("Error No.");
                 RunPageView = SORTING("Error No.");
+                ApplicationArea = All;
             }
             action("Stammdaten überprüfen")
             {
@@ -142,6 +176,7 @@ page 50001 "Hanning Stammdatenübergabe"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ApplicationArea = All;
 
                 trigger OnAction()
                 var
@@ -160,6 +195,7 @@ page 50001 "Hanning Stammdatenübergabe"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ApplicationArea = All;
 
                 trigger OnAction()
                 var

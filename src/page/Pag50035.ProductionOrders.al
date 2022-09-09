@@ -31,34 +31,40 @@ page 50035 "Production Orders"
                     Editable = ESACC_F1_Editable;
                     HideValue = ESACC_F1_HideValue;
                     Visible = ESACC_F1_Visible;
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
                     Editable = ESACC_F2_Editable;
                     HideValue = ESACC_F2_HideValue;
                     Visible = ESACC_F2_Visible;
+                    ApplicationArea = All;
                 }
                 field(Comment; Rec.Comment)
                 {
                     HideValue = ESACC_F19_HideValue;
                     Visible = ESACC_F19_Visible;
+                    ApplicationArea = All;
                 }
                 field("SalesOrderLine.""Shipment Date"""; SalesOrderLine."Shipment Date")
                 {
                     Caption = 'Auftrag. WA-Datum';
                     StyleExpr = StyleTextSOShipmentDate;
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     Editable = ESACC_F30_Editable;
                     HideValue = ESACC_F30_HideValue;
                     Visible = ESACC_F30_Visible;
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Editable = ESACC_F31_Editable;
                     HideValue = ESACC_F31_HideValue;
                     Visible = ESACC_F31_Visible;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[3]"; ShortcutDimCode[3])
                 {
@@ -67,6 +73,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[4]"; ShortcutDimCode[4])
                 {
@@ -75,6 +82,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[5]"; ShortcutDimCode[5])
                 {
@@ -83,6 +91,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[6]"; ShortcutDimCode[6])
                 {
@@ -91,6 +100,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[7]"; ShortcutDimCode[7])
                 {
@@ -99,6 +109,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("ShortcutDimCode[8]"; ShortcutDimCode[8])
                 {
@@ -107,6 +118,7 @@ page 50035 "Production Orders"
                                                                   "Dimension Value Type" = CONST(Standard),
                                                                   Blocked = CONST(false));
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Production Group Code"; Rec."Production Group Code")
                 {
@@ -114,6 +126,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50111_Editable;
                     HideValue = ESACC_F50111_HideValue;
                     Visible = ESACC_F50111_Visible;
+                    ApplicationArea = All;
                 }
                 field("Print Action Released"; Rec."Print Action Released")
                 {
@@ -121,44 +134,52 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50130_Editable;
                     HideValue = ESACC_F50130_HideValue;
                     Visible = ESACC_F50130_Visible;
+                    ApplicationArea = All;
                 }
                 field("Source No."; Rec."Source No.")
                 {
                     Editable = ESACC_F10_Editable;
                     HideValue = ESACC_F10_HideValue;
                     Visible = ESACC_F10_Visible;
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
                     Editable = ESACC_F3_Editable;
                     HideValue = ESACC_F3_HideValue;
                     Visible = ESACC_F3_Visible;
+                    ApplicationArea = All;
                 }
                 field("Description 2"; Rec."Description 2")
                 {
                     Editable = ESACC_F5_Editable;
                     HideValue = ESACC_F5_HideValue;
                     Visible = ESACC_F5_Visible;
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     Editable = ESACC_F40_Editable;
                     HideValue = ESACC_F40_HideValue;
                     Visible = ESACC_F40_Visible;
+                    ApplicationArea = All;
                 }
                 field("ProdOrderLine.""Unit of Measure Code"""; ProdOrderLine."Unit of Measure Code")
                 {
                     Caption = 'Einheit';
+                    ApplicationArea = All;
                 }
                 field("Item.""Gross Weight"""; Item."Gross Weight")
                 {
                     Caption = 'Bruttogewicht';
+                    ApplicationArea = All;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     Editable = ESACC_F32_Editable;
                     HideValue = ESACC_F32_HideValue;
                     Visible = ESACC_F32_Visible;
+                    ApplicationArea = All;
                 }
                 field("Due Date"; Rec."Due Date")
                 {
@@ -166,6 +187,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F24_Editable;
                     HideValue = ESACC_F24_HideValue;
                     Visible = ESACC_F24_Visible;
+                    ApplicationArea = All;
                 }
                 field("Routing No."; Rec."Routing No.")
                 {
@@ -173,6 +195,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F11_Editable;
                     HideValue = ESACC_F11_HideValue;
                     Visible = ESACC_F11_Visible;
+                    ApplicationArea = All;
                 }
                 field("Starting Time"; Rec."Starting date-Time")
                 {
@@ -180,6 +203,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F20_Editable;
                     HideValue = ESACC_F20_HideValue;
                     Visible = ESACC_F20_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Starting Date"; Rec."Starting Date")
                 // {
@@ -194,6 +218,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F22_Editable;
                     HideValue = ESACC_F22_HideValue;
                     Visible = ESACC_F22_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Ending Date"; Rec."Ending Date")
                 // {
@@ -208,6 +233,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F25_Editable;
                     HideValue = ESACC_F25_HideValue;
                     Visible = ESACC_F25_Visible;
+                    ApplicationArea = All;
                 }
                 field("Assigned User ID"; Rec."Assigned User ID")
                 {
@@ -215,6 +241,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F9000_Editable;
                     HideValue = ESACC_F9000_HideValue;
                     Visible = ESACC_F9000_Visible;
+                    ApplicationArea = All;
                 }
                 field("Search Description"; Rec."Search Description")
                 {
@@ -222,6 +249,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F4_Editable;
                     HideValue = ESACC_F4_HideValue;
                     Visible = ESACC_F4_Visible;
+                    ApplicationArea = All;
                 }
                 field("Last Date Modified"; Rec."Last Date Modified")
                 {
@@ -229,6 +257,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F7_Editable;
                     HideValue = ESACC_F7_HideValue;
                     Visible = ESACC_F7_Visible;
+                    ApplicationArea = All;
                 }
                 field("Bin Code"; Rec."Bin Code")
                 {
@@ -236,33 +265,40 @@ page 50035 "Production Orders"
                     Editable = ESACC_F33_Editable;
                     HideValue = ESACC_F33_HideValue;
                     Visible = ESACC_F33_Visible;
+                    ApplicationArea = All;
                 }
                 field("SalesOrderLine.""Line Amount"""; SalesOrderLine."Line Amount")
                 {
                     Caption = 'Verkaufsbetrag';
+                    ApplicationArea = All;
                 }
                 field("SalesOrder.""Internal Job No."""; SalesOrder."Internal Job No.")
                 {
                     Caption = 'interne Projektnr.';
+                    ApplicationArea = All;
                 }
                 field("SalesOrder.""Ship-to Country/Region Code"""; SalesOrder."Ship-to Country/Region Code")
                 {
                     Caption = 'Lief. an Ländercode';
+                    ApplicationArea = All;
                 }
                 field("ShipmentMethod.Description"; ShipmentMethod.Description)
                 {
                     Caption = 'Lieferbedingung';
+                    ApplicationArea = All;
                 }
                 field("SalesOrder.""fix-Termin Lieferung"""; SalesOrder."fix-Termin Lieferung")
                 {
                     Caption = 'Fix-Termin Lieferung';
                     Description = 'P0021';
+                    ApplicationArea = All;
                 }
                 field("Shipping Agent Code"; Rec."Shipping Agent Code")
                 {
                     Description = 'P0027';
                     HideValue = ESACC_F50003_HideValue;
                     Visible = ESACC_F50003_Visible;
+                    ApplicationArea = All;
                 }
                 field("Run Card Pinted Date"; Rec."Run Card Pinted Date")
                 {
@@ -270,6 +306,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50010_Editable;
                     HideValue = ESACC_F50010_HideValue;
                     Visible = ESACC_F50010_Visible;
+                    ApplicationArea = All;
                 }
                 field("Run Card Pinted Time"; Rec."Run Card Pinted Time")
                 {
@@ -277,12 +314,14 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50011_Editable;
                     HideValue = ESACC_F50011_HideValue;
                     Visible = ESACC_F50011_Visible;
+                    ApplicationArea = All;
                 }
                 field("Remaining Quantity"; Rec."Remaining Quantity")
                 {
                     Description = 'P0027';
                     HideValue = ESACC_F50120_HideValue;
                     Visible = ESACC_F50120_Visible;
+                    ApplicationArea = All;
                 }
                 field("Evtl. Auftragsnr."; Rec."Evtl. Auftragsnr.")
                 {
@@ -290,6 +329,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50007_Editable;
                     HideValue = ESACC_F50007_HideValue;
                     Visible = ESACC_F50007_Visible;
+                    ApplicationArea = All;
                 }
                 field("Evtl. Auftragszeilennr."; Rec."Evtl. Auftragszeilennr.")
                 {
@@ -297,12 +337,14 @@ page 50035 "Production Orders"
                     Editable = ESACC_F50008_Editable;
                     HideValue = ESACC_F50008_HideValue;
                     Visible = ESACC_F50008_Visible;
+                    ApplicationArea = All;
                 }
                 field("Auftr. Verk. an Deb.-Name"; Rec."Auftr. Verk. an Deb.-Name")
                 {
                     Description = 'P0027';
                     HideValue = ESACC_F50200_HideValue;
                     Visible = ESACC_F50200_Visible;
+                    ApplicationArea = All;
                 }
                 field(Erstellungsdatum; Rec.Erstellungsdatum)
                 {
@@ -310,6 +352,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F80000_Editable;
                     HideValue = ESACC_F80000_HideValue;
                     Visible = ESACC_F80000_Visible;
+                    ApplicationArea = All;
                 }
                 field(Erstellungsuhrzeit; Rec.Erstellungsuhrzeit)
                 {
@@ -317,6 +360,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F80001_Editable;
                     HideValue = ESACC_F80001_HideValue;
                     Visible = ESACC_F80001_Visible;
+                    ApplicationArea = All;
                 }
                 field(Erstellungsuser; Rec.Erstellungsuser)
                 {
@@ -324,6 +368,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F80002_Editable;
                     HideValue = ESACC_F80002_HideValue;
                     Visible = ESACC_F80002_Visible;
+                    ApplicationArea = All;
                 }
                 field("Änderungsdatum"; Rec.Änderungsdatum)
                 {
@@ -331,6 +376,7 @@ page 50035 "Production Orders"
                     Editable = ESACC_F80003_Editable;
                     HideValue = ESACC_F80003_HideValue;
                     Visible = ESACC_F80003_Visible;
+                    ApplicationArea = All;
                 }
                 field("Änderungsuhrzeit"; Rec.Änderungsuhrzeit)
                 {
@@ -338,9 +384,11 @@ page 50035 "Production Orders"
                     Editable = ESACC_F80004_Editable;
                     HideValue = ESACC_F80004_HideValue;
                     Visible = ESACC_F80004_Visible;
+                    ApplicationArea = All;
                 }
                 field("Lief. an Name"; Rec."Lief. an Name")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -348,9 +396,11 @@ page 50035 "Production Orders"
         {
             systempart(Control1106900010; Links)
             {
+                ApplicationArea = All;
             }
             systempart(Control1106900008; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -394,6 +444,7 @@ page 50035 "Production Orders"
                         RunPageView = SORTING("Order Type", "Order No.");
                         ShortCutKey = 'Ctrl+F7';
                         Visible = ESACC_C1106900034_Visible;
+                        ApplicationArea = All;
                     }
                     action("Capacity Ledger Entries")
                     {
@@ -405,6 +456,7 @@ page 50035 "Production Orders"
                                       "Order No." = FIELD("No.");
                         RunPageView = SORTING("Order Type", "Order No.");
                         Visible = ESACC_C1106900033_Visible;
+                        ApplicationArea = All;
                     }
                     action("Value Entries")
                     {
@@ -416,6 +468,7 @@ page 50035 "Production Orders"
                                       "Order No." = FIELD("No.");
                         RunPageView = SORTING("Order Type", "Order No.");
                         Visible = ESACC_C1106900032_Visible;
+                        ApplicationArea = All;
                     }
                     action("&Warehouse Entries")
                     {
@@ -428,6 +481,7 @@ page 50035 "Production Orders"
                                       "Source No." = FIELD("No.");
                         RunPageView = SORTING("Source Type", "Source Subtype", "Source No.");
                         Visible = ESACC_C1106900031_Visible;
+                        ApplicationArea = All;
                     }
                 }
                 action("Co&mments")
@@ -439,6 +493,7 @@ page 50035 "Production Orders"
                     RunPageLink = Status = FIELD(Status),
                                   "Prod. Order No." = FIELD("No.");
                     Visible = ESACC_C1106900030_Visible;
+                    ApplicationArea = All;
                 }
                 action(Dimensions)
                 {
@@ -448,6 +503,7 @@ page 50035 "Production Orders"
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
                     Visible = ESACC_C1106900029_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -471,6 +527,7 @@ page 50035 "Production Orders"
                                   "Date Filter" = FIELD("Date Filter");
                     ShortCutKey = 'F7';
                     Visible = ESACC_C1106900027_Visible;
+                    ApplicationArea = All;
                 }
             }
         }
@@ -518,6 +575,7 @@ page 50035 "Production Orders"
                     PromotedCategory = Process;
                     RunObject = Codeunit "Prod. Order Status Management";
                     Visible = ESACC_C1106900051_Visible;
+                    ApplicationArea = All;
                 }
                 action("&Update Unit Cost")
                 {
@@ -528,6 +586,7 @@ page 50035 "Production Orders"
                     Promoted = true;
                     PromotedCategory = Process;
                     Visible = ESACC_C1106900050_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     var
@@ -548,6 +607,7 @@ page 50035 "Production Orders"
                     Promoted = true;
                     PromotedCategory = Process;
                     Visible = ESACC_C1106900049_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -568,6 +628,7 @@ page 50035 "Production Orders"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Detailed Calc.";
                 Visible = ESACC_C1106900047_Visible;
+                ApplicationArea = All;
             }
             action("Prod. Order - Precalc. Time")
             {
@@ -579,6 +640,7 @@ page 50035 "Production Orders"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Precalc. Time";
                 Visible = ESACC_C1106900046_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Comp. and Routing")
             {
@@ -589,6 +651,7 @@ page 50035 "Production Orders"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order Comp. and Routing";
                 Visible = ESACC_C1106900045_Visible;
+                ApplicationArea = All;
             }
             action("Production Order Job Card")
             {
@@ -600,6 +663,7 @@ page 50035 "Production Orders"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Job Card";
                 Visible = ESACC_C1106900044_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Picking List")
             {
@@ -611,6 +675,7 @@ page 50035 "Production Orders"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Picking List";
                 Visible = ESACC_C1106900043_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Material Requisition")
             {
@@ -621,6 +686,7 @@ page 50035 "Production Orders"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Mat. Requisition";
                 Visible = ESACC_C1106900042_Visible;
+                ApplicationArea = All;
             }
             action("Production Order List")
             {
@@ -631,6 +697,7 @@ page 50035 "Production Orders"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - List";
                 Visible = ESACC_C1106900041_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Shortage List")
             {
@@ -641,6 +708,7 @@ page 50035 "Production Orders"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Shortage List";
                 Visible = ESACC_C1106900040_Visible;
+                ApplicationArea = All;
             }
             action("Production Order Statistics")
             {
@@ -651,6 +719,7 @@ page 50035 "Production Orders"
                 PromotedCategory = "Report";
                 RunObject = Report "Production Order Statistics";
                 Visible = ESACC_C1106900039_Visible;
+                ApplicationArea = All;
             }
         }
     }

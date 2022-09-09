@@ -18,18 +18,23 @@ page 50037 "Internal Job Subform"
             {
                 field("Internal Job No."; Rec."Internal Job No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Line No."; Rec."Line No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Item category"; Rec."Item category")
                 {
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
+                    ApplicationArea = All;
                 }
                 field(Comment; Rec.Comment)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

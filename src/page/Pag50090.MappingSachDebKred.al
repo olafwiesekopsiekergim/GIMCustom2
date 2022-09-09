@@ -11,12 +11,15 @@ page 50090 "Mapping Sach Deb Kred"
             {
                 field(Art; Rec.Art)
                 {
+                    ApplicationArea = All;
                 }
                 field("Konto Alt"; Rec."Konto Alt")
                 {
+                    ApplicationArea = All;
                 }
                 field("Konto Neu"; Rec."Konto Neu")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -33,6 +36,7 @@ page 50090 "Mapping Sach Deb Kred"
                 {
                     Caption = 'Übernahme Sachkonto';
                     Image = Import;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -43,6 +47,7 @@ page 50090 "Mapping Sach Deb Kred"
                 {
                     Caption = 'Übernahme Debitoren/Kreditoren';
                     Image = Import;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin

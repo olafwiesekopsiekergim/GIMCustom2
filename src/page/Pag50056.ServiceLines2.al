@@ -22,12 +22,14 @@ page 50056 "Service Lines 2"
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Customer No."""; SalesHeader."Customer No.")
                 {
@@ -35,83 +37,98 @@ page 50056 "Service Lines 2"
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Service Salesperson Code"""; SalesHeader."Service Salesperson Code")
                 {
                     Caption = 'Service Verkäufer Code';
                     Editable = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Service Zone Code"""; SalesHeader."Service Zone Code")
                 {
                     Caption = 'Service Gebiets Code';
                     Editable = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Bill-to Name"""; SalesHeader."Bill-to Name")
                 {
                     Caption = 'Ship-to Name';
                     Editable = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Name"""; SalesHeader."Ship-to Name")
                 {
                     Caption = 'Lief. an Name';
                     Editable = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Post Code"""; SalesHeader."Ship-to Post Code")
                 {
                     Caption = 'Ship-to Post Code';
                     Editable = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to City"""; SalesHeader."Ship-to City")
                 {
                     Caption = 'Ship-to City';
+                    ApplicationArea = All;
                 }
                 field("Line No."; Rec."Line No.")
                 {
                     Editable = false;
                     HideValue = true;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field(Type; Rec.Type)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Line Amount"; Rec."Line Amount")
                 {
@@ -119,40 +136,47 @@ page 50056 "Service Lines 2"
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Item.""Item Category Code"""; Item."Item Category Code")
                 {
                     Caption = 'Item Category Code';
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Order Date"""; SalesHeader."Order Date")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Outstanding Quantity"; Rec."Outstanding Quantity")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
             }
         }
@@ -176,6 +200,7 @@ page 50056 "Service Lines 2"
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+F7';
                     Visible = true;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     var
@@ -195,6 +220,7 @@ page 50056 "Service Lines 2"
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+Ctrl+I';
                     Visible = true;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin

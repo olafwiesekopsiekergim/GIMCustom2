@@ -211,6 +211,7 @@ page 50040 "DS-Katalogartikel"
                     Style = Strong;
                     StyleExpr = "No.Emphasize";
                     Visible = ESACC_F1_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Base Trading Unit Item No."; "Base Trading Unit Item No.")
                 // {
@@ -227,72 +228,86 @@ page 50040 "DS-Katalogartikel"
                     Style = Strong;
                     StyleExpr = DescriptionEmphasize;
                     Visible = ESACC_F3_Visible;
+                    ApplicationArea = All;
                 }
                 field("Description 2"; Rec."Description 2")
                 {
                     Editable = ESACC_F5_Editable;
                     HideValue = ESACC_F5_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Description(ENU)"; Rec."Description(ENU)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Description2(ENU)"; Rec."Description2(ENU)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Description(FRA)"; Rec."Description(FRA)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Description2(FRA)"; Rec."Description2(FRA)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Base Unit of Measure"; Rec."Base Unit of Measure")
                 {
                     Editable = ESACC_F8_Editable;
                     HideValue = ESACC_F8_HideValue;
                     Visible = ESACC_F8_Visible;
+                    ApplicationArea = All;
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     Editable = ESACC_F18_Editable;
                     HideValue = ESACC_F18_HideValue;
                     Visible = ESACC_F18_Visible;
+                    ApplicationArea = All;
                 }
                 field("Inventory Posting Group"; Rec."Inventory Posting Group")
                 {
                     Editable = ESACC_F11_Editable;
                     HideValue = ESACC_F11_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     Editable = ESACC_F91_Editable;
                     HideValue = ESACC_F91_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
                     Editable = ESACC_F99_Editable;
                     HideValue = ESACC_F99_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Item Disc. Group"; Rec."Item Disc. Group")
                 {
                     Editable = ESACC_F14_Editable;
                     HideValue = ESACC_F14_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Tariff No."; Rec."Tariff No.")
                 {
                     Editable = ESACC_F47_Editable;
                     HideValue = ESACC_F47_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Item Category Code"; Rec."Item Category Code")
                 {
                     Editable = ESACC_F5702_Editable;
                     HideValue = ESACC_F5702_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 // field("Product Group Code"; Rec."Product Group Code")
                 // {
@@ -305,44 +320,53 @@ page 50040 "DS-Katalogartikel"
                     Editable = ESACC_F54_Editable;
                     HideValue = ESACC_F54_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Last Date Modified"; Rec."Last Date Modified")
                 {
                     Editable = ESACC_F62_Editable;
                     HideValue = ESACC_F62_HideValue;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field(Abmessung1; Rec.Abmessung1)
                 {
                     Editable = ESACC_F50301_Editable;
                     HideValue = ESACC_F50301_HideValue;
                     Visible = ESACC_F50301_Visible;
+                    ApplicationArea = All;
                 }
                 field(Abmessung2; Rec.Abmessung2)
                 {
                     Editable = ESACC_F50302_Editable;
                     HideValue = ESACC_F50302_HideValue;
                     Visible = ESACC_F50302_Visible;
+                    ApplicationArea = All;
                 }
                 field(Abmessung3; Rec.Abmessung3)
                 {
                     Editable = ESACC_F50303_Editable;
                     HideValue = ESACC_F50303_HideValue;
                     Visible = ESACC_F50303_Visible;
+                    ApplicationArea = All;
                 }
                 field(Katalog; Rec.Katalog)
                 {
+                    ApplicationArea = All;
                 }
                 field(Katalogseite; Rec.Katalogseite)
                 {
+                    ApplicationArea = All;
                 }
                 field("Unit Cost"; Rec."Unit Cost")
                 {
                     HideValue = Hidevalue;
+                    ApplicationArea = All;
                 }
                 field("Standard Cost"; Rec."Standard Cost")
                 {
                     HideValue = Hidevalue;
+                    ApplicationArea = All;
                 }
             }
         }
@@ -358,6 +382,7 @@ page 50040 "DS-Katalogartikel"
                 SubPageLink = "Source Type" = CONST(Item),
                               "Source No." = FIELD("No.");
                 Visible = SocialListeningVisible;
+                ApplicationArea = All;
             }
             part(Control26; "Social Listening Setup FactBox")
             {
@@ -365,6 +390,7 @@ page 50040 "DS-Katalogartikel"
                               "Source No." = FIELD("No.");
                 UpdatePropagation = Both;
                 Visible = SocialListeningSetupVisible;
+                ApplicationArea = All;
             }
             part(Control1901314507; "Item Invoicing FactBox")
             {
@@ -379,6 +405,7 @@ page 50040 "DS-Katalogartikel"
                               "Lot No. Filter" = FIELD("Lot No. Filter"),
                               "Serial No. Filter" = FIELD("Serial No. Filter");
                 Visible = true;
+                ApplicationArea = All;
             }
             part(Control1903326807; "Item Replenishment FactBox")
             {
@@ -393,6 +420,7 @@ page 50040 "DS-Katalogartikel"
                               "Lot No. Filter" = FIELD("Lot No. Filter"),
                               "Serial No. Filter" = FIELD("Serial No. Filter");
                 Visible = false;
+                ApplicationArea = All;
             }
             part(Control1906840407; "Item Planning FactBox")
             {
@@ -407,6 +435,7 @@ page 50040 "DS-Katalogartikel"
                               "Lot No. Filter" = FIELD("Lot No. Filter"),
                               "Serial No. Filter" = FIELD("Serial No. Filter");
                 Visible = true;
+                ApplicationArea = All;
             }
             part(Control1901796907; "Item Warehouse FactBox")
             {
@@ -421,14 +450,17 @@ page 50040 "DS-Katalogartikel"
                               "Lot No. Filter" = FIELD("Lot No. Filter"),
                               "Serial No. Filter" = FIELD("Serial No. Filter");
                 Visible = false;
+                ApplicationArea = All;
             }
             systempart(Control1900383207; Links)
             {
                 Visible = true;
+                ApplicationArea = All;
             }
             systempart(Control1905767507; Notes)
             {
                 Visible = true;
+                ApplicationArea = All;
             }
         }
     }

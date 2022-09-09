@@ -89,10 +89,12 @@ xmlport 50000 "Import Mapping Sachkonto"
                     field(Firma; EinFirma)
                     {
                         Caption = 'Firma';
+                        ApplicationArea = All;
                     }
                     field("vorhandene Daten löschen"; EinLöschen)
                     {
                         Caption = 'vorhandene Daten löschen';
+                        ApplicationArea = All;
                     }
                 }
             }

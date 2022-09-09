@@ -14,9 +14,11 @@ page 50036 "Checklist List"
             {
                 field("Language Code"; Rec."Language Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Checklist Template"; Rec."Checklist Template")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

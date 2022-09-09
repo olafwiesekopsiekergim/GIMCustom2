@@ -17,14 +17,17 @@ page 50034 "Acceptance Protocol"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
             }
             part(Control1106900004; "Acceptance Protocol Subpage")
             {
                 SubPageLink = "Test Certificate No." = FIELD(Code);
+                ApplicationArea = All;
             }
         }
     }
@@ -41,6 +44,7 @@ page 50034 "Acceptance Protocol"
                 {
                     Caption = 'Print Blank Certificate';
                     Image = Print;
+                    ApplicationArea = All;
 
                     //     trigger OnAction()
                     //     var

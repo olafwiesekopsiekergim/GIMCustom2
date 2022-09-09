@@ -14,9 +14,11 @@ page 50078 "Internal Job Item Category"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

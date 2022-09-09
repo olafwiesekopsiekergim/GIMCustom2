@@ -14,12 +14,15 @@ page 50054 "Production Groups"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Print Action Released"; Rec."Print Action Released")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -27,15 +30,19 @@ page 50054 "Production Groups"
         {
             systempart(Control1106900006; Outlook)
             {
+                ApplicationArea = All;
             }
             systempart(Control1106900007; Notes)
             {
+                ApplicationArea = All;
             }
             systempart(Control1106900008; MyNotes)
             {
+                ApplicationArea = All;
             }
             systempart(Control1106900009; Links)
             {
+                ApplicationArea = All;
             }
         }
     }

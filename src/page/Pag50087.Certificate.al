@@ -17,21 +17,26 @@ page 50087 "GIMCertificate"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Report Cert Name"; Rec."Report Cert Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Report Cert Name 2"; Rec."Report Cert Name 2")
                 {
+                    ApplicationArea = All;
                 }
             }
             part(Control1106900004; "Cerificate Subpage")
             {
                 SubPageLink = "Test Certificate No." = FIELD(Code);
                 UpdatePropagation = Both;
+                ApplicationArea = All;
             }
         }
     }
@@ -48,6 +53,7 @@ page 50087 "GIMCertificate"
                 {
                     Caption = 'Print Blank Certificate';
                     Image = Print;
+                    ApplicationArea = All;
 
                     //TODO Report Zertifikat implementieren
 

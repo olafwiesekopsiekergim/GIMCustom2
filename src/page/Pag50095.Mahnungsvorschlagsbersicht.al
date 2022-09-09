@@ -19,37 +19,48 @@ page 50095 "Mahnungsvorschlagsübersicht"
                 field("Customer No."; Rec."Customer No.")
                 {
                     Caption = 'Debitorennr.';
+                    ApplicationArea = All;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
                     Caption = 'Name';
+                    ApplicationArea = All;
                 }
                 field("Reminder No."; Rec."Reminder No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. of Reminders"; Rec."No. of Reminders")
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date"; Rec."Due Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Remaining Amount"; Rec."Remaining Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("Salesperson Code"; Rec."Salesperson Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(KTR; Rec.KTR)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

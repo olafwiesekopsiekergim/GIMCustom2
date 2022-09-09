@@ -13,9 +13,11 @@ page 50047 "RMD Labelanweisung"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Beschreibung; Rec.Beschreibung)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

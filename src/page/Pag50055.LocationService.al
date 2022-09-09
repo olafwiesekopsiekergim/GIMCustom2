@@ -11,15 +11,19 @@ page 50055 "Location Service"
             {
                 field("Customer No."; Rec."Customer No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Item No."; Rec."Item No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Location; Rec.Location)
                 {
+                    ApplicationArea = All;
                 }
                 field("Prod. Order No."; Rec."Prod. Order No.")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

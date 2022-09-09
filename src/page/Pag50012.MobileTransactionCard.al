@@ -18,60 +18,79 @@ page 50012 "Mobile Transaction Card"
             {
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
                 }
                 field("Message Type"; Rec."Message Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Message Text"; Rec."Message Text")
                 {
+                    ApplicationArea = All;
                 }
                 field(Priority; Rec.Priority)
                 {
+                    ApplicationArea = All;
                 }
                 field("Vendor Shipment No."; Rec."Vendor Shipment No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Language Code"; Rec."Language Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting User Id"; Rec."Posting User Id")
                 {
+                    ApplicationArea = All;
                 }
                 field("Executed Date"; Rec."Executed Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Retrying Date"; Rec."Retrying Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Retry Counter"; Rec."Retry Counter")
                 {
+                    ApplicationArea = All;
                 }
                 field("Error Entry No."; Rec."Error Entry No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Create Date"; Rec."Create Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Source Type"; Rec."Source Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Source Document No."; Rec."Source Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Create User Id"; Rec."Create User Id")
                 {
+                    ApplicationArea = All;
                 }
                 field("Modify Date"; Rec."Modify Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Modify User Id"; Rec."Modify User Id")
                 {
+                    ApplicationArea = All;
                 }
             }
             part(Lines; "Mobile Transaction Subform")
@@ -80,6 +99,7 @@ page 50012 "Mobile Transaction Card"
                 SubPageLink = "Transaction No." = FIELD("No.");
                 SubPageView = SORTING("Transaction No.", "No.")
                               ORDER(Ascending);
+                ApplicationArea = All;
             }
         }
     }
@@ -110,6 +130,7 @@ page 50012 "Mobile Transaction Card"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
+                ApplicationArea = All;
 
                 trigger OnAction()
                 var
@@ -128,6 +149,7 @@ page 50012 "Mobile Transaction Card"
                 Image = ShowWarning;
                 Promoted = true;
                 PromotedCategory = Process;
+                ApplicationArea = All;
 
                 trigger OnAction()
                 begin
@@ -145,6 +167,7 @@ page 50012 "Mobile Transaction Card"
                 Image = Document;
                 Promoted = true;
                 PromotedCategory = "Report";
+                ApplicationArea = All;
 
                 trigger OnAction()
                 begin

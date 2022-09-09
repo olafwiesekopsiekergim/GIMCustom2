@@ -14,77 +14,100 @@ page 50025 "Debitorenposten mit KTR/KST"
             {
                 field("Entry No."; Rec."Entry No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Customer No."; Rec."Customer No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date"; Rec."Due Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Original Amt. (LCY)"; Rec."Original Amt. (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Remaining Amt. (LCY)"; Rec."Remaining Amt. (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Original Amount"; Rec."Original Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("Remaining Amount"; Rec."Remaining Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("Pmt. Discount Date"; Rec."Pmt. Discount Date")
                 {
+                    ApplicationArea = All;
                 }
                 field(Open; Rec.Open)
                 {
+                    ApplicationArea = All;
                 }
                 field(KST; Rec.KST)
                 {
+                    ApplicationArea = All;
                 }
                 field(KTR; Rec.KTR)
                 {
+                    ApplicationArea = All;
                 }
                 field("Bal. Account Type"; Rec."Bal. Account Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bal. Account No."; Rec."Bal. Account No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Debitorenname; Rec.Debitorenname)
                 {
+                    ApplicationArea = All;
                 }
                 field(bis30T; bis30T)
                 {
                     Caption = 'bis30T';
+                    ApplicationArea = All;
                 }
                 field(bis60T; bis60T)
                 {
                     Caption = 'bis60T';
+                    ApplicationArea = All;
                 }
                 field(bis90T; bis90T)
                 {
                     Caption = 'bis90T';
+                    ApplicationArea = All;
                 }
                 field(ueber90T; ueber90T)
                 {
                     Caption = 'ueber90T';
+                    ApplicationArea = All;
                 }
                 field(Mahnstufe; Rec.Mahnstufe)
                 {
                     Editable = false;
+                    ApplicationArea = All;
                 }
             }
         }

@@ -30,6 +30,7 @@ page 50038 "Production Orders-Pulver"
             {
                 field("Priorität"; Rec.Priorität)
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date"; Rec."Due Date")
                 {
@@ -37,30 +38,35 @@ page 50038 "Production Orders-Pulver"
                     Editable = ESACC_F24_Editable;
                     HideValue = ESACC_F24_HideValue;
                     Visible = ESACC_F24_Visible;
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
                     Editable = ESACC_F2_Editable;
                     HideValue = ESACC_F2_HideValue;
                     Visible = ESACC_F2_Visible;
+                    ApplicationArea = All;
                 }
                 field("Source No."; Rec."Source No.")
                 {
                     Editable = ESACC_F10_Editable;
                     HideValue = ESACC_F10_HideValue;
                     Visible = ESACC_F10_Visible;
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
                     Editable = ESACC_F3_Editable;
                     HideValue = ESACC_F3_HideValue;
                     Visible = ESACC_F3_Visible;
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     Editable = ESACC_F40_Editable;
                     HideValue = ESACC_F40_HideValue;
                     Visible = ESACC_F40_Visible;
+                    ApplicationArea = All;
                 }
                 field("Starting Time"; Rec."Starting Date-Time")
                 {
@@ -68,6 +74,7 @@ page 50038 "Production Orders-Pulver"
                     Editable = ESACC_F20_Editable;
                     HideValue = ESACC_F20_HideValue;
                     Visible = ESACC_F20_Visible;
+                    ApplicationArea = All;
                 }
                 // field("Starting Date"; Rec."Starting Date")
                 // {
@@ -81,24 +88,30 @@ page 50038 "Production Orders-Pulver"
                     Description = 'P0027';
                     HideValue = ESACC_F50120_HideValue;
                     Visible = ESACC_F50120_Visible;
+                    ApplicationArea = All;
                 }
                 field("Lagerbestand 400"; Item."Inventory 400")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lagerbestand 401"; Item."Inventory 401")
                 {
+                    ApplicationArea = All;
                 }
                 field("Pulver(einseitig)"; Rec."Pulver(einseitig)")
                 {
                     Caption = 'Pulvernr.(einseitig)';
+                    ApplicationArea = All;
                 }
                 field("<Pulver(einfach)>"; Rec."Pulver(beidseitig)")
                 {
                     Caption = 'Pulvernr.(beidseitig)';
+                    ApplicationArea = All;
                 }
                 field("Pulver(doppelt)"; Rec."Pulver(doppelt)")
                 {
                     Caption = 'Pulvernr.(doppelt)';
+                    ApplicationArea = All;
                 }
             }
         }
@@ -106,9 +119,11 @@ page 50038 "Production Orders-Pulver"
         {
             systempart(Control1106900010; Links)
             {
+                ApplicationArea = All;
             }
             systempart(Control1106900008; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -152,6 +167,7 @@ page 50038 "Production Orders-Pulver"
                         RunPageView = SORTING("Order Type", "Order No.");
                         ShortCutKey = 'Ctrl+F7';
                         Visible = ESACC_C1106900034_Visible;
+                        ApplicationArea = All;
                     }
                     action("Capacity Ledger Entries")
                     {
@@ -163,6 +179,7 @@ page 50038 "Production Orders-Pulver"
                                       "Order No." = FIELD("No.");
                         RunPageView = SORTING("Order Type", "Order No.");
                         Visible = ESACC_C1106900033_Visible;
+                        ApplicationArea = All;
                     }
                     action("Value Entries")
                     {
@@ -174,6 +191,7 @@ page 50038 "Production Orders-Pulver"
                                       "Order No." = FIELD("No.");
                         RunPageView = SORTING("Order Type", "Order No.");
                         Visible = ESACC_C1106900032_Visible;
+                        ApplicationArea = All;
                     }
                     action("&Warehouse Entries")
                     {
@@ -186,6 +204,7 @@ page 50038 "Production Orders-Pulver"
                                       "Source No." = FIELD("No.");
                         RunPageView = SORTING("Source Type", "Source Subtype", "Source No.");
                         Visible = ESACC_C1106900031_Visible;
+                        ApplicationArea = All;
                     }
                 }
                 action("Co&mments")
@@ -197,6 +216,7 @@ page 50038 "Production Orders-Pulver"
                     RunPageLink = Status = FIELD(Status),
                                   "Prod. Order No." = FIELD("No.");
                     Visible = ESACC_C1106900030_Visible;
+                    ApplicationArea = All;
                 }
                 action(Dimensions)
                 {
@@ -206,6 +226,7 @@ page 50038 "Production Orders-Pulver"
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
                     Visible = ESACC_C1106900029_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -229,6 +250,7 @@ page 50038 "Production Orders-Pulver"
                                   "Date Filter" = FIELD("Date Filter");
                     ShortCutKey = 'F7';
                     Visible = ESACC_C1106900027_Visible;
+                    ApplicationArea = All;
                 }
             }
         }
@@ -276,6 +298,7 @@ page 50038 "Production Orders-Pulver"
                     PromotedCategory = Process;
                     RunObject = Codeunit "Prod. Order Status Management";
                     Visible = ESACC_C1106900051_Visible;
+                    ApplicationArea = All;
                 }
                 action("&Update Unit Cost")
                 {
@@ -286,6 +309,7 @@ page 50038 "Production Orders-Pulver"
                     Promoted = true;
                     PromotedCategory = Process;
                     Visible = ESACC_C1106900050_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     var
@@ -306,6 +330,7 @@ page 50038 "Production Orders-Pulver"
                     Promoted = true;
                     PromotedCategory = Process;
                     Visible = ESACC_C1106900049_Visible;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -326,6 +351,7 @@ page 50038 "Production Orders-Pulver"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Detailed Calc.";
                 Visible = ESACC_C1106900047_Visible;
+                ApplicationArea = All;
             }
             action("Prod. Order - Precalc. Time")
             {
@@ -337,6 +363,7 @@ page 50038 "Production Orders-Pulver"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Precalc. Time";
                 Visible = ESACC_C1106900046_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Comp. and Routing")
             {
@@ -347,6 +374,7 @@ page 50038 "Production Orders-Pulver"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order Comp. and Routing";
                 Visible = ESACC_C1106900045_Visible;
+                ApplicationArea = All;
             }
             action("Production Order Job Card")
             {
@@ -358,6 +386,7 @@ page 50038 "Production Orders-Pulver"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Job Card";
                 Visible = ESACC_C1106900044_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Picking List")
             {
@@ -369,6 +398,7 @@ page 50038 "Production Orders-Pulver"
                 //PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Picking List";
                 Visible = ESACC_C1106900043_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Material Requisition")
             {
@@ -379,6 +409,7 @@ page 50038 "Production Orders-Pulver"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Mat. Requisition";
                 Visible = ESACC_C1106900042_Visible;
+                ApplicationArea = All;
             }
             action("Production Order List")
             {
@@ -389,6 +420,7 @@ page 50038 "Production Orders-Pulver"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - List";
                 Visible = ESACC_C1106900041_Visible;
+                ApplicationArea = All;
             }
             action("Production Order - Shortage List")
             {
@@ -399,6 +431,7 @@ page 50038 "Production Orders-Pulver"
                 PromotedCategory = "Report";
                 RunObject = Report "Prod. Order - Shortage List";
                 Visible = ESACC_C1106900040_Visible;
+                ApplicationArea = All;
             }
             action("Production Order Statistics")
             {
@@ -409,6 +442,7 @@ page 50038 "Production Orders-Pulver"
                 PromotedCategory = "Report";
                 RunObject = Report "Production Order Statistics";
                 Visible = ESACC_C1106900039_Visible;
+                ApplicationArea = All;
             }
         }
     }

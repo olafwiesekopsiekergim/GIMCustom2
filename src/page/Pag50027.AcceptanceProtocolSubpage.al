@@ -16,12 +16,15 @@ page 50027 "Acceptance Protocol Subpage"
                 ShowCaption = false;
                 field(Type; Rec.Type)
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

@@ -15,12 +15,15 @@ page 50023 "Reasons"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Reason; Rec.Reason)
                 {
+                    ApplicationArea = All;
                 }
                 field(Win; Rec.Win)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

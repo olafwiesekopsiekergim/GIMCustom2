@@ -17,12 +17,15 @@ page 50033 "Acceptance Protocol List"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Type; Rec.Type)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -40,6 +43,7 @@ page 50033 "Acceptance Protocol List"
                 {
                     Caption = 'Print Blank Certificate';
                     Image = Print;
+                    ApplicationArea = All;
 
                     // trigger OnAction()
                     // var

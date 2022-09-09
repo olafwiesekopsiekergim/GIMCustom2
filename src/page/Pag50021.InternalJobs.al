@@ -15,46 +15,60 @@ page 50021 "Internal Jobs"
                 Caption = 'General';
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("General Contractor Code"; Rec."General Contractor Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("General Contractor"; Rec."General Contractor")
                 {
+                    ApplicationArea = All;
                 }
                 field("Planner Code"; Rec."Planner Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Planner; Rec.Planner)
                 {
+                    ApplicationArea = All;
                 }
                 field(City; Rec.City)
                 {
+                    ApplicationArea = All;
                 }
                 field("Bauvorhaben Description"; Rec."Bauvorhaben Description")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bauvorhaben Description 2"; Rec."Bauvorhaben Description 2")
                 {
+                    ApplicationArea = All;
                 }
                 field("Make Desription"; Rec."Make Desription")
                 {
+                    ApplicationArea = All;
                 }
                 field("Item Descitption"; Rec."Item Descitption")
                 {
+                    ApplicationArea = All;
                 }
                 field("Supplement to"; Rec."Supplement to")
                 {
+                    ApplicationArea = All;
                 }
                 field("Cabinet Part Received"; Rec."Cabinet Part Received")
                 {
+                    ApplicationArea = All;
                 }
                 field("Win/Loss"; Rec."Win/Loss")
                 {
+                    ApplicationArea = All;
                 }
                 part(Control1106900015; "Internal Job Subform")
                 {
                     SubPageLink = "Internal Job No." = FIELD("No.");
+                    ApplicationArea = All;
                 }
             }
         }
@@ -70,6 +84,7 @@ page 50021 "Internal Jobs"
                 action(Quotes)
                 {
                     Caption = 'Quotes';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -79,6 +94,7 @@ page 50021 "Internal Jobs"
                 action(Orders)
                 {
                     Caption = 'Orders';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -88,6 +104,7 @@ page 50021 "Internal Jobs"
                 action(Invoices)
                 {
                     Caption = 'Invoices';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -97,6 +114,7 @@ page 50021 "Internal Jobs"
                 action("Credit Memos")
                 {
                     Caption = 'Credit Memos';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -109,6 +127,7 @@ page 50021 "Internal Jobs"
                 action("Arch. Quotes")
                 {
                     Caption = 'Arch. Quotes';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -118,6 +137,7 @@ page 50021 "Internal Jobs"
                 action("Arch. Orders")
                 {
                     Caption = 'Arch. Orders';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -130,6 +150,7 @@ page 50021 "Internal Jobs"
                 action("Posted Sales Shipments")
                 {
                     Caption = 'Posted Sales Shipments';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -139,6 +160,7 @@ page 50021 "Internal Jobs"
                 action("Posted Sales Invoices")
                 {
                     Caption = 'Posted Sales Invoices';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -148,6 +170,7 @@ page 50021 "Internal Jobs"
                 action("Posted Sales Credit Memos")
                 {
                     Caption = 'Posted Sales Credit Memos';
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin

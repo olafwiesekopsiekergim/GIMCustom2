@@ -13,9 +13,11 @@ page 50017 "Pulverprogramm"
             {
                 field(Pulverprogrammno; Rec.Pulverprogrammno)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

@@ -22,31 +22,37 @@ page 50096 "Arch. Sales Lines 2"
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""No. Printed Work Order"""; SalesHeader."No. Printed Work Order")
                 {
                     Caption = 'No. Printed Work Order';
                     Description = 'P0029';
+                    ApplicationArea = All;
                 }
                 field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     Editable = false;
                     HideValue = true;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Sell-to Country/Region Code"""; SalesHeader."Sell-to Country/Region Code")
                 {
                     Caption = 'Sell-to Country/Region Code';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Salesperson Code"""; SalesHeader."Salesperson Code")
                 {
                     Caption = 'Salesperson Code';
+                    ApplicationArea = All;
                 }
                 // field("SalesHeader.""Salesperson Code 2"""; SalesHeader."Salesperson Code 2")
                 // {
@@ -55,29 +61,36 @@ page 50096 "Arch. Sales Lines 2"
                 field("SalesHeader.""Bill-to Name"""; SalesHeader."Bill-to Name")
                 {
                     Caption = 'Ship-to Name';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Bill-to Name 2"""; SalesHeader."Bill-to Name 2")
                 {
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Name"""; SalesHeader."Ship-to Name")
                 {
                     Caption = 'Lief. an Name';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to Post Code"""; SalesHeader."Ship-to Post Code")
                 {
                     Caption = 'Ship-to Post Code';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Ship-to City"""; SalesHeader."Ship-to City")
                 {
                     Caption = 'Ship-to City';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.Webrequest"; SalesHeader.Webrequest)
                 {
                     Caption = 'Webrequest';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""Archived By"""; SalesHeader."Archived By")
                 {
                     Caption = 'Archiviert von';
+                    ApplicationArea = All;
                 }
                 field("Creation Date"; Rec."Creation Date")
                 {
@@ -85,66 +98,77 @@ page 50096 "Arch. Sales Lines 2"
                     Editable = false;
                     HideValue = true;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Line No."; Rec."Line No.")
                 {
                     Editable = false;
                     HideValue = true;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field(Type; Rec.Type)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Variant Code"; Rec."Variant Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field(Reserve; Rec.Reserve)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit Price"; Rec."Unit Price")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Line Amount"; Rec."Line Amount")
                 {
@@ -152,51 +176,62 @@ page 50096 "Arch. Sales Lines 2"
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Item.""Item Category Code"""; Item."Item Category Code")
                 {
                     Caption = 'Item Category Code';
+                    ApplicationArea = All;
                 }
                 field("SalesHeader.""fix-Termin Lieferung"""; SalesHeader."fix-Termin Lieferung")
                 {
                     Caption = 'fix-Termin Lieferung';
+                    ApplicationArea = All;
                 }
                 field("Shipment Date"; Rec."Shipment Date")
                 {
                     Editable = false;
                     HideValue = false;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
                     HideValue = HideValue;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Profit %"; Rec."Profit %")
                 {
                     HideValue = HideValue;
                     Visible = true;
+                    ApplicationArea = All;
                 }
                 field("Unit Cost"; Rec."Unit Cost")
                 {
                     HideValue = HideValue;
+                    ApplicationArea = All;
                 }
                 field(VK2; VK2)
                 {
                     Caption = 'VK2';
+                    ApplicationArea = All;
                 }
                 field("Version No."; Rec."Version No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Internetangrage; Internetanfrage)
                 {
                     Caption = 'Internetanfrage';
+                    ApplicationArea = All;
                 }
             }
         }
@@ -220,6 +255,7 @@ page 50096 "Arch. Sales Lines 2"
                     PromotedIsBig = true;
                     ShortCutKey = 'Shift+F7';
                     Visible = true;
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     var

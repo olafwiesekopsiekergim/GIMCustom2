@@ -12,9 +12,11 @@ page 50016 "Mobile Stock Control Functions"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Name; Rec.Name)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

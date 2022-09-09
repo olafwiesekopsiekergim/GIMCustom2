@@ -13,9 +13,11 @@ page 50066 "Frachtcodes für Fracht2"
             {
                 field("Code"; Rec.Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Bezeichnung; Rec.Bezeichnung)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
