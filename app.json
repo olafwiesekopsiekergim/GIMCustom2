@@ -2,7 +2,7 @@
   "id": "8d751890-73a2-4219-8770-7fcaced7ef5e",
   "name": "GIMCustom",
   "publisher": "GIM",
-  "version": "1.0.0.0",
+  "version": "1.0.0.1",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -40,4 +40,6 @@
   },
   "runtime": "8.0",
   "target": "OnPrem"
+  
+  
 }

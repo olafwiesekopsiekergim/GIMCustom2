@@ -81,7 +81,7 @@ tableextension 50048 GIMFixedAsset extends "Fixed Asset"
 
     var
         myInt: Integer;
-
+        faDB: record "FA Depreciation Book";
 
 
 

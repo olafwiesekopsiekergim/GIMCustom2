@@ -1,3 +1,8 @@
+
+
+/// <summary>
+/// Query Count Sales Quotes (ID 50000).
+/// </summary>
 query 50000 "Count Sales Quotes"
 {
     Caption = 'Count Sales Orders';
