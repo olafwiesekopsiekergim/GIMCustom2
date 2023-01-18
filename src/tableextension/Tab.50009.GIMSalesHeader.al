@@ -118,6 +118,26 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
             Description = 'P0046';
             Editable = false;
         }
+        field(50500; "Salesperson Code 2"; Code[10])
+        {
+            Caption = 'Salesperson Code 2';
+            Description = ':DMW16.00.01:76:01';
+            TableRelation = "Salesperson/Purchaser";
+
+            trigger OnValidate()
+            var
+                ApprovalEntry: Record "Approval Entry";
+            begin
+                // >> :DMW16.00.01:76:01
+                ApprovalEntry.SetRange("Table ID", DATABASE::"Sales Header");
+                ApprovalEntry.SetRange("Document Type", "Document Type");
+                ApprovalEntry.SetRange("Document No.", "No.");
+                ApprovalEntry.SetFilter(Status, '<>%1&<>%2', ApprovalEntry.Status::Canceled, ApprovalEntry.Status::Rejected);
+                if ApprovalEntry.Find('-') then
+                    Error(Text053, FieldCaption("Salesperson Code"));
+                // << :DMW16.00.01:76:01
+            end;
+        }
         field(70170; Zusatzstatus; Option)
         {
             Caption = 'Zusatzstatus';
@@ -203,10 +223,14 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
             Description = 'P0029';
             Editable = false;
         }
+
     }
+
 
     var
         myInt: Integer;
+        Text053: Label 'You must cancel the approval process if you wish to change the %1.';
+
 
     //[Scope('Internal')]
     /// <summary>
