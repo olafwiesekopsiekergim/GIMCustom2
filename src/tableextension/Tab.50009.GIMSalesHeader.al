@@ -138,6 +138,10 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
                 // << :DMW16.00.01:76:01
             end;
         }
+        field(50501; "Quote Expiration Date"; Date)
+        {
+            Caption = 'Quote Expiration Date';
+        }
         field(70170; Zusatzstatus; Option)
         {
             Caption = 'Zusatzstatus';

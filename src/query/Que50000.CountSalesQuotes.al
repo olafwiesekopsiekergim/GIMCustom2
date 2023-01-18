@@ -32,9 +32,10 @@ query 50000 "Count Sales Quotes"
             }
             filter(Salesperson_Code; "Salesperson Code")
             {
-                // }
-                // filter(Salesperson_Code_2; "Salesperson Code 2")
-                // {
+            }
+
+            filter(Salesperson_Code_2; "Salesperson Code 2")
+            {
             }
             column(Count_Orders)
             {

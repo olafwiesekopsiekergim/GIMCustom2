@@ -1,12 +1,15 @@
-query 9060 "Count Sales Orders"
+/// <summary>
+/// Query gimCountSalesOrders (ID 50003).
+/// </summary>
+query 50003 "gimCountSalesOrders"
 {
     Caption = 'Count Sales Orders';
 
     elements
     {
-        dataitem(QueryElement1; Table36)
+        dataitem(Sales_Header; "Sales Header")
         {
-            DataItemTableFilter = Document Type=CONST(Order);
+            DataItemTableFilter = "Document Type" = CONST(Order);
             filter(Status; Status)
             {
             }

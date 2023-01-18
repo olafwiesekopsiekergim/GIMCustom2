@@ -56,6 +56,13 @@ tableextension 50019 "GIMSalesInvoiceHeader" extends "Sales Invoice Header"
         {
             Caption = 'Creation Date';
             Description = 'P0046';
+
+        }
+
+        field(50500; "Salesperson Code 2"; Code[10])
+        {
+            Caption = 'Salesperson Code 2';
+
         }
         field(70170; Zusatzstatus; Option)
         {

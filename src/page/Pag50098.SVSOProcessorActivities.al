@@ -92,14 +92,14 @@ page 50098 "SV/SO Processor Activities"
             Insert;
         end;
 
-        SetSalespersonFilter;
-        SetRespCenterFilter;
+        rec.SetSalespersonFilter;
+        rec.SetRespCenterFilter;
         SetRange("Date Filter", 0D, WorkDate - 1);
         SetFilter("Date Filter2", '>=%1', WorkDate);
     end;
 
     var
-        CueSetup: Codeunit "Cue Setup";
+        CueSetup: Codeunit "Cues And KPIs";
         ShowDocumentsPendingDodExchService: Boolean;
 
     local procedure CalculateCueFieldValues()
