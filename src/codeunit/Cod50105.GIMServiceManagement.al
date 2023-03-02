@@ -1,3 +1,6 @@
+/// <summary>
+/// Codeunit GIMServiceManagement (ID 50105).
+/// </summary>
 codeunit 50105 "GIMServiceManagement"
 {
     // Bibliothek für das Service Modul

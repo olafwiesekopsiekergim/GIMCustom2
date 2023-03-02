@@ -26,4 +26,36 @@ pageextension 50016 gimServiceOrder extends "Service Order"
 
         }
     }
+
+    actions
+    {
+        addlast(Action27)
+        {
+            action(CopyFromLine1ToAll)
+            {
+                Caption = 'Kopiere von Zeile 1 in Alle';
+
+                trigger OnAction()
+                var
+                    ServiceItemLine: Record "Service Item Line";
+                    GIMServMgmt: Codeunit GIMServiceManagement;
+                begin
+                end;
+            }
+            action(CreateAnswerGroups)
+            {
+                Caption = 'Create AnswerGroups';
+
+                trigger OnAction()
+                var
+                    GIMServiceManagement: Codeunit GIMServiceManagement;
+                begin
+                    //GIM0005 29.3.2022 ++++
+                    //GIMServiceManagement.CreateAnswerGroups(Rec);
+                    //GIM0005 ----
+                end;
+            }
+        }
+
+    }
 }

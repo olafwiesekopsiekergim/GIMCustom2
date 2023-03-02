@@ -12,4 +12,39 @@ pageextension 50028 "gimServiceQuoteLines" extends "Service Quote Lines"
             }
         }
     }
+
+    actions
+    {
+        addlast("F&unctions")
+        {
+            action(CopyServItemFromServItemLine)
+            {
+                Caption = 'Kopiere Serviceartikel aus Serviceartikelzeile';
+
+                trigger OnAction()
+                var
+                    ServHeader: Record "Service Header";
+                    GIMServiceManagement: Codeunit GIMServiceManagement;
+                begin
+                    ServHeader.Get("Document Type", "Document No.");
+                    GIMServiceManagement.CopyServItemsFromServItemLineToServLine(ServHeader);
+                end;
+            }
+            action(CopyFrom1toAll)
+            {
+                Caption = 'Kopiere von Zeile 1 in alle';
+                Image = Allocate;
+
+                trigger OnAction()
+                var
+                    ServLine: Record "Service Line";
+                    GIMServiceMgmt: Codeunit GIMServiceManagement;
+                begin
+                    if Rec.FindFirst then
+                        GIMServiceMgmt.ServiceLineCopyFromCurrToBeyond(Rec);
+                end;
+            }
+
+        }
+    }
 }

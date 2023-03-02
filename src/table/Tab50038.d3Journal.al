@@ -171,27 +171,46 @@ table 50038 "d3 Journal"
         d3Journal: Record "d3 Journal";
         Text000: Label 'file://%1';
 
-    //[Scope('OnPrem')]
+    // [Scope('Internal')]
     procedure CreateLineFromPurch(PurchHeader: Record "Purchase Header"; PostingNo: Code[20])
     var
         lPurchInvHeader: Record "Purch. Inv. Header";
         lPurchCMHeader: Record "Purch. Cr. Memo Hdr.";
     begin
-        case PurchHeader."Document Type" of
-            PurchHeader."Document Type"::Order, PurchHeader."Document Type"::Invoice:
-                begin
-                    if lPurchInvHeader.Get(PostingNo) then  //???prüfen ob letzte Nummer OK???
-                        PostPurchInv(lPurchInvHeader);
-                end;
-            PurchHeader."Document Type"::"Credit Memo", PurchHeader."Document Type"::"Return Order":
-                begin
-                    if lPurchCMHeader.Get(PostingNo) then
-                        PostPurchCMemo(lPurchCMHeader);
-                end;
+        if not DocExists(PurchHeader.RegistrierNr) then begin
+            case PurchHeader."Document Type" of
+                PurchHeader."Document Type"::Order, PurchHeader."Document Type"::Invoice:
+                    begin
+                        if lPurchInvHeader.Get(PostingNo) then  //???prüfen ob letzte Nummer OK???
+                            PostPurchInv(lPurchInvHeader);
+                    end;
+                PurchHeader."Document Type"::"Credit Memo", PurchHeader."Document Type"::"Return Order":
+                    begin
+                        if lPurchCMHeader.Get(PostingNo) then
+                            PostPurchCMemo(lPurchCMHeader);
+                    end;
+            end;
         end;
     end;
 
-    //[Scope('OnPrem')]
+    // [Scope('Internal')]
+    procedure CreateLineFromPurchUnposted(PurchHeader: Record "Purchase Header"; PostingNo: Code[20])
+    begin
+        if not DocExists(PurchHeader.RegistrierNr) then begin
+            case PurchHeader."Document Type" of
+                PurchHeader."Document Type"::Order, PurchHeader."Document Type"::Invoice:
+                    begin
+                        PostPurchInvUnposted(PurchHeader);
+                    end;
+                PurchHeader."Document Type"::"Credit Memo", PurchHeader."Document Type"::"Return Order":
+                    begin
+                        PostPurchCMemoUnposted(PurchHeader);
+                    end;
+            end;
+        end;
+    end;
+
+    // [Scope('Internal')]
     procedure PostPurchInv(PurchInvHeader: Record "Purch. Inv. Header")
     var
         lVendor: Record Vendor;
@@ -224,7 +243,40 @@ table 50038 "d3 Journal"
         d3Journal.Insert(true);
     end;
 
-    //[Scope('OnPrem')]
+    // [Scope('Internal')]
+    procedure PostPurchInvUnposted(PurchHeader: Record "Purchase Header")
+    var
+        lVendor: Record Vendor;
+        lCont: Record Contact;
+    begin
+        if not lVendor.Get(PurchHeader."Buy-from Vendor No.") then
+            lVendor.Init;
+        PurchHeader.CalcFields(Amount, "Amount Including VAT");
+        Clear(d3Journal);
+        d3Journal.Init;
+        d3Journal.RegistrierNr := PurchHeader.RegistrierNr;
+        d3Journal."Source Type" := 122;
+        d3Journal."Source ID" := PurchHeader."No.";
+        d3Journal."Source No." := PurchHeader."Buy-from Vendor No.";
+        d3Journal."Contact No." := GetContact(2, d3Journal."Source No.");
+        d3Journal.Name := PurchHeader."Buy-from Vendor Name";
+        d3Journal."Our Account No." := lVendor."Our Account No.";
+        d3Journal."Country Code" := lVendor."Country/Region Code";
+        d3Journal.City := lVendor.City;
+        d3Journal."Source Reference" := PurchHeader."Your Reference";
+        d3Journal."Currency Code" := PurchHeader."Currency Code";
+        d3Journal."Order No." := PurchHeader."No.";
+        d3Journal."Document Date" := PurchHeader."Document Date";
+        d3Journal."Order Date" := PurchHeader."Order Date";
+        d3Journal."Posting Date" := PurchHeader."Posting Date";
+        d3Journal.Amount := PurchHeader.Amount;
+        d3Journal."Amount Including VAT" := PurchHeader."Amount Including VAT";
+        d3Journal."Source Order No." := PurchHeader."Vendor Order No.";
+        d3Journal."Source Invoice No." := PurchHeader."Vendor Invoice No.";
+        d3Journal.Insert(true);
+    end;
+
+    // [Scope('Internal')]
     procedure PostPurchCMemo(PurchCMHeader: Record "Purch. Cr. Memo Hdr.")
     var
         lVendor: Record Vendor;
@@ -255,7 +307,38 @@ table 50038 "d3 Journal"
         d3Journal.Insert(true);
     end;
 
-    //[Scope('OnPrem')]
+    // [Scope('Internal')]
+    procedure PostPurchCMemoUnposted(PurchHeader: Record "Purchase Header")
+    var
+        lVendor: Record Vendor;
+        lCont: Record Contact;
+    begin
+        if not lVendor.Get(PurchHeader."Buy-from Vendor No.") then
+            lVendor.Init;
+        PurchHeader.CalcFields(Amount, "Amount Including VAT");
+        Clear(d3Journal);
+        d3Journal.Init;
+        d3Journal.RegistrierNr := PurchHeader.RegistrierNr;
+        d3Journal."Source Type" := 124;
+        d3Journal."Source ID" := PurchHeader."No.";
+        d3Journal."Source No." := PurchHeader."Buy-from Vendor No.";
+        d3Journal."Contact No." := GetContact(2, d3Journal."Source No.");
+        d3Journal.Name := PurchHeader."Buy-from Vendor Name";
+        d3Journal."Our Account No." := lVendor."Our Account No.";
+        d3Journal."Country Code" := lVendor."Country/Region Code";
+        d3Journal.City := lVendor.City;
+        d3Journal."Source Reference" := PurchHeader."Your Reference";
+        d3Journal."Currency Code" := PurchHeader."Currency Code";
+        d3Journal."Document Date" := PurchHeader."Document Date";
+        d3Journal."Order No." := PurchHeader."No.";
+        d3Journal."Posting Date" := PurchHeader."Posting Date";
+        d3Journal.Amount := PurchHeader.Amount;
+        d3Journal."Amount Including VAT" := PurchHeader."Amount Including VAT";
+        d3Journal."Source Invoice No." := PurchHeader."Vendor Cr. Memo No.";
+        d3Journal.Insert(true);
+    end;
+
+    // [Scope('Internal')]
     procedure GetContact(Type: Integer; No: Code[20]): Code[20]
     var
         ContBusRelation: Record "Contact Business Relation";
@@ -269,14 +352,24 @@ table 50038 "d3 Journal"
         exit(ContBusRelation."Contact No.");
     end;
 
-    //[Scope('OnPrem')]
+    // [Scope('Internal')]
     procedure OpenDocument(d3ID: Code[20])
     var
         LinkCode: Text[250];
         LinkCode2: Text[250];
         Par: Text[250];
+        PurchaseSetup: Record "Purchases & Payables Setup";
     begin
-        LinkCode := StrSubstNo('d3://d3explorer/idlist=%1', d3ID);
+        if not PurchaseSetup.Get then
+            Error('Es fehlt die Einkaufs Einrchtung');
+        PurchaseSetup.TestField(BaseURLForD3Documents);
+
+        LinkCode := StrSubstNo(PurchaseSetup.BaseURLForD3Documents, d3ID);
+        HyperLink(LinkCode);
+
+        //LinkCode := STRSUBSTNO('d3://d3explorer/idlist=%1', d3ID);
+
+
         //HYPERLINK('vwerner.de');
         //HYPERLINK(STRSUBSTNO('d3:\\\\d3explorer\idlist=%1', d3ID))
         /*
@@ -292,6 +385,14 @@ table 50038 "d3 Journal"
         //SHELL(LinkCode2,Par);
         //SHELL('"C:\Program Files (x86)\Internet Explorer\iexplore.exe"',STRSUBSTNO('d3://d3explorer\idlist=%1', d3ID))
 
+    end;
+
+    local procedure DocExists(RegistrierNr: Code[50]) ret: Boolean
+    var
+        D3Journal: Record "d3 Journal";
+    begin
+        D3Journal.SetRange(RegistrierNr, RegistrierNr);
+        exit(D3Journal.FindFirst());
     end;
 }
 

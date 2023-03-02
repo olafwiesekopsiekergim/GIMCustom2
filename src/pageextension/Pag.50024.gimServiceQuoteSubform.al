@@ -15,4 +15,11 @@ pageextension 50024 gimServiceQuoteSubform extends "Service Quote Subform"
             }
         }
     }
+    actions
+    {
+        addlast("F&unctions")
+        {
+
+        }
+    }
 }

@@ -7,6 +7,9 @@ pageextension 50018 gimServiceQuote extends "Service Quote"
     {
         addlast(General)
         {
+            field("Invoice Disc. Code"; "Invoice Disc. Code")
+            {
+            }
             field("External Document No."; "External Document No.")
             {
                 Caption = 'Anfragenr.';

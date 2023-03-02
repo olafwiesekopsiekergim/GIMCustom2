@@ -1,3 +1,6 @@
+/// <summary>
+/// Page FieldsTable (ID 50099).
+/// </summary>
 page 50099 "FieldsTable"
 {
     PageType = List;

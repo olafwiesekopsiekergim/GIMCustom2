@@ -1,27 +1,12 @@
 /// <summary>
-/// PageExtension "gimServiceLines" (ID 50026) extends Record Service Lines.
+/// PageExtension gimResourceAllocations (ID 50047) extends Record Resource Allocations.
 /// </summary>
-pageextension 50026 gimServiceLines extends "Service Lines"
+pageextension 50047 gimResourceAllocations extends "Resource Allocations"
 {
-    layout
-    {
-        addlast(Control1)
-        {
-            field(RepairStatusCode; RepairStatusCode)
-            {
-                Caption = 'Reparaturstatuscode';
-            }
-            field(Position; Position)
-            {
-            }
-        }
-    }
-
     actions
     {
         addlast("F&unctions")
         {
-
             action(CopyItemsFromServiceItemLines)
             {
                 Caption = 'Copy Items from Service Item Line';
@@ -39,7 +24,7 @@ pageextension 50026 gimServiceLines extends "Service Lines"
                         GIMServiceMgmt.CopyServItemsFromServItemLineToServAlloc(ServHeader);
                 end;
             }
-
         }
     }
+
 }

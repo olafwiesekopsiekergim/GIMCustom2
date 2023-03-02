@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension "RequisitionWrkshName" (ID 50030) extends Record Requisition Wksh. Name.
 /// </summary>
-tableextension 50030 RequisitionWrkshName extends "Requisition Wksh. Name"
+tableextension 50030 GIMRequisitionWrkshName extends "Requisition Wksh. Name"
 {
     fields
     {
