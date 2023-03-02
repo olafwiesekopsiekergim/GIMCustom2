@@ -1,4 +1,7 @@
-pageextension 50049 GIMPurchasesAndPayablesSetup extends "Purchases & Payables Setup"
+/// <summary>
+/// Unknown gimPurchasesAndPayablesSetup (ID 50049) extends Record Purchases and Payables Setup.
+/// </summary>
+pageextension 50049 gimPurchasesAndPayablesSetup extends "Purchases & Payables Setup"
 {
     layout
     {
