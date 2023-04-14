@@ -109,6 +109,9 @@ page 50000 "Hanning Setup"
                     Description = 'P0033';
                     ApplicationArea = All;
                 }
+                field("Düperthal Processes"; "Düperthal Processes")
+                {
+                }
             }
         }
     }

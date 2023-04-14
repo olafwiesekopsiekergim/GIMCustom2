@@ -22,7 +22,11 @@
       {"id": "1b26c6f6-4689-4dc3-af55-f39e95a781f8", 
         "name": "COSMO Advanced Manufacturing Pack", 
         "publisher": "Cosmo Consult", 
-        "version": "3.2.95462.0"}
+        "version": "3.2.95462.0"},
+      {"id": "63aa5c1b-6e26-4572-aa2d-8b333b3ff1a4", 
+        "name": "COSMO Quality Assurance", 
+        "publisher": "Cosmo Consult", 
+        "version": "2.7.97733.0"}
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
