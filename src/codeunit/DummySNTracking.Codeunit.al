@@ -1,4 +1,4 @@
-codeunit 50015 "Dummy SN Tracking"
+codeunit 50003 "Dummy SN Tracking"
 {
     // P0033    15.06.2019  COSMO.RGO #Object Created
     // P0025    31.07.2019  CC.SGE - Changed function "CheckDummySNSetup"
@@ -41,27 +41,25 @@ codeunit 50015 "Dummy SN Tracking"
     var
         SignFactor: Decimal;
     begin
-        with PurchaseLine2 do begin
-            if Type <> Type::Item then
-                exit;
+        if PurchaseLine2.Type <> PurchaseLine2.Type::Item then
+            exit;
 
-            if "Qty. to Receive (Base)" = 0 then
-                exit;
+        if PurchaseLine2."Qty. to Receive (Base)" = 0 then
+            exit;
 
-            // >> P0033-02
-            if ("Receipt No." <> '') and ("Document Type" = "Document Type"::Invoice)
-              or
-               ("Return Shipment No." <> '') and ("Document Type" = "Document Type"::"Credit Memo") then
-                exit;
-            // << P0033-02
+        // >> P0033-02
+        if (PurchaseLine2."Receipt No." <> '') and (PurchaseLine2."Document Type" = PurchaseLine2."Document Type"::Invoice)
+          or
+           (PurchaseLine2."Return Shipment No." <> '') and (PurchaseLine2."Document Type" = PurchaseLine2."Document Type"::"Credit Memo") then
+            exit;
+        // << P0033-02
 
-            SignFactor := "Qty. to Receive (Base)" * SetSignFactor(39, "Document Type", false);
+        SignFactor := PurchaseLine2."Qty. to Receive (Base)" * SetSignFactor(39, PurchaseLine2."Document Type".asInteger, false);
 
-            if SignFactor > 0 then begin
-                CreateInboundSN(PurchaseLine2, "No.", Abs("Qty. to Receive (Base)"));
-            end else begin
-                AssignOutboundSN(PurchaseLine2, "No.", "Variant Code", "Location Code", "Bin Code", Abs("Qty. to Receive (Base)"));
-            end;
+        if SignFactor > 0 then begin
+            CreateInboundSN(PurchaseLine2, PurchaseLine2."No.", Abs(PurchaseLine2."Qty. to Receive (Base)"));
+        end else begin
+            AssignOutboundSN(PurchaseLine2, PurchaseLine2."No.", PurchaseLine2."Variant Code", PurchaseLine2."Location Code", PurchaseLine2."Bin Code", Abs(PurchaseLine2."Qty. to Receive (Base)"));
         end;
     end;
 
@@ -85,42 +83,40 @@ codeunit 50015 "Dummy SN Tracking"
         IsATO: Boolean;
         QtyToPostBase: Decimal;
     begin
-        with SalesLine2 do begin
-            if Type <> Type::Item then
-                exit;
+        if SalesLine2.Type <> SalesLine2.Type::Item then
+            exit;
 
-            if "Document Type" = "Document Type"::Order then begin
-                QtyToPostBase := "Qty. to Ship (Base)";
-            end else begin
-                QtyToPostBase := "Return Qty. to Receive (Base)";
-            end;
+        if SalesLine2."Document Type" = SalesLine2."Document Type"::Order then begin
+            QtyToPostBase := SalesLine2."Qty. to Ship (Base)";
+        end else begin
+            QtyToPostBase := SalesLine2."Return Qty. to Receive (Base)";
+        end;
 
-            if QtyToPostBase = 0 then
-                exit;
+        if QtyToPostBase = 0 then
+            exit;
 
-            // >> P0033-02
-            if ("Shipment No." <> '') and ("Document Type" = "Document Type"::Invoice)
-              or
-               ("Return Receipt No." <> '') and ("Document Type" = "Document Type"::"Credit Memo") then
-                exit;
-            // << P0033-02
+        // >> P0033-02
+        if (SalesLine2."Shipment No." <> '') and (SalesLine2."Document Type" = SalesLine2."Document Type"::Invoice)
+          or
+           (SalesLine2."Return Receipt No." <> '') and (SalesLine2."Document Type" = SalesLine2."Document Type"::"Credit Memo") then
+            exit;
+        // << P0033-02
 
-            SalesLine2.CalcFields("Reserved Quantity");
-            //IsATO := (SalesLine2."Qty. to Assemble to Order" <> 0) AND (SalesLine2."Reserved Quantity" <> 0);
-            //IF IsATO THEN
+        SalesLine2.CalcFields("Reserved Quantity");
+        //IsATO := (SalesLine2."Qty. to Assemble to Order" <> 0) AND (SalesLine2."Reserved Quantity" <> 0);
+        //IF IsATO THEN
 
-            if (SalesLine2."Reserved Quantity" <> 0) then begin
-                // HIER KEINE DUMMYZUWEISUNG: MUSS VORHER GESCHEHEN. NOCH OFFEN BESTELLUNG=>AUFTRAG
-                exit;
-            end;
+        if (SalesLine2."Reserved Quantity" <> 0) then begin
+            // HIER KEINE DUMMYZUWEISUNG: MUSS VORHER GESCHEHEN. NOCH OFFEN BESTELLUNG=>AUFTRAG
+            exit;
+        end;
 
-            SignFactor := QtyToPostBase * SetSignFactor(37, "Document Type", false);
+        SignFactor := QtyToPostBase * SetSignFactor(37, SalesLine2."Document Type".asinteger(), false);
 
-            if SignFactor > 0 then begin
-                CreateInboundSN(SalesLine2, "No.", Abs(QtyToPostBase));
-            end else begin
-                AssignOutboundSN(SalesLine2, "No.", "Variant Code", "Location Code", "Bin Code", Abs(QtyToPostBase));
-            end;
+        if SignFactor > 0 then begin
+            CreateInboundSN(SalesLine2, SalesLine2."No.", Abs(QtyToPostBase));
+        end else begin
+            AssignOutboundSN(SalesLine2, SalesLine2."No.", SalesLine2."Variant Code", SalesLine2."Location Code", SalesLine2."Bin Code", Abs(QtyToPostBase));
         end;
     end;
 
@@ -178,7 +174,7 @@ codeunit 50015 "Dummy SN Tracking"
         CreateDummySNTracking(AssemblyHeader);
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, 50016, 'OnBeforInsertItemTrackingLine', '', false, false)]
+    [EventSubscriber(ObjectType::Codeunit, 50004, 'OnBeforInsertItemTrackingLine', '', false, false)]
     local procedure CU50016_OnBeforInserCCtItemTrackingLine(RowID: Text[250]; var TempTrackSpec: Record "Tracking Specification"; NegAdjmt: Boolean; IsDummySNTracking: Boolean; var DeleteExisting: Boolean)
     begin
         Clear(CCItemTrackingMgt);
@@ -236,7 +232,7 @@ codeunit 50015 "Dummy SN Tracking"
         end;
     end;
 
-    [Scope('Internal')]
+    //
     procedure CheckDummySNSetup(ItemNo: Code[20]; var NoSeries: Code[20]): Boolean
     var
         Item: Record Item;
@@ -290,25 +286,23 @@ codeunit 50015 "Dummy SN Tracking"
         if ItemJournalLine.IsTemporary then
             exit;
 
-        with ItemJournalLine do begin
-            if "Quantity (Base)" = 0 then
-                exit;
+        if ItemJournalLine."Quantity (Base)" = 0 then
+            exit;
 
-            // Output Cancellation
-            if ("Entry Type" = "Entry Type"::Output) and ("Output Quantity" < 0) then
-                exit;
+        // Output Cancellation
+        if (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Output) and (ItemJournalLine."Output Quantity" < 0) then
+            exit;
 
-            // Revaluation
-            if "Value Entry Type" = "Value Entry Type"::Revaluation then
-                exit;
+        // Revaluation
+        if ItemJournalLine."Value Entry Type" = ItemJournalLine."Value Entry Type"::Revaluation then
+            exit;
 
-            SignFactor := "Quantity (Base)" * SetSignFactor(83, "Entry Type", ("Entry Type" = "Entry Type"::Transfer) and (Quantity < 0));
+        SignFactor := ItemJournalLine."Quantity (Base)" * SetSignFactor(83, ItemJournalLine."Entry Type".asinteger(), (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Transfer) and (ItemJournalLine.Quantity < 0));
 
-            if SignFactor > 0 then begin
-                CreateInboundSN(ItemJournalLine, "Item No.", Abs("Quantity (Base)"));
-            end else begin
-                AssignOutboundSN(ItemJournalLine, "Item No.", "Variant Code", "Location Code", "Bin Code", Abs("Quantity (Base)"));
-            end;
+        if SignFactor > 0 then begin
+            CreateInboundSN(ItemJournalLine, ItemJournalLine."Item No.", Abs(ItemJournalLine."Quantity (Base)"));
+        end else begin
+            AssignOutboundSN(ItemJournalLine, ItemJournalLine."Item No.", ItemJournalLine."Variant Code", ItemJournalLine."Location Code", ItemJournalLine."Bin Code", Abs(ItemJournalLine."Quantity (Base)"));
         end;
     end;
 
@@ -351,7 +345,7 @@ codeunit 50015 "Dummy SN Tracking"
         if PassedServLine.FindSet then
             // << P0033-01
             repeat
-              ServiceLineDummySNTracking(PassedServLine);
+                ServiceLineDummySNTracking(PassedServLine);
             until PassedServLine.Next = 0;
     end;
 
@@ -362,29 +356,27 @@ codeunit 50015 "Dummy SN Tracking"
         AssemblyHeader: Record "Assembly Header";
         IsATO: Boolean;
     begin
-        with ServiceLine2 do begin
-            if Type <> Type::Item then
-                exit;
+        if ServiceLine2.Type <> ServiceLine2.Type::Item then
+            exit;
 
-            if "Qty. to Ship (Base)" = 0 then
-                exit;
+        if ServiceLine2."Qty. to Ship (Base)" = 0 then
+            exit;
 
-            ServiceLine2.CalcFields("Reserved Quantity");
-            //IsATO := (SalesLine2."Qty. to Assemble to Order" <> 0) AND (SalesLine2."Reserved Quantity" <> 0);
-            //IF IsATO THEN
+        ServiceLine2.CalcFields("Reserved Quantity");
+        //IsATO := (SalesLine2."Qty. to Assemble to Order" <> 0) AND (SalesLine2."Reserved Quantity" <> 0);
+        //IF IsATO THEN
 
-            if (ServiceLine2."Reserved Quantity" <> 0) then begin
-                // HIER KEINE DUMMYZUWEISUNG: MUSS VORHER GESCHEHEN. NOCH OFFEN BESTELLUNG=>AUFTRAG
-                exit;
-            end;
+        if (ServiceLine2."Reserved Quantity" <> 0) then begin
+            // HIER KEINE DUMMYZUWEISUNG: MUSS VORHER GESCHEHEN. NOCH OFFEN BESTELLUNG=>AUFTRAG
+            exit;
+        end;
 
-            SignFactor := "Qty. to Ship (Base)" * SetSignFactor(37, "Document Type", false);
+        SignFactor := ServiceLine2."Qty. to Ship (Base)" * SetSignFactor(37, Serviceline2."Document Type".AsInteger(), false);
 
-            if SignFactor > 0 then begin
-                CreateInboundSN(ServiceLine2, "No.", Abs("Qty. to Ship (Base)"));
-            end else begin
-                AssignOutboundSN(ServiceLine2, "No.", "Variant Code", "Location Code", "Bin Code", Abs("Qty. to Ship (Base)"));
-            end;
+        if SignFactor > 0 then begin
+            CreateInboundSN(ServiceLine2, ServiceLine2."No.", Abs(ServiceLine2."Qty. to Ship (Base)"));
+        end else begin
+            AssignOutboundSN(ServiceLine2, ServiceLine2."No.", ServiceLine2."Variant Code", ServiceLine2."Location Code", ServiceLine2."Bin Code", Abs(ServiceLine2."Qty. to Ship (Base)"));
         end;
     end;
 
@@ -394,24 +386,22 @@ codeunit 50015 "Dummy SN Tracking"
         SignFactor: Decimal;
         WescoSetup: Record "Job Item Category";
     begin
-        with TransferLine2 do begin
-            if "Qty. to Ship (Base)" = 0 then
-                exit;
+        if TransferLine2."Qty. to Ship (Base)" = 0 then
+            exit;
 
-            SignFactor := "Qty. to Ship (Base)" * SetSignFactor(DATABASE::"Transfer Line", 0, false);
+        SignFactor := TransferLine2."Qty. to Ship (Base)" * SetSignFactor(DATABASE::"Transfer Line", 0, false);
 
-            if SignFactor > 0 then begin
-                CreateInboundSN(TransferLine2, "Item No.", Abs("Qty. to Ship (Base)"));
-            end else begin
-                // >> P0076
-                //dori
-                //    WescoSetup.GET;
-                //    IF "Transfer-from Code" = WescoSetup."Consignment Location Code" THEN BEGIN
-                //      EXIT; // Keine Dummyverfolgung für Rücklieferung von Konsignationslager
-                //    END;
-                // << P0076
-                AssignOutboundSN(TransferLine2, "Item No.", "Variant Code", "Transfer-from Code", "Transfer-from Bin Code", Abs("Qty. to Ship (Base)"));
-            end;
+        if SignFactor > 0 then begin
+            CreateInboundSN(TransferLine2, TransferLine2."Item No.", Abs(TransferLine2."Qty. to Ship (Base)"));
+        end else begin
+            // >> P0076
+            //dori
+            //    WescoSetup.GET;
+            //    IF "Transfer-from Code" = WescoSetup."Consignment Location Code" THEN BEGIN
+            //      EXIT; // Keine Dummyverfolgung für Rücklieferung von Konsignationslager
+            //    END;
+            // << P0076
+            AssignOutboundSN(TransferLine2, TransferLine2."Item No.", TransferLine2."Variant Code", TransferLine2."Transfer-from Code", TransferLine2."Transfer-from Bin Code", Abs(TransferLine2."Qty. to Ship (Base)"));
         end;
     end;
 
@@ -428,11 +418,11 @@ codeunit 50015 "Dummy SN Tracking"
     begin
     end;
 
-    [Scope('Internal')]
+
     procedure CalcSNAvaiInventory(ItemNo: Code[20]; VariantCode: Code[10]; LocationCode: Code[10]; BinCode: Code[20]; var InventoryBuffer: Record "Inventory Buffer"; NeededSN: Integer; SkipCheckInUse: Boolean)
     var
         Location: Record Location;
-        SerialNumbersbyBin: Query GIMServiceAnswers;
+        // SerialNumbersbyBin: Query GIMServiceAnswers;
         i: Integer;
     begin
         // Location.GET(LocationCode);
@@ -561,21 +551,19 @@ codeunit 50015 "Dummy SN Tracking"
         if AssemblyHeader."Quantity to Assemble (Base)" = 0 then
             exit;
 
-        with AssemblyLine do begin
-            AssemblyLine.SetRange("Document Type", AssemblyHeader."Document Type");
-            AssemblyLine.SetRange("Document No.", AssemblyHeader."No.");
-            repeat
-                if AssemblyLine.Type = AssemblyLine.Type::Item then begin
-                    if "Quantity to Consume (Base)" = 0 then
-                        exit;
-                    // >> P0135_01
-                    //      IF AssemblyLine."Inherit Serial No." THEN
-                    //        InheritSerialNo := TRUE;
-                    // << P0135_01
-                    AssignOutboundSN(AssemblyLine, "No.", "Variant Code", "Location Code", "Bin Code", Abs("Quantity to Consume (Base)"));
-                end;
-            until AssemblyLine.Next = 0;
-        end;
+        AssemblyLine.SetRange("Document Type", AssemblyHeader."Document Type");
+        AssemblyLine.SetRange("Document No.", AssemblyHeader."No.");
+        repeat
+            if AssemblyLine.Type = AssemblyLine.Type::Item then begin
+                if AssemblyLine."Quantity to Consume (Base)" = 0 then
+                    exit;
+                // >> P0135_01
+                //      IF AssemblyLine."Inherit Serial No." THEN
+                //        InheritSerialNo := TRUE;
+                // << P0135_01
+                AssignOutboundSN(AssemblyLine, AssemblyLine."No.", AssemblyLine."Variant Code", AssemblyLine."Location Code", AssemblyLine."Bin Code", Abs(AssemblyLine."Quantity to Consume (Base)"));
+            end;
+        until AssemblyLine.Next = 0;
 
         AssemblyHeader.CalcFields("Reserved Quantity", "Assemble to Order");
         IsATO := AssemblyHeader."Assemble to Order" and (AssemblyHeader."Reserved Quantity" <> 0);
@@ -591,7 +579,7 @@ codeunit 50015 "Dummy SN Tracking"
         end;
     end;
 
-    [Scope('Internal')]
+    //
     procedure ModifyExistingReservation(ItemNo: Code[20]; ABSQtyBase: Decimal; RowID: Text[250])
     var
         CCItemTrackingMgt: Codeunit "CC Item Tracking Mgt.";
@@ -633,7 +621,7 @@ codeunit 50015 "Dummy SN Tracking"
                 SplittedReservEntry."Item Tracking" := SplittedReservEntry."Item Tracking"::"Serial No.";
                 //dori
                 SplittedReservEntry."Qty. to Handle (Base)" := 0;
-                SplittedReservEntry."No. of Units" := 1;
+                SplittedReservEntry."CCS QA No. of Units" := 1;
 
                 SplittedReservEntry.Insert(true);
 
@@ -654,7 +642,7 @@ codeunit 50015 "Dummy SN Tracking"
 
                 //dori
                 SplittedReservEntry2."Qty. to Handle (Base)" := 0;
-                SplittedReservEntry2."No. of Units" := 1;
+                SplittedReservEntry2."ccs qa No. of Units" := 1;
 
                 SplittedReservEntry2.Insert(true);
 
@@ -681,11 +669,11 @@ codeunit 50015 "Dummy SN Tracking"
                 ReservationEntry.Delete;
                 ReservationEntry2.Delete;
             end;
-            //END;
+        //END;
         until ReservationEntry.Next = 0;
     end;
 
-    [Scope('Internal')]
+
     procedure ModifyExistingReservationNoDummy(ItemNo: Code[20]; ABSQtyBase: Decimal; RowID: Text[250])
     var
         CCItemTrackingMgt: Codeunit "CC Item Tracking Mgt.";
@@ -753,7 +741,7 @@ codeunit 50015 "Dummy SN Tracking"
         until ReservationEntry.Next = 0;
     end;
 
-    [Scope('Internal')]
+    //
     procedure HandleOutputBeforeStatusChange(ProdOrder: Record "Production Order"; NewStatus: Option Quote,Planned,"Firm Planned",Released,Finished)
     var
         ProdOrderLine: Record "Prod. Order Line";
@@ -817,6 +805,7 @@ codeunit 50015 "Dummy SN Tracking"
         SplittedReservEntry: Record "Reservation Entry";
         SplittedReservEntry2: Record "Reservation Entry";
         Item: Record Item;
+        ItemTrackingCode: Record "Item Tracking Code";
         ReservationEngineMgt: Codeunit "Reservation Engine Mgt.";
         DummySNSeries: Code[10];
         SerialNo: Code[50];
@@ -849,10 +838,11 @@ codeunit 50015 "Dummy SN Tracking"
             tempReservEntry := ReservationEntry;
             tempReservEntry.Insert;
             tempReservEntry.CopyFilters(ReservationEntry);
+            ItemTrackingCode.GET(Item."Item Tracking Code");
             if TempTrackingSpecification.FindSet then begin
                 repeat
-                    ReservationEngineMgt.AddItemTrackingToTempRecSet(tempReservEntry, TempTrackingSpecification, TempTrackingSpecification."Quantity (Base)", QtyToAddAsBlank, true, false);
-                until TempTrackingSpecification.Next = 0;
+                    ReservationEngineMgt.AddItemTrackingToTempRecSet(tempReservEntry, TempTrackingSpecification, TempTrackingSpecification."Quantity (Base)", QtyToAddAsBlank, ItemTrackingCode)
+                until TemptrackingSpecification.next = 0;
             end;
 
             //  REPEAT
@@ -902,7 +892,7 @@ codeunit 50015 "Dummy SN Tracking"
         TempTrackingSpecification."Item No." := ProdOrderLine."Item No.";
         TempTrackingSpecification."Quantity (Base)" := ReservationEntry.Quantity * -1;
         TempTrackingSpecification."Source Type" := DATABASE::"Prod. Order Line";
-        TempTrackingSpecification."Source Subtype" := ProdOrderLine.Status;
+        TempTrackingSpecification."Source Subtype" := ProdOrderLine.Status.AsInteger();
         TempTrackingSpecification."Source ID" := ProdOrderLine."Prod. Order No.";
         TempTrackingSpecification."Source Batch Name" := '';
         TempTrackingSpecification."Source Prod. Order Line" := ProdOrderLine."Line No.";
@@ -951,5 +941,83 @@ codeunit 50015 "Dummy SN Tracking"
         end;
         // << P0165
     end;
+
+    procedure CheckForUniqueDummyUsage(var ProdOrderRtngLine: Record "Prod. Order Routing Line") DummyFound: Boolean
+    var
+        LicPermission: Record "License Permission";
+        ProcessManufacturingSetup: Record "ccs pm Process Manuf. Setup";
+        ProdOrderRtngLine2: Record "Prod. Order Routing Line";
+    begin
+        // >> #PMW18.00.00.01:T100
+        LicPermission.Get(LicPermission."Object Type"::TableData, DATABASE::"ccs pm Process Manuf. Setup");
+        if LicPermission."Read Permission" = LicPermission."Read Permission"::Yes then begin
+
+            if ProcessManufacturingSetup.Get then begin
+
+                if (ProdOrderRtngLine."Next Operation No." <> '') then begin
+
+                    if (ProdOrderRtngLine."CCS PM Tool att to OperationNo" = '') and
+                       (ProdOrderRtngLine."CCS PM InsertAttToOperationNo" = '') and
+                       (StrPos(ProdOrderRtngLine."Previous Operation No.", '|') = 0)
+                    then begin
+                        // Check if routing is not parallel to others than tools / inserts
+                        ProdOrderRtngLine2.Reset;
+                        ProdOrderRtngLine2.SetRange(Status, ProdOrderRtngLine.Status);
+                        ProdOrderRtngLine2.SetRange("Prod. Order No.", ProdOrderRtngLine."Prod. Order No.");
+                        ProdOrderRtngLine2.SetRange("Routing Reference No.", ProdOrderRtngLine."Routing Reference No.");
+                        ProdOrderRtngLine2.SetRange("Routing No.", ProdOrderRtngLine."Routing No.");
+                        ProdOrderRtngLine2.SetRange("Previous Operation No.", ProdOrderRtngLine."Previous Operation No.");
+                        ProdOrderRtngLine2.SetRange("CCS PM Tool att to OperationNo", '');
+                        ProdOrderRtngLine2.SetRange("CCS PM InsertAttToOperationNo", '');
+                        if not (ProdOrderRtngLine2.Count > 1) then begin
+
+                            // Find next operation and check for last operation dummy
+
+                            // >> #PMW18.00.00.03:T503
+                            if StrPos(ProdOrderRtngLine."Next Operation No.", '|') = 0 then begin
+                                // << #PMW18.00.00.03:T503
+                                if ProdOrderRtngLine2.Get(
+                                     ProdOrderRtngLine.Status,
+                                     ProdOrderRtngLine."Prod. Order No.",
+                                     ProdOrderRtngLine."Routing Reference No.",
+                                     ProdOrderRtngLine."Routing No.",
+                                     ProdOrderRtngLine."Next Operation No.")
+                                then begin
+
+                                    if (ProcessManufacturingSetup."Work Center for Tool Planning" <> '') and
+                                       (ProdOrderRtngLine2."No." = ProcessManufacturingSetup."Work Center for Tool Planning")
+                                    then begin
+                                        ProdOrderRtngLine := ProdOrderRtngLine2;
+                                        exit(true);
+                                    end;
+
+                                end;
+                                // >> #PMW18.00.00.03:T503
+                            end;
+                            // << #PMW18.00.00.03:T503
+
+                        end;
+                    end;
+                end else begin
+                    if (ProcessManufacturingSetup."Work Center for Tool Planning" <> '') and
+                       (ProdOrderRtngLine."No." = ProcessManufacturingSetup."Work Center for Tool Planning")
+                    then begin
+                        ProdOrderRtngLine2.Reset;
+                        ProdOrderRtngLine2.SetRange(Status, ProdOrderRtngLine.Status);
+                        ProdOrderRtngLine2.SetRange("Prod. Order No.", ProdOrderRtngLine."Prod. Order No.");
+                        ProdOrderRtngLine2.SetRange("Routing Reference No.", ProdOrderRtngLine."Routing Reference No.");
+                        ProdOrderRtngLine2.SetRange("Routing No.", ProdOrderRtngLine."Routing No.");
+                        ProdOrderRtngLine2.SetFilter("Operation No.", ProdOrderRtngLine."Previous Operation No.");
+                        ProdOrderRtngLine2.FindFirst;
+
+                        ProdOrderRtngLine := ProdOrderRtngLine2;
+                        exit(true);
+                    end;
+                end;
+            end;
+        end;
+        // << #PMW18.00.00.01:T100
+    end;
+
 }
 

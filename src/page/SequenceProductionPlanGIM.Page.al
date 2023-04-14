@@ -1,11 +1,11 @@
-page 50028 SequenceProductionPlanGIM
+page 50007 SequenceProductionPlanGIM
 {
     PageType = Worksheet;
     SourceTable = "Prod. Order Line";
-    SourceTableView = SORTING ("Sequence Work Center No.", "Sequence Position")
+    SourceTableView = SORTING("ccs px Sequence Work Center No", "ccs px Sequence Position")
                       ORDER(Ascending)
-                      WHERE ("Sequence Planning" = CONST (true),
-                            Status = FILTER (< Finished));
+                      WHERE("ccs px Sequence Planning" = CONST(true),
+                            Status = FILTER(< Finished));
 
     layout
     {
@@ -14,11 +14,11 @@ page 50028 SequenceProductionPlanGIM
             field("Sequence Workgroup"; SequenceWorkgroupCode)
             {
                 Caption = 'Sequence Workgroup Code';
-                TableRelation = "Work Center"."No." WHERE ("Sequence Planning" = CONST (true));
+                TableRelation = "Work Center"."No." WHERE("CCS PX Sequence Planning" = CONST(true));
 
                 trigger OnValidate()
                 begin
-                    SetRange("Sequence Work Center No.", SequenceWorkgroupCode);
+                    SetRange("CCS PX Sequence Work Center No", SequenceWorkgroupCode);
                     CurrPage.Update(false);
                 end;
             }
@@ -27,7 +27,7 @@ page 50028 SequenceProductionPlanGIM
                 field(Status; Status)
                 {
                 }
-                field("Sequence Position"; "Sequence Position")
+                field("Sequence Position"; "CCS PX Sequence Position")
                 {
                 }
                 field("Prod. Order No."; "Prod. Order No.")
@@ -42,10 +42,10 @@ page 50028 SequenceProductionPlanGIM
                 field("Remaining Quantity"; "Remaining Quantity")
                 {
                 }
-                field("Start Date Sequence Planning"; "Start Date Sequence Planning")
+                field("Start Date Sequence Planning"; "CCS PX Start Date Seq Planning")
                 {
                 }
-                field("Start Time Sequence Planning"; "Start Time Sequence Planning")
+                field("Start Time Sequence Planning"; "ccs px Start Time Seq Planning")
                 {
                 }
                 field(strItemNr; getItemNoFromProdOrder(Rec))
@@ -77,7 +77,7 @@ page 50028 SequenceProductionPlanGIM
         exit(ProdOrder."Source No.");
     end;
 
-    [Scope('Internal')]
+
     procedure setSequenceWorkGroupFilter(strSeqWorkgroupCode: Code[50])
     begin
         SequenceWorkgroupCode := strSeqWorkgroupCode;
@@ -100,7 +100,7 @@ page 50028 SequenceProductionPlanGIM
         IsSalesLine := false;
         ret := '';
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutMessage();
 
         while not IsSalesLine do begin
             i += 1;

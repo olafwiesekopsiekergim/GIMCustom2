@@ -1,10 +1,10 @@
-page 50042 TestOrderPropGIM
+page 50006 TestOrderPropGIM
 {
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = List;
     ShowFilter = false;
-    SourceTable = "Test Order Property";
+    SourceTable = "ccs qa Test Order Property";
 
     layout
     {
@@ -55,7 +55,7 @@ page 50042 TestOrderPropGIM
 
     trigger OnClosePage()
     var
-        TestOrder: Record "Test Order";
+        TestOrder: Record "ccs qa Test Order";
     begin
     end;
 
@@ -63,8 +63,8 @@ page 50042 TestOrderPropGIM
         DetermValueTester1Vis: Boolean;
         DetermValueTester2Vis: Boolean;
 
-    [Scope('Internal')]
-    procedure SetColumnsVisibleForTester(Testorder: Record "Test Order")
+
+    procedure SetColumnsVisibleForTester(Testorder: Record "ccs qa Test Order")
     begin
         DetermValueTester1Vis := false;
         DetermValueTester2Vis := false;

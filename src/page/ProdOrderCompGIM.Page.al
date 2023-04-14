@@ -1,4 +1,7 @@
-page 50041 ProdOrderCompGIM
+/// <summary>
+/// Page ProdOrderCompGIM (ID 50011).
+/// </summary>
+page 50011 ProdOrderCompGIM
 {
     // GIM 30.11.2022 Verfügbarkeit anzeigen, Entweder abhängig nur vom Lagerort oder auch Lagerplatz
 

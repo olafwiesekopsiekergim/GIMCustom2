@@ -1,4 +1,7 @@
-page 5012410 "TAN Output Journal"
+/// <summary>
+/// Page gimTANOutputJournal (ID 50020).
+/// </summary>
+page 50020 "gimTANOutputJournal"
 {
     // Copyright (Exclusive Rights): COSMO CONSULT Licensing GmbH, Sarnen, Switzerland
     // 
@@ -38,7 +41,7 @@ page 5012410 "TAN Output Journal"
     // GIM0016 29.11.2022 Prefix B öffnet gegebenes Journalblatt
 
     AutoSplitKey = true;
-    Caption = 'TAN Output Journal';
+    Caption = 'Düperthal TAN Output Journal';
     DataCaptionFields = "Journal Batch Name";
     DelayedInsert = true;
     PageType = Worksheet;
@@ -90,7 +93,7 @@ page 5012410 "TAN Output Journal"
                 Editable = false;
                 Enabled = false;
                 ShowCaption = false;
-                field("Routing TAN"; "Routing TAN")
+                field("Routing TAN"; "ccs pm Routing TAN")
                 {
                 }
                 field("Posting Date"; "Posting Date")
@@ -398,10 +401,10 @@ page 5012410 "TAN Output Journal"
                     Caption = 'Bin Contents';
                     Image = BinContent;
                     RunObject = Page "Bin Contents List";
-                    RunPageLink = "Location Code" = FIELD ("Location Code"),
-                                  "Item No." = FIELD ("Item No."),
-                                  "Variant Code" = FIELD ("Variant Code");
-                    RunPageView = SORTING ("Location Code", "Bin Code", "Item No.", "Variant Code");
+                    RunPageLink = "Location Code" = FIELD("Location Code"),
+                                  "Item No." = FIELD("Item No."),
+                                  "Variant Code" = FIELD("Variant Code");
+                    RunPageView = SORTING("Location Code", "Bin Code", "Item No.", "Variant Code");
                 }
             }
             group("Pro&d. Order")
@@ -413,7 +416,7 @@ page 5012410 "TAN Output Journal"
                     Caption = 'Card';
                     Image = EditLines;
                     RunObject = Page "Released Production Order";
-                    RunPageLink = "No." = FIELD ("Order No.");
+                    RunPageLink = "No." = FIELD("Order No.");
                     ShortCutKey = 'Shift+F7';
                 }
                 group("Ledger E&ntries")
@@ -425,9 +428,9 @@ page 5012410 "TAN Output Journal"
                         Caption = 'Item Ledger E&ntries';
                         Image = ItemLedger;
                         RunObject = Page "Item Ledger Entries";
-                        RunPageLink = "Order Type" = CONST (Production),
-                                      "Order No." = FIELD ("Order No.");
-                        RunPageView = SORTING ("Order Type", "Order No.");
+                        RunPageLink = "Order Type" = CONST(Production),
+                                      "Order No." = FIELD("Order No.");
+                        RunPageView = SORTING("Order Type", "Order No.");
                         ShortCutKey = 'Ctrl+F7';
                     }
                     action("Capacity Ledger Entries")
@@ -438,18 +441,18 @@ page 5012410 "TAN Output Journal"
                         //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                         //PromotedCategory = Process;
                         RunObject = Page "Capacity Ledger Entries";
-                        RunPageLink = "Order Type" = CONST (Production),
-                                      "Order No." = FIELD ("Order No.");
-                        RunPageView = SORTING ("Order Type", "Order No.");
+                        RunPageLink = "Order Type" = CONST(Production),
+                                      "Order No." = FIELD("Order No.");
+                        RunPageView = SORTING("Order Type", "Order No.");
                     }
                     action("Value Entries")
                     {
                         Caption = 'Value Entries';
                         Image = ValueLedger;
                         RunObject = Page "Value Entries";
-                        RunPageLink = "Order Type" = CONST (Production),
-                                      "Order No." = FIELD ("Order No.");
-                        RunPageView = SORTING ("Order Type", "Order No.");
+                        RunPageLink = "Order Type" = CONST(Production),
+                                      "Order No." = FIELD("Order No.");
+                        RunPageView = SORTING("Order Type", "Order No.");
                     }
                 }
             }
@@ -621,7 +624,10 @@ page 5012410 "TAN Output Journal"
         CurrPage.Update(false);
     end;
 
-    [Scope('Internal')]
+    //
+    /// <summary>
+    /// TrySetApplyToEntries.
+    /// </summary>
     procedure TrySetApplyToEntries()
     var
         ItemLedgerEntry: Record "Item Ledger Entry";
@@ -680,7 +686,10 @@ page 5012410 "TAN Output Journal"
         exit(ItemLedgerEntry.FindSet);
     end;
 
-    [Scope('Internal')]
+    //
+    /// <summary>
+    /// HandleRoutingTAN.
+    /// </summary>
     procedure HandleRoutingTAN()
     var
         lProdOrderFeedbackService: Codeunit "Prod. Order Feedback Service";
@@ -738,7 +747,7 @@ page 5012410 "TAN Output Journal"
         posDivider := StrPos(RoutingTAN, '$');
         if posDivider > 0 then
             RoutingTAN := CopyStr(RoutingTAN, 1, posDivider - 1);
-        ProdOrderRoutingLine.SetRange("Routing TAN", CopyStr(RoutingTAN, 2));
+        ProdOrderRoutingLine.SetRange("ccs pm Routing TAN", CopyStr(RoutingTAN, 2));
 
         if ProdOrderRoutingLine.FindFirst then begin
             ProdOrderLine.SetRange(Status, ProdOrderRoutingLine.Status);
@@ -763,7 +772,11 @@ page 5012410 "TAN Output Journal"
         currTester := CopyStr(RoutingTAN, 2);
     end;
 
-    [Scope('Internal')]
+    //
+    /// <summary>
+    /// setCurrJnlBatchName.
+    /// </summary>
+    /// <param name="strName">Code[10].</param>
     procedure setCurrJnlBatchName(strName: Code[10])
     begin
         CurrentJnlBatchName := strName;
@@ -813,23 +826,26 @@ page 5012410 "TAN Output Journal"
             PrintPulverLable;
     end;
 
-    [Scope('Internal')]
+    //TODO: Reports dazubauen und wieder aktvieren
+    /// <summary>
+    /// PrintPulverLable.
+    /// </summary>
     procedure PrintPulverLable()
     var
         ProdLine: Record "Prod. Order Line";
-        ProdLabel: Report "Etikett Fertigung";
+        // ProdLabel: Report "Etikett Fertigung";
         ProdRouting: Record "Prod. Order Routing Line";
     begin
         //GIM Simes 13.02.2023: Hier wurde die ProdLine direkt nach der RoutingTAN gefiltert, das musste erst über die ProdRoutings gehen, sonst war der Bericht immer leer
-        ProdRouting.SetRange("Routing TAN", CopyStr(RoutingTAN, 2));
-        if ProdRouting.FindFirst then begin
-            ProdLine.SetRange(Status, 3);
-            ProdLine.SetRange("Prod. Order No.", ProdRouting."Prod. Order No.");
-            ProdLabel.SetTableView(ProdLine);
-            ProdLabel.UseRequestPage(false);
-            //ProdLabel.
-            ProdLabel.RunModal;
-        end;
+        // ProdRouting.SetRange("ccs pm Routing TAN", CopyStr(RoutingTAN, 2));
+        // if ProdRouting.FindFirst then begin
+        //     ProdLine.SetRange(Status, 3);
+        //     ProdLine.SetRange("Prod. Order No.", ProdRouting."Prod. Order No.");
+        //     ProdLabel.SetTableView(ProdLine);
+        //     ProdLabel.UseRequestPage(false);
+        //     //ProdLabel.
+        //     ProdLabel.RunModal;
+        // end;
     end;
 }
 

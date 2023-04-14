@@ -1,4 +1,4 @@
-codeunit 5012412 "Prod. Order Feedback Service"
+codeunit 50006 "Prod. Order Feedback Service"
 {
     // Copyright (Exclusive Rights): COSMO CONSULT Licensing GmbH, Sarnen, Switzerland
     // 
@@ -87,134 +87,134 @@ codeunit 5012412 "Prod. Order Feedback Service"
     var
         CheckDeliveryTolerance: Boolean;
 
-    [Scope('Internal')]
-    procedure CalcRoutingTime(var ProdOrderLine: Record "Prod. Order Line")
-    var
-        ProdOrderRoutingLine: Record "Prod. Order Routing Line";
-        ItemJournalLine: Record "Item Journal Line";
-        ProdOrderComponent: Record "Prod. Order Component";
-        CalendarMgt: Codeunit CalendarManagement;
-        Quantity: Decimal;
-        ScrapTime: Decimal;
-        WorkCenter: Record "Work Center";
-        SetupTime: Decimal;
-        RunTime: Decimal;
-    begin
-        ProdOrderRoutingLine.SetRange(Status, ProdOrderLine.Status);
-        ProdOrderRoutingLine.SetRange("Prod. Order No.", ProdOrderLine."Prod. Order No.");
-        ProdOrderRoutingLine.SetRange("Routing Reference No.", ProdOrderLine."Routing Reference No.");
-        if ProdOrderRoutingLine.FindSet then begin
-            repeat
-                // >> #PMW17.00:T101
-                // ItemJournalLine.SETRANGE("Prod. Order No.",ProdOrderRoutingLine."Prod. Order No.");
-                // ItemJournalLine.SETRANGE("Prod. Order Line No.",ProdOrderLine."Line No.");
-                ItemJournalLine.SetRange("Order Type", ItemJournalLine."Order Type"::Production);
-                ItemJournalLine.SetRange("Order No.", ProdOrderRoutingLine."Prod. Order No.");
-                ItemJournalLine.SetRange("Order Line No.", ProdOrderLine."Line No.");
-                // << #PMW17.00:T101
-                ItemJournalLine.SetRange("Routing Reference No.", ProdOrderRoutingLine."Routing Reference No.");
-                ItemJournalLine.SetRange("Operation No.", ProdOrderRoutingLine."Operation No.");
-                if ItemJournalLine.FindFirst then begin
+    // //
+    // procedure CalcRoutingTime(var ProdOrderLine: Record "Prod. Order Line")
+    // var
+    //     ProdOrderRoutingLine: Record "Prod. Order Routing Line";
+    //     ItemJournalLine: Record "Item Journal Line";
+    //     ProdOrderComponent: Record "Prod. Order Component";
+    //     CalendarMgt: Codeunit CalendarManagement;
+    //     Quantity: Decimal;
+    //     ScrapTime: Decimal;
+    //     WorkCenter: Record "Work Center";
+    //     SetupTime: Decimal;
+    //     RunTime: Decimal;
+    // begin
+    //     ProdOrderRoutingLine.SetRange(Status, ProdOrderLine.Status);
+    //     ProdOrderRoutingLine.SetRange("Prod. Order No.", ProdOrderLine."Prod. Order No.");
+    //     ProdOrderRoutingLine.SetRange("Routing Reference No.", ProdOrderLine."Routing Reference No.");
+    //     if ProdOrderRoutingLine.FindSet then begin
+    //         repeat
+    //             // >> #PMW17.00:T101
+    //             // ItemJournalLine.SETRANGE("Prod. Order No.",ProdOrderRoutingLine."Prod. Order No.");
+    //             // ItemJournalLine.SETRANGE("Prod. Order Line No.",ProdOrderLine."Line No.");
+    //             ItemJournalLine.SetRange("Order Type", ItemJournalLine."Order Type"::Production);
+    //             ItemJournalLine.SetRange("Order No.", ProdOrderRoutingLine."Prod. Order No.");
+    //             ItemJournalLine.SetRange("Order Line No.", ProdOrderLine."Line No.");
+    //             // << #PMW17.00:T101
+    //             ItemJournalLine.SetRange("Routing Reference No.", ProdOrderRoutingLine."Routing Reference No.");
+    //             ItemJournalLine.SetRange("Operation No.", ProdOrderRoutingLine."Operation No.");
+    //             if ItemJournalLine.FindFirst then begin
 
-                    // Time unit conversion
+    //                 // Time unit conversion
 
-                    WorkCenter.Get(ProdOrderRoutingLine."Work Center No.");
-                    RunTime := Round(ProdOrderRoutingLine."Run Time" *
-                                CalendarMgt.TimeFactor(ProdOrderRoutingLine."Run Time Unit of Meas. Code") /
-                                CalendarMgt.TimeFactor(WorkCenter."Unit of Measure Code"),
-                                WorkCenter."Calendar Rounding Precision");
+    //                 WorkCenter.Get(ProdOrderRoutingLine."Work Center No.");
+    //                 RunTime := Round(ProdOrderRoutingLine."Run Time" *
+    //                             CalendarMgt.TimeFactor(ProdOrderRoutingLine."Run Time Unit of Meas. Code") /
+    //                             CalendarMgt.TimeFactor(WorkCenter."Unit of Measure Code"),
+    //                             WorkCenter."Calendar Rounding Precision");
 
-                    SetupTime := Round(ProdOrderRoutingLine."Setup Time" *
-                                  CalendarMgt.TimeFactor(ProdOrderRoutingLine."Setup Time Unit of Meas. Code") /
-                                  CalendarMgt.TimeFactor(WorkCenter."Unit of Measure Code"),
-                                  WorkCenter."Calendar Rounding Precision");
+    //                 SetupTime := Round(ProdOrderRoutingLine."Setup Time" *
+    //                               CalendarMgt.TimeFactor(ProdOrderRoutingLine."Setup Time Unit of Meas. Code") /
+    //                               CalendarMgt.TimeFactor(WorkCenter."Unit of Measure Code"),
+    //                               WorkCenter."Calendar Rounding Precision");
 
-                    if ProdOrderLine."Posting Quantity" > 0 then begin
+    //                 if ProdOrderLine."Posting Quantity" > 0 then begin
 
-                        if ProdOrderLine."Scrap %" > 0 then begin
+    //                     if ProdOrderLine."Scrap %" > 0 then begin
 
-                            // >> #PMW16.00.00.02:T511
-                            // ScrapTime := ROUND(RunTime / 100 * ProdOrderLine."Scrap %");
-                            ScrapTime := Round(RunTime / 100 * ProdOrderLine."Scrap %", 0.00001);
-                            // << #PMW16.00.00.02:T511
+    //                         // >> #PMW16.00.00.02:T511
+    //                         // ScrapTime := ROUND(RunTime / 100 * ProdOrderLine."Scrap %");
+    //                         ScrapTime := Round(RunTime / 100 * ProdOrderLine."Scrap %", 0.00001);
+    //                         // << #PMW16.00.00.02:T511
 
-                            ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Posting Quantity")
-                                                                 + (ProdOrderLine."Posting Quantity" * ScrapTime));
-                            ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
+    //                         ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Posting Quantity")
+    //                                                              + (ProdOrderLine."Posting Quantity" * ScrapTime));
+    //                         ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
 
-                        end else begin
+    //                     end else begin
 
-                            ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Posting Quantity"));
-                            ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
+    //                         ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Posting Quantity"));
+    //                         ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
 
-                        end;
+    //                     end;
 
-                    end else begin
+    //                 end else begin
 
-                        if ProdOrderLine."Scrap %" > 0 then begin
+    //                     if ProdOrderLine."Scrap %" > 0 then begin
 
-                            // >> #PMW16.00.00.02:T511
-                            // ScrapTime := ROUND(RunTime / 100 * ProdOrderLine."Scrap %");
-                            ScrapTime := Round(RunTime / 100 * ProdOrderLine."Scrap %", 0.00001);
-                            // << #PMW16.00.00.02:T511
+    //                         // >> #PMW16.00.00.02:T511
+    //                         // ScrapTime := ROUND(RunTime / 100 * ProdOrderLine."Scrap %");
+    //                         ScrapTime := Round(RunTime / 100 * ProdOrderLine."Scrap %", 0.00001);
+    //                         // << #PMW16.00.00.02:T511
 
-                            ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Remaining Quantity")
-                                                                 + (ProdOrderLine."Remaining Quantity" * ScrapTime));
-                            ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
-                        end else begin
+    //                         ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Remaining Quantity")
+    //                                                              + (ProdOrderLine."Remaining Quantity" * ScrapTime));
+    //                         ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity");
+    //                     end else begin
 
-                            ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Remaining Quantity"));
-                            ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Remaining Quantity");
+    //                         ItemJournalLine.Validate("Run Time", Round(RunTime * ProdOrderLine."Remaining Quantity"));
+    //                         ItemJournalLine.Validate("Output Quantity", ProdOrderLine."Remaining Quantity");
 
-                        end
-                    end;
+    //                     end
+    //                 end;
 
-                    ItemJournalLine.Validate("Setup Time", SetupTime);
-                    ItemJournalLine.Modify;
+    //                 ItemJournalLine.Validate("Setup Time", SetupTime);
+    //                 ItemJournalLine.Modify;
 
-                end;
-            until ProdOrderRoutingLine.Next = 0;
-        end;
+    //             end;
+    //         until ProdOrderRoutingLine.Next = 0;
+    //     end;
 
-        if ProdOrderLine."Posting Quantity" > 0 then begin
-            ProdOrderComponent.SetRange(Status, ProdOrderLine.Status);
-            ProdOrderComponent.SetRange("Prod. Order No.", ProdOrderLine."Prod. Order No.");
-            ProdOrderComponent.SetRange("Prod. Order Line No.", ProdOrderLine."Line No.");
-            if ProdOrderComponent.FindSet then begin
-                ItemJournalLine.Reset;
-                repeat
-                    // >> #PMW17.00:T101
-                    // ItemJournalLine.SETRANGE("Prod. Order No.",ProdOrderLine."Prod. Order No.");
-                    // ItemJournalLine.SETRANGE("Prod. Order Line No.",ProdOrderLine."Line No.");
-                    ItemJournalLine.SetRange("Order Type", ItemJournalLine."Order Type"::Production);
-                    ItemJournalLine.SetRange("Order No.", ProdOrderRoutingLine."Prod. Order No.");
-                    ItemJournalLine.SetRange("Order Line No.", ProdOrderLine."Line No.");
-                    // << #PMW17.00:T101
-                    ItemJournalLine.SetRange("Prod. Order Comp. Line No.", ProdOrderComponent."Line No.");
-                    if ItemJournalLine.FindFirst then begin
-                        if ProdOrderLine."Scrap %" > 0 then begin
-                            Quantity :=
-                              Round((ProdOrderComponent.Quantity * ProdOrderLine."Posting Quantity") *
-                                    (1 + ProdOrderLine."Scrap %" / 100));
-                        end else begin
-                            Quantity := ProdOrderComponent.Quantity * ProdOrderLine."Posting Quantity";
-                        end;
-                        ItemJournalLine.Validate(Quantity, Quantity);
-                        ItemJournalLine.Modify;
-                    end;
-                until ProdOrderComponent.Next = 0;
-            end;
-        end;
-    end;
+    //     if ProdOrderLine."Posting Quantity" > 0 then begin
+    //         ProdOrderComponent.SetRange(Status, ProdOrderLine.Status);
+    //         ProdOrderComponent.SetRange("Prod. Order No.", ProdOrderLine."Prod. Order No.");
+    //         ProdOrderComponent.SetRange("Prod. Order Line No.", ProdOrderLine."Line No.");
+    //         if ProdOrderComponent.FindSet then begin
+    //             ItemJournalLine.Reset;
+    //             repeat
+    //                 // >> #PMW17.00:T101
+    //                 // ItemJournalLine.SETRANGE("Prod. Order No.",ProdOrderLine."Prod. Order No.");
+    //                 // ItemJournalLine.SETRANGE("Prod. Order Line No.",ProdOrderLine."Line No.");
+    //                 ItemJournalLine.SetRange("Order Type", ItemJournalLine."Order Type"::Production);
+    //                 ItemJournalLine.SetRange("Order No.", ProdOrderRoutingLine."Prod. Order No.");
+    //                 ItemJournalLine.SetRange("Order Line No.", ProdOrderLine."Line No.");
+    //                 // << #PMW17.00:T101
+    //                 ItemJournalLine.SetRange("Prod. Order Comp. Line No.", ProdOrderComponent."Line No.");
+    //                 if ItemJournalLine.FindFirst then begin
+    //                     if ProdOrderLine."Scrap %" > 0 then begin
+    //                         Quantity :=
+    //                           Round((ProdOrderComponent.Quantity * ProdOrderLine."Posting Quantity") *
+    //                                 (1 + ProdOrderLine."Scrap %" / 100));
+    //                     end else begin
+    //                         Quantity := ProdOrderComponent.Quantity * ProdOrderLine."Posting Quantity";
+    //                     end;
+    //                     ItemJournalLine.Validate(Quantity, Quantity);
+    //                     ItemJournalLine.Modify;
+    //                 end;
+    //             until ProdOrderComponent.Next = 0;
+    //         end;
+    //     end;
+    // end;
 
-    [Scope('Internal')]
-    procedure UpdatePostingQuantity(var ProdOrderLine: Record "Prod. Order Line")
-    begin
-        ProdOrderLine."Posting Quantity" := ProdOrderLine."Remaining Quantity";
-        ProdOrderLine.Modify;
-    end;
+    // //
+    // procedure UpdatePostingQuantity(var ProdOrderLine: Record "Prod. Order Line")
+    // begin
+    //     ProdOrderLine."Posting Quantity" := ProdOrderLine."Remaining Quantity";
+    //     ProdOrderLine.Modify;
+    // end;
 
-    [Scope('Internal')]
+
     procedure UpdateJnlLines(ProdOrder: Record "Production Order"; ProdOrderLineNo: Integer; TemplateName: Code[10]; BatchName: Code[10]; PostingQuantity: Decimal; ScrapPercent: Decimal; ConsiderPresetOutputQty: Boolean)
     var
         ProdOrderLine: Record "Prod. Order Line";
@@ -249,7 +249,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                 OriginalPercent := ProdOrderLine."Scrap %";
 
                 ProdOrderLine."Scrap %" := ScrapPercent;
-                ProdOrderLine."Posting Quantity" := PostingQuantity;
+                ProdOrderLine."CCS PM Posting Quantity" := PostingQuantity;
 
                 ProdOrderRtngLine.Reset;
                 ProdOrderRtngLine.SetRange("Prod. Order No.", ProdOrderLine."Prod. Order No.");
@@ -298,7 +298,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                                     // >> #PMW16.00.00.02:T503
                                     // UpdateConsumptionJnlLine(ProdOrderComp,ProdOrderLine, ItemJnlLine);
                                     UpdateConsumptionJnlLine(ProdOrderComp, ProdOrderLine, ProdOrderRtngLine, ItemJnlLine);
-                                    // << #PMW16.00.00.02:T503
+                                // << #PMW16.00.00.02:T503
 
                                 until ProdOrderComp.Next = 0;
                             end;
@@ -391,7 +391,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                 end;
 
                 // IF ProdOrderLine."Posting Quantity" > 0 THEN BEGIN
-                if (ProdOrderLine."Posting Quantity" > 0) and (not Location."Require Pick") then begin
+                if (ProdOrderLine."ccs pm Posting Quantity" > 0) and (not Location."Require Pick") then begin
                     // << #PMW16.00.02.05:T514
 
                     // >> :PMW16.00:148:1
@@ -406,12 +406,12 @@ codeunit 5012412 "Prod. Order Feedback Service"
                         // >> #PMW17.00:T513
                         // ROUND(
                         // << #PMW17.00:T513
-                        (ProdOrderComp.Quantity * ProdOrderLine."Posting Quantity") *
+                        (ProdOrderComp.Quantity * ProdOrderLine."ccs pm Posting Quantity") *
                         (1 + ProdOrderLine."Scrap %" / 100) *
                         // >> #PMW16.00.00.02:T503
                         (1 + ProdOrderRtngLine."Scrap Factor % (Accumulated)") *
                         // << #PMW16.00.00.02:T503
-                        (1 + ProdOrderComp."Sprue Bush %" / 100) *
+                        (1 + ProdOrderComp."ccs pm Sprue Bush %" / 100) *
                         // >> #PMW17.00:T513
                         // (1 + ProdOrderComp."Scrap %" / 100));
                         (1 + ProdOrderComp."Scrap %" / 100);
@@ -439,7 +439,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
     local procedure UpdateOutputJnlLine(ProdOrderRtngLine: Record "Prod. Order Routing Line"; var ProdOrderLine: Record "Prod. Order Line"; var ItemJnlLine: Record "Item Journal Line")
     var
         WorkCenter: Record "Work Center";
-        CalendarMgt: Codeunit CalendarManagement;
+        CalendarMgt: Codeunit "Shop Calendar Management";
         CostCalcMgt: Codeunit "Cost Calculation Management";
         ScrapTime: Decimal;
         SetupTime: Decimal;
@@ -453,7 +453,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
 
             repeat
 
-                if ProdOrderLine."Additional Line Type" = ProdOrderLine."Additional Line Type"::" " then begin // :PMW14.02.01:113:1
+                if ProdOrderLine."ccs pm Additional Line Type" = ProdOrderLine."ccs pm Additional Line Type"::" " then begin // :PMW14.02.01:113:1
 
                     // Time Unit of Measure conversion
 
@@ -475,14 +475,14 @@ codeunit 5012412 "Prod. Order Feedback Service"
 
                 end; // :PMW14.02.01:113:1
 
-                if ProdOrderLine."Posting Quantity" > 0 then begin
+                if ProdOrderLine."ccs pm Posting Quantity" > 0 then begin
 
                     // >> :PMW16.00:145:1
-                    if ProdOrderRtngLine."Fixed-Step Prod. Rate Time" then begin
+                    if ProdOrderRtngLine."CCS PX FixedStep ProdRate Time" then begin
                         CurrentOutputQty :=
-                          Round(ProdOrderLine."Posting Quantity" / ProdOrderRtngLine."Fixed-Step Production Rate", 1, '>');
+                          Round(ProdOrderLine."ccs pm Posting Quantity" / ProdOrderRtngLine."CCS PX Fixed-Step Prod. Rate", 1, '>');
                     end else begin
-                        CurrentOutputQty := ProdOrderLine."Posting Quantity";
+                        CurrentOutputQty := ProdOrderLine."ccs pm Posting Quantity";
                     end;
                     // << :PMW16.00:145:1
 
@@ -519,7 +519,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
 
                         // >> #PMW16.00.03.01:T506
                         // ItemJnlLine.VALIDATE("Output Quantity",ProdOrderLine."Posting Quantity");
-                        ItemJnlLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity" - SubcontractingQty);
+                        ItemJnlLine.Validate("Output Quantity", ProdOrderLine."ccs pm Posting Quantity" - SubcontractingQty);
                         // << #PMW16.00.03.01:T506
 
                     end else begin
@@ -527,7 +527,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                         ItemJnlLine.Validate("Run Time", Round(RunTime * CurrentOutputQty)); // :PMW16.00:145:1
                                                                                              // >> #PMW16.00.03.01:T506
                                                                                              // ItemJnlLine.VALIDATE("Output Quantity",ProdOrderLine."Posting Quantity");
-                        ItemJnlLine.Validate("Output Quantity", ProdOrderLine."Posting Quantity" - SubcontractingQty);
+                        ItemJnlLine.Validate("Output Quantity", ProdOrderLine."ccs pm Posting Quantity" - SubcontractingQty);
                         // << #PMW16.00.03.01:T506
 
                     end;
@@ -535,9 +535,9 @@ codeunit 5012412 "Prod. Order Feedback Service"
                 end else begin
 
                     // >> :PMW16.00:145:1
-                    if ProdOrderRtngLine."Fixed-Step Prod. Rate Time" then begin
+                    if ProdOrderRtngLine."CCS PX FixedStep ProdRate Time" then begin
                         CurrentOutputQty :=
-                          Round(ProdOrderLine."Remaining Quantity" / ProdOrderRtngLine."Fixed-Step Production Rate", 1, '>');
+                          Round(ProdOrderLine."Remaining Quantity" / ProdOrderRtngLine."CCS PX Fixed-Step Prod. Rate", 1, '>');
                     end else begin
                         CurrentOutputQty := ProdOrderLine."Remaining Quantity";
                     end;
@@ -568,7 +568,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                 // >> :PMW14.02:169:1
                 if CheckDeliveryTolerance then begin
                     if ProdOrderLine."Remaining Quantity" <> ItemJnlLine."Output Quantity" then begin
-                        ItemJnlLine.CheckDeliveryTolerance(ItemJnlLine, ProdOrderLine, ItemJnlLine.FieldNo("Output Quantity"));
+                        ItemJnlLine.ccspmCheckDeliveryTolerance(ItemJnlLine, ProdOrderLine, ItemJnlLine.FieldNo("Output Quantity"));
                     end;
                     CheckDeliveryTolerance := false;
                 end;
@@ -623,25 +623,25 @@ codeunit 5012412 "Prod. Order Feedback Service"
         // << :PMW14.00:3218:1
     end;
 
-    [Scope('Internal')]
+    //
     procedure GetNextRtngTAN(var ProdOrderRoutingLine: Record "Prod. Order Routing Line")
     var
-        ProcessManufacturingSetup: Record "Process Manufacturing Setup";
+        ProcessManufacturingSetup: Record "ccs pm Process Manuf. Setup";
         NoSeriesMgt: Codeunit NoSeriesManagement;
     begin
         // >> :PMW14.02:28:1
         if ProdOrderRoutingLine.Status in [ProdOrderRoutingLine.Status::"Firm Planned", ProdOrderRoutingLine.Status::Released] then begin
-            if ProdOrderRoutingLine."Routing TAN" = '' then begin
+            if ProdOrderRoutingLine."ccs pm Routing TAN" = '' then begin
                 ProcessManufacturingSetup.Get;
                 if ProcessManufacturingSetup."Routing TAN Nos." <> '' then begin
-                    ProdOrderRoutingLine."Routing TAN" := NoSeriesMgt.GetNextNo(ProcessManufacturingSetup."Routing TAN Nos.", 0D, true);
+                    ProdOrderRoutingLine."ccs pm Routing TAN" := NoSeriesMgt.GetNextNo(ProcessManufacturingSetup."Routing TAN Nos.", 0D, true);
                 end;
             end;
         end;
         // << :PMW14.02:28:1
     end;
 
-    [Scope('Internal')]
+
     procedure InsertTANOutputJnlLine(var ItemJnlLine: Record "Item Journal Line"; RoutingTAN: Code[20]; currTester: Code[20]; outputQty: Decimal; scrapQty: Decimal) ret: Boolean
     var
         MfgSetup: Record "Manufacturing Setup";
@@ -657,12 +657,12 @@ codeunit 5012412 "Prod. Order Feedback Service"
         TempReservationEntry: Record "Reservation Entry" temporary;
         TempItemTracking: Page "Temp Item Tracking";
         ReservationEntry2: Record "Reservation Entry";
-        TestOrder: Record "Test Order";
+        TestOrder: Record "ccs qa Test Order";
         SerialNo: Code[20];
-        QMBasicFunctions: Codeunit "QM Basic Functions";
-        TestOrderProp: Record "Test Order Property";
+        QMBasicFunctions: Codeunit "ccs qa Basic Functions";
+        TestOrderProp: Record "ccs qa Test Order Property";
         cTest: Code[20];
-        TestOrder2: Record "Test Order";
+        TestOrder2: Record "ccs qa Test Order";
         pagtestOrderPropGIM: Page TestOrderPropGIM;
         strMessage: Text[250];
     begin
@@ -680,7 +680,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
             ItemJnlLine2.Reset;
             ItemJnlLine2.SetRange("Journal Template Name", ItemJnlLine."Journal Template Name");
             ItemJnlLine2.SetRange("Journal Batch Name", ItemJnlLine."Journal Batch Name");
-            ItemJnlLine2.SetRange("Routing TAN", RoutingTAN);
+            ItemJnlLine2.SetRange("ccs pm Routing TAN", RoutingTAN);
             if ItemJnlLine2.FindFirst then begin
 
                 Message(Text001, RoutingTAN);
@@ -707,12 +707,12 @@ codeunit 5012412 "Prod. Order Feedback Service"
                 ItemJnlLine2."Journal Template Name" := ItemJnlLine."Journal Template Name";
                 ItemJnlLine2."Journal Batch Name" := ItemJnlLine."Journal Batch Name";
                 ItemJnlLine2."Line No." := NextLineNo;
-                ItemJnlLine2."Routing TAN" := RoutingTAN;
+                ItemJnlLine2."ccs pm Routing TAN" := RoutingTAN;
                 ItemJnlLine2.Insert;
 
                 ProdOrderRoutingLine.Reset;
-                ProdOrderRoutingLine.SetCurrentKey("Routing TAN");
-                ProdOrderRoutingLine.SetRange("Routing TAN", RoutingTAN);
+                ProdOrderRoutingLine.SetCurrentKey("ccs pm Routing TAN");
+                ProdOrderRoutingLine.SetRange("ccs pm Routing TAN", RoutingTAN);
                 if ProdOrderRoutingLine.FindFirst then begin
 
                     if ProdOrderRoutingLine.Status = ProdOrderRoutingLine.Status::Released then begin
@@ -822,7 +822,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
                         //-----
                         //END;
 
-                        if ProdOrderRoutingLine."Test Plan No." <> '' then begin
+                        if ProdOrderRoutingLine."ccs qa Test Plan No." <> '' then begin
                             Commit;
                             TestOrder.Reset;
                             if SerialNo <> '' then
@@ -847,7 +847,9 @@ codeunit 5012412 "Prod. Order Feedback Service"
                                 //              PAGE.RUNMODAL(50042,TestOrderProp);//  = ACTION::Ok THEN BEGIN
 
                                 TestOrder2.Get(TestOrder."No.");
-                                TestOrder2.CheckTestingFinished;
+                                IF (Testorder2."Tester 1 Status" = Testorder2."Tester 1 Status"::finished) AND (Testorder2."Tester 2 Status" = testorder2."Tester 2 Status"::finished) THEN BEGIN
+                                    TestOrder2.CheckTestingFinished(TestorderProp); //TODO: HIer brauchen wir einen Einsprung, damit der Test
+                                END;
                                 if TestOrder2.Status <> TestOrder2.Status::"Testing Finished" then begin
 
                                     //GIM0009 ++++
@@ -911,11 +913,11 @@ codeunit 5012412 "Prod. Order Feedback Service"
                         if IsLastOperation(ProdOrderRoutingLine) then begin
                             if outputQty = 0 then begin
                                 ItemJnlLine2.Validate("Output Quantity", 1);
-                                ProdOrderLine."Posting Quantity" := 1;
+                                ProdOrderLine."ccs pm Posting Quantity" := 1;
                             end else begin
                                 ItemJnlLine2.Validate("Output Quantity (Base)", outputQty);
                                 ItemJnlLine2.Validate("Scrap Quantity (Base)", scrapQty);
-                                ProdOrderLine."Posting Quantity" := outputQty;
+                                ProdOrderLine."ccs pm Posting Quantity" := outputQty;
 
                             end;
                             //ItemJnlLine2.VALIDATE("Serial No.", );
@@ -961,10 +963,11 @@ codeunit 5012412 "Prod. Order Feedback Service"
     var
         ProdOrderRtngLine2: Record "Prod. Order Routing Line";
         ItemJnlPostLine: Codeunit "Item Jnl.-Post Line";
+        DummySNTracking: Codeunit "Dummy SN Tracking";
     begin
         // >> #PMW18.00.00.03:T500
         ProdOrderRtngLine2 := ProdOrderRtngLine;
-        if ItemJnlPostLine.CheckForUniqueDummyUsage(ProdOrderRtngLine2) then begin
+        if Dummysntracking.CheckForUniqueDummyUsage(ProdOrderRtngLine2) then begin
             exit(ProdOrderRtngLine2."Next Operation No." = '');
         end else
             exit(ProdOrderRtngLine."Next Operation No." = '');
@@ -992,16 +995,21 @@ codeunit 5012412 "Prod. Order Feedback Service"
         LotNoInformation: Record "Lot No. Information";
         SerialNoInformation: Record "Serial No. Information";
         CreateReservEntry: Codeunit "Create Reserv. Entry";
-        CurrentEntryStatus: Option Reservation,Tracking,Surplus,Prospect;
+        CurrentEntryStatus: Enum "Reservation Status"; // Reservation,Tracking,Surplus,Prospect;
         NewLotNo: Code[20];
         NewLotNoTradingUnit: Code[20];
         NewTradingunitNo: Code[20];
+        LotReservEntry: Record "Reservation Entry";
+        TrackingSpec: Record "Tracking Specification";
     begin
 
+        LotReservEntry.INIT;
+        LotReservEntry."Serial No." := SerialNo;
+        LotReservEntry."lot no." := '';
         CurrentEntryStatus := CurrentEntryStatus::Prospect;
         CreateReservEntry.CreateReservEntryFor(
           DATABASE::"Item Journal Line",
-          ItemJournalLine."Entry Type",
+          ItemJournalLine."Entry Type".AsInteger(),
           ItemJournalLine."Journal Template Name",
           ItemJournalLine."Journal Batch Name",
           0,
@@ -1009,12 +1017,13 @@ codeunit 5012412 "Prod. Order Feedback Service"
           ItemJournalLine."Qty. per Unit of Measure",
           1,
           1,
-          SerialNo,
-          '');
+          LotReservEntry);
         //CreateReservEntry.SetNewSerialLotNo(WarehouseEntry."Serial No.",NewLotNo);
-
-        CreateReservEntry.SetNewSerialLotNo(SerialNo, '');
-
+        TrackingSpec.INIT;
+        TrackingSpec."Serial No." := SerialNo;
+        TrackingSpec."Lot No." := '';
+        // CreateReservEntry.SetNewSerialLotNo(SerialNo, '');
+        CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(TrackingSpec);
         //  IF NewTradingunitNo <> '' THEN
         //    CreateReservEntry.SetNewTradingUnit(NewLotNoTradingUnit,NewTradingunitNo);
 
@@ -1050,7 +1059,7 @@ codeunit 5012412 "Prod. Order Feedback Service"
         myNotification.Send;
     end;
 
-    local procedure HandleTester(var Testorder: Record "Test Order"; currTester: Code[20])
+    local procedure HandleTester(var Testorder: Record "ccs qa Test Order"; currTester: Code[20])
     begin
         //GIM0009
         if (Testorder."Tester 1" = '') and (Testorder."Tester 2" = '') then begin
@@ -1084,14 +1093,14 @@ codeunit 5012412 "Prod. Order Feedback Service"
         end;
     end;
 
-    [Scope('Internal')]
+    //
     procedure IsLastOperationWithTAN(RoutingTAN: Code[20]) ret: Boolean
     var
         ProdOrderRoutingLine: Record "Prod. Order Routing Line";
     begin
         ProdOrderRoutingLine.Reset;
-        ProdOrderRoutingLine.SetCurrentKey("Routing TAN");
-        ProdOrderRoutingLine.SetRange("Routing TAN", RoutingTAN);
+        ProdOrderRoutingLine.SetCurrentKey("ccs pm Routing TAN");
+        ProdOrderRoutingLine.SetRange("ccs pm Routing TAN", RoutingTAN);
         if ProdOrderRoutingLine.FindFirst then begin
             exit(IsLastOperation(ProdOrderRoutingLine))
         end;

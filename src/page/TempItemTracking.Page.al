@@ -1,4 +1,4 @@
-page 50060 "Temp Item Tracking"
+page 50014 "Temp Item Tracking"
 {
     Caption = 'Item Tracking';
     Editable = false;
@@ -46,7 +46,7 @@ page 50060 "Temp Item Tracking"
     var
         TargetRowId: Text;
 
-    [Scope('Internal')]
+
     procedure SetRecords(ReservationEntry: Record "Reservation Entry" temporary; _TargetRowId: Text)
     begin
         Rec := ReservationEntry;
@@ -54,7 +54,7 @@ page 50060 "Temp Item Tracking"
         TargetRowId := _TargetRowId;
     end;
 
-    [Scope('Internal')]
+
     procedure GetRecords(): Code[20]
     begin
         exit("Serial No.");

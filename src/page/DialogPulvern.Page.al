@@ -1,4 +1,7 @@
-page 50061 DialogPulvern
+/// <summary>
+/// Page DialogPulvern (ID 50008).
+/// </summary>
+page 50008 DialogPulvern
 {
     Caption = 'Dialog Pulvern';
     PageType = StandardDialog;
@@ -36,25 +39,25 @@ page 50061 DialogPulvern
         EtikettenQty: Decimal;
         gIsLastOperation: Boolean;
 
-    [Scope('Internal')]
+
     procedure GetOutputQty() ret: Decimal
     begin
         exit(OutputQty);
     end;
 
-    [Scope('Internal')]
+
     procedure GetScrapQuantity() ret: Decimal
     begin
         exit(ScrapQuantity);
     end;
 
-    [Scope('Internal')]
+
     procedure GetLableQty() ret: Decimal
     begin
         exit(EtikettenQty);
     end;
 
-    [Scope('Internal')]
+
     procedure SetVisiblity(IsLastOperation: Boolean)
     begin
         gIsLastOperation := IsLastOperation;

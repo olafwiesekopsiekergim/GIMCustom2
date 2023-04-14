@@ -1,4 +1,4 @@
-codeunit 50016 "CC Item Tracking Mgt."
+codeunit 50004 "CC Item Tracking Mgt."
 {
     // CheckNegAdjmt := FALSE;
     // 
@@ -38,8 +38,9 @@ codeunit 50016 "CC Item Tracking Mgt."
         "---Wesco Globals": Integer;
         IsDummySNTracking: Boolean;
         DeleteExisting: Boolean;
+        tmpReservationEntry: Record "Reservation Entry";
 
-    [Scope('Internal')]
+
     procedure CreateItemTrackingSimple(SourceDocLine: Variant; ForQty: Decimal; ForQtyBase: Decimal; ForSerialNo: Code[20]; ForLotNo: Code[20])
     var
         TempTrackingSpecification2: Record "Tracking Specification" temporary;
@@ -58,7 +59,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         CreateItemTrackingForDocLines(SourceDocLine, TempTrackingSpecification2, CheckNegAdjmt);
     end;
 
-    [Scope('Internal')]
+
     procedure InitTrackingSpecification(SourceDocLine: Variant; ForQty: Decimal; ForQtyBase: Decimal; ForSerialNo: Code[20]; ForLotNo: Code[20]; var TrackingSpecification: Record "Tracking Specification" temporary)
     begin
         TrackingSpecification.Init;
@@ -71,7 +72,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         TrackingSpecification.Insert;
     end;
 
-    [Scope('Internal')]
+
     procedure CreateItemTrackingForDocLines(SourceDocLine: Variant; var TempTrackingSpecification2: Record "Tracking Specification" temporary; CheckNegAdjmt: Boolean)
     var
         RecRef: RecordRef;
@@ -181,8 +182,8 @@ codeunit 50016 "CC Item Tracking Mgt."
                             end;
 
                         else begin
-                                Error('WE: Die Zeile %1 %2 konnte keinem Beleg zugeordnet werden!', WarehouseReceiptLine."Source No.", WarehouseReceiptLine."Source Line No.");
-                            end;
+                            Error('WE: Die Zeile %1 %2 konnte keinem Beleg zugeordnet werden!', WarehouseReceiptLine."Source No.", WarehouseReceiptLine."Source Line No.");
+                        end;
                     end;
 
                 end;
@@ -211,18 +212,18 @@ codeunit 50016 "CC Item Tracking Mgt."
                             end;
 
                         else begin
-                                Error('WA: Die Zeile %1 %2 konnte keinem Beleg zugeordnet werden!', WarehouseShipmentLine."Source No.", WarehouseShipmentLine."Source Line No.");
-                            end;
+                            Error('WA: Die Zeile %1 %2 konnte keinem Beleg zugeordnet werden!', WarehouseShipmentLine."Source No.", WarehouseShipmentLine."Source Line No.");
+                        end;
                     end;
                 end;
             else
-                Error('Für Tabelle %1 noch nicht ausprogrammiert!', RecRef.Number);
+                Error('Für Tabelle %1 noch nicht ausprogrammiert!', RecRef.Number);
         end;
 
         TempReservEntry.TransferFields(TempTrackingSpecification2);
         NegAdjmt := TempTrackingSpecification2."Quantity (Base)" * CreateReservEntry.SignFactor(TempReservEntry) < 0;
         if CheckNegAdjmt and not NegAdjmt then begin
-            Error('Diese Funktion darf nur für LagerabgÔÇ×nge verwendet werden');
+            Error('Diese Funktion darf nur für Lagerabgänge verwendet werden');
         end;
     end;
 
@@ -230,6 +231,7 @@ codeunit 50016 "CC Item Tracking Mgt."
     var
         ShipmentDate: Date;
         ExpectedReceiptDate: Date;
+
     begin
         CheckSalesDates(SalesLine, ShipmentDate, ExpectedReceiptDate);
 
@@ -242,8 +244,8 @@ codeunit 50016 "CC Item Tracking Mgt."
           ExpectedReceiptDate,                    // Expected Recipe date
           ShipmentDate,                           // Shipment Date
           0,
-          2,                                      // Status = Surplus
-                                                  //'',
+          tmpReservationEntry."Reservation Status"::Surplus,                                // Status = Surplus
+                                                                                             //'',
           TempTrackingSpecification);
     end;
 
@@ -284,8 +286,8 @@ codeunit 50016 "CC Item Tracking Mgt."
           ExpectedReceiptDate,                     // Expected Recipe date
           ShipmentDate,                            // Shipment Date
           0,
-          2,                                       // Status = Surplus
-                                                   //'',
+          tmpReservationEntry."Reservation Status"::Surplus,                                       // Status = Surplus
+                                                                                                   //'',
           TempTrackingSpecification);
     end;
 
@@ -323,7 +325,7 @@ codeunit 50016 "CC Item Tracking Mgt."
           0D,                                       // Expected Recipe date
           TransferLine."Shipment Date",             // Shipment Date
           TransferLine."Derived From Line No.",
-          2,
+          tmpReservationEntry."Reservation Status"::Surplus,
           //TransferLine."Transfer-to Code",
           TempTrackingSpecification);
 
@@ -341,8 +343,8 @@ codeunit 50016 "CC Item Tracking Mgt."
           0D,                                        // Expected Recipe date
           ItemJnlLine."Posting Date",                // Shipment Date
           0,
-          3,                                         // Status = Prospect
-                                                     //'',
+          tmpReservationEntry."Reservation Status"::Prospect,                                         // Status = Prospect
+                                                                                                      //'',
           TempTrackingSpecification);
     end;
 
@@ -381,8 +383,8 @@ codeunit 50016 "CC Item Tracking Mgt."
           AssemblyHeader."Due Date",                   // Expected Recipe date
           0D,                                          // Shipment Date
           0,
-          2,                                           // Status = Surplus
-                                                       //'',
+          tmpReservationEntry."Reservation Status"::Surplus,                                           // Status = Surplus
+                                                                                                       //'',
           TempTrackingSpecification);
     end;
 
@@ -397,8 +399,8 @@ codeunit 50016 "CC Item Tracking Mgt."
           0D,                                          // Expected Recipe date
           AssemblyLine."Due Date",                     // Shipment Date
           0,
-          2,                                           // Status = Surplus
-                                                       //'',
+          tmpReservationEntry."Reservation Status"::Surplus,                                           // Status = Surplus
+                                                                                                       //'',
           TempTrackingSpecification);
     end;
 
@@ -413,7 +415,7 @@ codeunit 50016 "CC Item Tracking Mgt."
           0D,
           ProdOrderLine."Due Date",
           0,
-          2,
+          tmpReservationEntry."Reservation Status"::Surplus,
           TempTrackingSpecification);
     end;
 
@@ -433,21 +435,24 @@ codeunit 50016 "CC Item Tracking Mgt."
           0D,                    // expected Recipe date
           ServiceLine."Posting Date",             // Shipment Date
           0,
-          2,                                      // Status = Surplus
-                                                  //'',
+          tmpReservationEntry."Reservation Status"::Surplus,                                      // Status = Surplus
+                                                                                                  //'',
           TempTrackingSpecification);
     end;
 
-    local procedure CreateTracking(RowID: Text[250]; ForQtyPerUOM: Decimal; ForItemNo: Code[20]; ForVariantCode: Code[10]; ForLocationCode: Code[10]; ForDescription: Text[50]; ForExpectedReceiptDate: Date; ForShipmentDate: Date; ForTransferredFromEntryNo: Integer; ForStatus: Option Reservation,Tracking,Surplus,Prospect; TempTrackSpec: Record "Tracking Specification")
+    //Reservation,Tracking,Surplus,Prospect
+    local procedure CreateTracking(RowID: Text[250]; ForQtyPerUOM: Decimal; ForItemNo: Code[20]; ForVariantCode: Code[10]; ForLocationCode: Code[10]; ForDescription: Text[50]; ForExpectedReceiptDate: Date; ForShipmentDate: Date; ForTransferredFromEntryNo: Integer; ForStatus: Enum "Reservation Status"; TempTrackSpec: Record "Tracking Specification")
     var
         StringArray: array[6] of Text[30];
         ReservationEntry: Record "Reservation Entry";
+        LotReservEntry: Record "Reservation Entry";
         SecondRowID: Text[250];
         ItemTrkMgmt: Codeunit "Item Tracking Management";
         CreateReservEntry: Codeunit "Create Reserv. Entry";
         ExpDate: Date;
         EntriesExist: Boolean;
         IsReclass: Boolean;
+        tmpItemTrackingSetup: Record "Item Tracking Setup" temporary;
     begin
         OnBeforInsertItemTrackingLine(RowID, TempTrackSpec, NegAdjmt, IsDummySNTracking, DeleteExisting);
 
@@ -465,7 +470,8 @@ codeunit 50016 "CC Item Tracking Mgt."
 
         // Handle Expiration Date
         if TempTrackSpec."Expiration Date" = 0D then begin
-            ExpDate := ItemTrkMgmt.ExistingExpirationDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", false, EntriesExist);
+            ExpDate := ItemTrkMgmt.ExistingExpirationDate(TempTrackSpec, false, EntriesExist);
+            //ExpDate := ItemTrkMgmt.ExistingExpirationDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", false, EntriesExist);
             if EntriesExist then begin
                 TempTrackSpec."Expiration Date" := ExpDate;
                 TempTrackSpec."Buffer Status2" := TempTrackSpec."Buffer Status2"::"ExpDate blocked";
@@ -474,7 +480,12 @@ codeunit 50016 "CC Item Tracking Mgt."
 
             if IsReclass then begin
                 TempTrackSpec."New Expiration Date" := TempTrackSpec."Expiration Date";
-                TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", EntriesExist);
+                tmpItemTrackingSetup.INIT;
+                tmpItemTrackingSetup."Lot No." := tempTrackSpec."Lot No.";
+                tmpItemTrackingSetup."serial no." := tempTrackSpec."Serial No.";
+                TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, tmpItemTrackingSetup, EntriesExist);
+
+                //TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", EntriesExist);
             end;
         end;
         //
@@ -485,7 +496,10 @@ codeunit 50016 "CC Item Tracking Mgt."
 
         CreateReservEntry.SetApplyToEntryNo(TempTrackSpec."Appl.-to Item Entry");                       // Fixed Apply-to Entry for outbound Posting
 
-        CreateReservEntry.CreateReservEntryFor(
+        LotReservEntry.INIT;
+        lotreserventry."Serial No." := TempTrackSpec."Serial No.";
+        LotReservEntry."Lot No." := TempTrackSpec."Lot No.";
+        CreateReservEntry.CreateReservEntryfor(
           TempTrackSpec."Source Type",
           TempTrackSpec."Source Subtype",
           TempTrackSpec."Source ID",
@@ -495,8 +509,7 @@ codeunit 50016 "CC Item Tracking Mgt."
           ForQtyPerUOM,
           TempTrackSpec."Qty. to Handle",
           TempTrackSpec."Qty. to Handle (Base)",
-          TempTrackSpec."Serial No.",
-          TempTrackSpec."Lot No.");
+          LotReservEntry);
 
         // >> AMP
         // CreateReservEntry.CreateReservEntryForTradgUnit(
@@ -521,7 +534,8 @@ codeunit 50016 "CC Item Tracking Mgt."
 
         // Reclass
         if (TempTrackSpec."Source Type" = DATABASE::"Item Journal Line") and (TempTrackSpec."Source Subtype" = 4) then begin
-            CreateReservEntry.SetNewSerialLotNo(TempTrackSpec."New Serial No.", TempTrackSpec."New Lot No.");
+            //CreateReservEntry.SetNewSerialLotNo(TempTrackSpec."New Serial No.", TempTrackSpec."New Lot No.");
+            CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(tempTrackSpec);
             CreateReservEntry.SetNewExpirationDate(TempTrackSpec."New Expiration Date");
             // >> AMP
             //  CreateReservEntry.SetNewTradingUnit(TempTrackSpec."New Lot No. Trading Unit", TempTrackSpec."New Trading Unit No.");
@@ -577,8 +591,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         EntriesExist: Boolean;
     begin
         ExpDate := ItemTrackingMgt.ExistingExpirationDate(
-            TrackingSpecification."Item No.", TrackingSpecification."Variant Code",
-            TrackingSpecification."Lot No.", TrackingSpecification."Serial No.", false, EntriesExist);
+            TrackingSpecification, false, EntriesExist);
 
         if ExpDate <> 0D then begin
             TrackingSpecification."Expiration Date" := ExpDate;
@@ -590,7 +603,7 @@ codeunit 50016 "CC Item Tracking Mgt."
     begin
     end;
 
-    [Scope('Internal')]
+
     procedure TransLineRowID1(TransferLine: Record "Transfer Line"): Text[250]
     var
         ItemTrackingMgt: Codeunit "Item Tracking Management";
@@ -598,20 +611,20 @@ codeunit 50016 "CC Item Tracking Mgt."
         exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Transfer Line", 0, TransferLine."Document No.", '', 0, TransferLine."Line No."));
     end;
 
-    [Scope('Internal')]
+
     procedure AssHeaderRowID(AssemblyHeader: Record "Assembly Header"): Text[250]
     var
         ItemTrackingMgt: Codeunit "Item Tracking Management";
     begin
-        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Header", AssemblyHeader."Document Type", AssemblyHeader."No.", '', 0, 0));
+        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Header", AssemblyHeader."Document Type".AsInteger(), AssemblyHeader."No.", '', 0, 0));
     end;
 
-    [Scope('Internal')]
+
     procedure AssLineRowID(AssemblyLine: Record "Assembly Line"): Text[250]
     var
         ItemTrackingMgt: Codeunit "Item Tracking Management";
     begin
-        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Line", AssemblyLine."Document Type", AssemblyLine."Document No.", '', 0, AssemblyLine."Line No."));
+        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Line", AssemblyLine."Document Type".asInteger(), AssemblyLine."Document No.", '', 0, AssemblyLine."Line No."));
     end;
 
     local procedure "---Core"()
@@ -737,7 +750,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         exit(false);
     end;
 
-    [Scope('Internal')]
+
     procedure DeleteExistingTracking(RowID: Text[250]; SerialNo: Code[20]; LotNo: Code[20])
     var
         ReservEntry: Record "Reservation Entry";
@@ -760,7 +773,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         // >> TEMP-TEST
     end;
 
-    [Scope('Internal')]
+
     procedure FindReservEntry(var ReservEntry: Record "Reservation Entry"; RowID: Text[250]; SerialNo: Code[20]; LotNo: Code[20]): Boolean
     var
         FilterArray: array[6] of Text[100];
@@ -835,7 +848,6 @@ codeunit 50016 "CC Item Tracking Mgt."
     begin
     end;
 
-    [Scope('Internal')]
     procedure ReservationExits(var ReservationEntry: Record "Reservation Entry"; RowID: Text[250]; SerialNo: Code[20]; LotNo: Code[20]): Boolean
     var
         FindExistingTracking: Boolean;
@@ -851,7 +863,6 @@ codeunit 50016 "CC Item Tracking Mgt."
         exit(not ReservationEntry.IsEmpty);
     end;
 
-    [Scope('Internal')]
     procedure MergeTrackingInReservation(var ReservationEntry: Record "Reservation Entry"; QtyBaseToAssign: Decimal; SerialNo: Code[20])
     var
         ReservationEntry2: Record "Reservation Entry";
@@ -911,7 +922,7 @@ codeunit 50016 "CC Item Tracking Mgt."
         end;
     end;
 
-    [Scope('Internal')]
+    //
     procedure RemoveTrackingFromReservation(var ReservationEntry: Record "Reservation Entry"; SerialNo: Code[20])
     var
         ReservationEntry2: Record "Reservation Entry";
@@ -1018,7 +1029,7 @@ codeunit 50016 "CC Item Tracking Mgt."
     begin
     end;
 
-    [Scope('Internal')]
+
     procedure SetIsDummySNTracking(DeleteExisting2: Boolean)
     begin
         IsDummySNTracking := true;
@@ -1029,14 +1040,15 @@ codeunit 50016 "CC Item Tracking Mgt."
     begin
     end;
 
-    [Scope('Internal')]
-    procedure GetItemTrackingSettings(ItemNo: Code[20]; EntryType: Option Purchase,Sale,"Positive Adjmt.","Negative Adjmt.",Transfer,Consumption,Output," ","Assembly Consumption","Assembly Output"; Inbound: Boolean; BinRequired: Boolean; var SNRequired: Boolean; var LotRequired: Boolean)
+    // {Purchase,Sale,"Positive Adjmt.","Negative Adjmt.",Transfer,Consumption,Output," ","Assembly Consumption","Assembly Output"}
+    procedure GetItemTrackingSettings(ItemNo: Code[20]; EntryType: Enum "Item Ledger Entry Type"; Inbound: Boolean; BinRequired: Boolean; var SNRequired: Boolean; var LotRequired: Boolean)
     var
         Item: Record Item;
         ItemTrackingManagement: Codeunit "Item Tracking Management";
         ItemTrackingCode: Record "Item Tracking Code";
         SNInfoRequired: Boolean;
         LotInfoRequired: Boolean;
+        ItemTrackingSetup: record "Item Tracking Setup" temporary;
     begin
         SNRequired := false;
         LotRequired := false;
@@ -1046,17 +1058,17 @@ codeunit 50016 "CC Item Tracking Mgt."
         if (Item."Item Tracking Code" = '') or not ItemTrackingCode.Get(Item."Item Tracking Code") then
             exit;
 
-        ItemTrackingManagement.GetItemTrackingSettings(ItemTrackingCode, EntryType, Inbound, SNRequired, LotRequired, SNInfoRequired, LotInfoRequired);
-
+        ItemTrackingManagement.GetItemTrackingSetup(ItemTrackingCode, EntryType, Inbound, ItemTrackingSetup);
         if BinRequired then
-            ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo, SNRequired, LotRequired, false);
+            ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo);
+        // ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo, SNRequired, LotRequired, false);
 
         // Wesco special
         // IF (SNRequired) AND (Item."Serial Nos." <> '') THEN
         //  SNRequired := FALSE;
     end;
 
-    [Scope('Internal')]
+
     procedure IsSNSpecTracking(TrackingCode: Code[10]): Boolean
     var
         ItemTrackingCode: Record "Item Tracking Code";

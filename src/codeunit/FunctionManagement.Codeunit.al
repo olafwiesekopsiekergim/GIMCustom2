@@ -1,4 +1,4 @@
-codeunit 50013 "Function Management"
+codeunit 50005 "Function Management"
 {
     // CC01 19.01.2022 CC.NR # Object created
     // CC02 01.02.2022 CC.NR # Added Functions CreateSerialInfoFromPO, CheckMainPOLineForTracking
@@ -12,63 +12,63 @@ codeunit 50013 "Function Management"
     var
         Text50000: Label 'For the po line 10000 are only %1 serial nos allocated. Expeced %2.';
 
-    [Scope('Internal')]
-    procedure CreateBarcode_Image(BarcodeValue: Text; var TmpBlob: Record TempBlob temporary; Height: Integer; Width: Integer; BarcodeType: Option "128",EAN13,QR; Rotate: Option "0","90","-90")
-    var
-        BarcodeEncoder: DotNet BarcodeEncoder;
-        BarcodeEncodingFormat: DotNet BarcodeEncodingFormat;
-        BarcodeImageFormat: DotNet BarcodeImageFormat;
-        NAVInStream: InStream;
-        MediaGUID: Guid;
-        FileManagement: Codeunit "File Management";
-        ClientFile: Text;
-        OStream: OutStream;
-        MemoryStream: DotNet MemoryStream;
-        Bitmap: DotNet Bitmap;
-        RotateFlipType: DotNet RotateFlipType;
-        ImageFormat: DotNet ImageFormat;
-    begin
-        TmpBlob.Reset;
-        TmpBlob.DeleteAll;
+    //TODO: Ersatz für DOTNET Barcode
+    // //
+    // procedure CreateBarcode_Image(BarcodeValue: Text; var TmpBlob: Record TempBlob temporary; Height: Integer; Width: Integer; BarcodeType: Option "128",EAN13,QR; Rotate: Option "0","90","-90")
+    // var
+    //     BarcodeEncoder: DotNet BarcodeEncoder;
+    //     BarcodeEncodingFormat: DotNet BarcodeEncodingFormat;
+    //     BarcodeImageFormat: DotNet BarcodeImageFormat;
+    //     NAVInStream: InStream;
+    //     MediaGUID: Guid;
+    //     FileManagement: Codeunit "File Management";
+    //     ClientFile: Text;
+    //     OStream: OutStream;
+    //     MemoryStream: DotNet MemoryStream;
+    //     Bitmap: DotNet Bitmap;
+    //     RotateFlipType: DotNet RotateFlipType;
+    //     ImageFormat: DotNet ImageFormat;
+    // begin
+    //     TmpBlob.Reset;
+    //     TmpBlob.DeleteAll;
 
-        TmpBlob."Primary Key" := 1;
-        //ClientFile := FileManagement.ClientTempFileName('jpeg');
+    //     TmpBlob."Primary Key" := 1;
+    //     //ClientFile := FileManagement.ClientTempFileName('jpeg');
 
-        BarcodeEncoder := BarcodeEncoder.BarcodeEncoder;
-        case BarcodeType of
-            0:
-                BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.CODE_128;
-            1:
-                BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.EAN_13;
-            2:
-                BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.QR_CODE;
-        end;
-        BarcodeEncoder.BarcodeImageFormat := BarcodeImageFormat.Png;
-        BarcodeEncoder.Height := Height;
-        BarcodeEncoder.Width := Width;
+    //     BarcodeEncoder := BarcodeEncoder.BarcodeEncoder;
+    //     case BarcodeType of
+    //         0:
+    //             BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.CODE_128;
+    //         1:
+    //             BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.EAN_13;
+    //         2:
+    //             BarcodeEncoder.BarcodeEncodingFormat := BarcodeEncodingFormat.QR_CODE;
+    //     end;
+    //     BarcodeEncoder.BarcodeImageFormat := BarcodeImageFormat.Png;
+    //     BarcodeEncoder.Height := Height;
+    //     BarcodeEncoder.Width := Width;
 
-        MemoryStream := BarcodeEncoder.GetBarcodePicture(BarcodeValue);
-        Bitmap := Bitmap.Bitmap(MemoryStream);
-        case Rotate of
-            Rotate::"90":
-                Bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            Rotate::"-90":
-                Bitmap.RotateFlip(RotateFlipType.Rotate90FlipXY);
-        end;
+    //     MemoryStream := BarcodeEncoder.GetBarcodePicture(BarcodeValue);
+    //     Bitmap := Bitmap.Bitmap(MemoryStream);
+    //     case Rotate of
+    //         Rotate::"90":
+    //             Bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+    //         Rotate::"-90":
+    //             Bitmap.RotateFlip(RotateFlipType.Rotate90FlipXY);
+    //     end;
 
-        MemoryStream.Close;
+    //     MemoryStream.Close;
 
-        MemoryStream := MemoryStream.MemoryStream();
-        Bitmap.Save(MemoryStream, ImageFormat.Png);
+    //     MemoryStream := MemoryStream.MemoryStream();
+    //     Bitmap.Save(MemoryStream, ImageFormat.Png);
 
-        TmpBlob.Blob.CreateOutStream(OStream);
-        MemoryStream.WriteTo(OStream);
+    //     TmpBlob.Blob.CreateOutStream(OStream);
+    //     MemoryStream.WriteTo(OStream);
 
-        TmpBlob.Insert;
-        TmpBlob.CalcFields(Blob);
-    end;
+    //     TmpBlob.Insert;
+    //     TmpBlob.CalcFields(Blob);
+    // end;
 
-    [Scope('Internal')]
     procedure PrintTypShieldFromPO(ProductionOrder: Record "Production Order")
     var
         ProdOrderLine: Record "Prod. Order Line";
@@ -78,74 +78,74 @@ codeunit 50013 "Function Management"
         if not ProdOrderLine.FindFirst then
             exit;
 
-        PrintTypShieldFromPOLine(ProdOrderLine);
+        // PrintTypShieldFromPOLine(ProdOrderLine);  TODO: Report wieder einbauen
     end;
 
-    [Scope('Internal')]
-    procedure PrintTypShieldFromPOLine(ProdOrderLine: Record "Prod. Order Line")
-    var
-        ReservationEntry: Record "Reservation Entry";
-        TypLabelOutside: Report "Typ Label (Outside)";
-        TypLabelInside: Report "Typ Label (inside)";
-        i: Integer;
-        EndDate: Date;
-        ItemLedgerEntry: Record "Item Ledger Entry";
-    begin
-        if ProdOrderLine.Status <> ProdOrderLine.Status::Finished then begin
-            ReservationEntry.SetRange("Source ID", ProdOrderLine."Prod. Order No.");
-            ReservationEntry.SetRange("Item Tracking", ReservationEntry."Item Tracking"::"Serial No.");
-            ReservationEntry.SetRange("Source Type", 5406);
-            ReservationEntry.SetRange("Source Prod. Order Line", ProdOrderLine."Line No.");
-            if ReservationEntry.FindSet then begin
-                repeat
-                    i += 1;
-                    if ProdOrderLine."End Date Sequence Planning" <> 0D then
-                        EndDate := ProdOrderLine."End Date Sequence Planning"
-                    else
-                        EndDate := ProdOrderLine."Due Date";
-                    TypLabelOutside.SetValues(i, ReservationEntry."Item No.", ReservationEntry."Serial No.", EndDate);
-                    TypLabelInside.SetValues(i, ReservationEntry."Item No.", ReservationEntry."Serial No.", EndDate);
+    // TODO: Report einabuen
+    // procedure PrintTypShieldFromPOLine(ProdOrderLine: Record "Prod. Order Line")
+    // var
+    //     ReservationEntry: Record "Reservation Entry";
+    //     TypLabelOutside: Report "Typ Label (Outside)";
+    //     TypLabelInside: Report "Typ Label (inside)";
+    //     i: Integer;
+    //     EndDate: Date;
+    //     ItemLedgerEntry: Record "Item Ledger Entry";
+    // begin
+    //     if ProdOrderLine.Status <> ProdOrderLine.Status::Finished then begin
+    //         ReservationEntry.SetRange("Source ID", ProdOrderLine."Prod. Order No.");
+    //         ReservationEntry.SetRange("Item Tracking", ReservationEntry."Item Tracking"::"Serial No.");
+    //         ReservationEntry.SetRange("Source Type", 5406);
+    //         ReservationEntry.SetRange("Source Prod. Order Line", ProdOrderLine."Line No.");
+    //         if ReservationEntry.FindSet then begin
+    //             repeat
+    //                 i += 1;
+    //                 if ProdOrderLine."ccs px End Date Seq. Planning" <> 0D then
+    //                     EndDate := ProdOrderLine."ccs px End Date Seq. Planning"
+    //                 else
+    //                     EndDate := ProdOrderLine."Due Date";
+    //                 TypLabelOutside.SetValues(i, ReservationEntry."Item No.", ReservationEntry."Serial No.", EndDate);
+    //                 TypLabelInside.SetValues(i, ReservationEntry."Item No.", ReservationEntry."Serial No.", EndDate);
 
-                until ReservationEntry.Next = 0;
+    //             until ReservationEntry.Next = 0;
 
-                TypLabelOutside.Print('');
-                TypLabelInside.Print('');
-                /*
-                IF NOT GUIALLOWED THEN BEGIN
-                  TypLabelOutside.PRINT('');
-                  TypLabelInside.PRINT('');
-                END ELSE BEGIN
-                  TypLabelOutside.RUNMODAL;
-                  TypLabelInside.RUNMODAL;
-                END;
-                */
-            end;
-        end else begin
-            ItemLedgerEntry.SetCurrentKey("Order Type", "Order No.", "Order Line No.",
-              "Entry Type", "Prod. Order Comp. Line No.");
-            ItemLedgerEntry.SetRange("Order Type", ItemLedgerEntry."Order Type"::Production);
-            ItemLedgerEntry.SetRange("Order No.", ProdOrderLine."Prod. Order No.");
-            ItemLedgerEntry.SetRange("Order Line No.", ProdOrderLine."Line No.");
-            ItemLedgerEntry.SetRange("Entry Type", ItemLedgerEntry."Entry Type"::Output);
-            ItemLedgerEntry.SetRange("Prod. Order Comp. Line No.", 0);
-            if ItemLedgerEntry.FindSet then begin
-                repeat
-                    i += 1;
-                    if ProdOrderLine."End Date Sequence Planning" <> 0D then
-                        EndDate := ProdOrderLine."End Date Sequence Planning"
-                    else
-                        EndDate := ProdOrderLine."Due Date";
-                    TypLabelOutside.SetValues(i, ItemLedgerEntry."Item No.", ItemLedgerEntry."Serial No.", EndDate);
-                    TypLabelInside.SetValues(i, ItemLedgerEntry."Item No.", ItemLedgerEntry."Serial No.", EndDate);
-                until ItemLedgerEntry.Next = 0;
-                TypLabelOutside.RunModal;
-                TypLabelInside.RunModal;
-            end;
-        end;
+    //             TypLabelOutside.Print('');
+    //             TypLabelInside.Print('');
+    //             /*
+    //             IF NOT GUIALLOWED THEN BEGIN
+    //               TypLabelOutside.PRINT('');
+    //               TypLabelInside.PRINT('');
+    //             END ELSE BEGIN
+    //               TypLabelOutside.RUNMODAL;
+    //               TypLabelInside.RUNMODAL;
+    //             END;
+    //             */
+    //         end;
+    //     end else begin
+    //         ItemLedgerEntry.SetCurrentKey("Order Type", "Order No.", "Order Line No.",
+    //           "Entry Type", "Prod. Order Comp. Line No.");
+    //         ItemLedgerEntry.SetRange("Order Type", ItemLedgerEntry."Order Type"::Production);
+    //         ItemLedgerEntry.SetRange("Order No.", ProdOrderLine."Prod. Order No.");
+    //         ItemLedgerEntry.SetRange("Order Line No.", ProdOrderLine."Line No.");
+    //         ItemLedgerEntry.SetRange("Entry Type", ItemLedgerEntry."Entry Type"::Output);
+    //         ItemLedgerEntry.SetRange("Prod. Order Comp. Line No.", 0);
+    //         if ItemLedgerEntry.FindSet then begin
+    //             repeat
+    //                 i += 1;
+    //                 if ProdOrderLine."ccs PX End Date Seq. Planning" <> 0D then
+    //                     EndDate := ProdOrderLine."ccs px End Date Seq. Planning"
+    //                 else
+    //                     EndDate := ProdOrderLine."Due Date";
+    //                 TypLabelOutside.SetValues(i, ItemLedgerEntry."Item No.", ItemLedgerEntry."Serial No.", EndDate);
+    //                 TypLabelInside.SetValues(i, ItemLedgerEntry."Item No.", ItemLedgerEntry."Serial No.", EndDate);
+    //             until ItemLedgerEntry.Next = 0;
+    //             TypLabelOutside.RunModal;
+    //             TypLabelInside.RunModal;
+    //         end;
+    //     end;
 
-    end;
+    // end;
 
-    [Scope('Internal')]
+
     procedure CreateSerialInfoFromPO(ProductionOrder: Record "Production Order")
     var
         ReservationEntry: Record "Reservation Entry";
@@ -177,9 +177,9 @@ codeunit 50013 "Function Management"
                     // P001
                     Item.Get(ReservationEntry."Item No.");
                     ItemTrackingCode.Get(Item."Item Tracking Code");
-                    SerialNoInformation.Status := ItemTrackingCode."Initial Status";
+                    SerialNoInformation."CCS QA Status (Lot/SN)" := ItemTrackingCode."ccs qa Initial Status";
 
-                    SerialNoInformation.Quantity := ReservationEntry.Quantity;
+                    SerialNoInformation."ccs qa Quantity" := ReservationEntry.Quantity;
                     SerialNoInformation.Insert;
 
                 until ReservationEntry.Next = 0;
@@ -237,7 +237,7 @@ codeunit 50013 "Function Management"
         // << CC02
     end;
 
-    [Scope('Internal')]
+    //
     procedure GetOrderNoFromTransferOrder(TransferHeader: Record "Transfer Header"; Type: Option SalesOrder,ProdOrder): Code[20]
     var
         ReservationEntry: Record "Reservation Entry";
@@ -274,7 +274,7 @@ codeunit 50013 "Function Management"
         end;
     end;
 
-    [Scope('Internal')]
+    //
     procedure GetSalesLineFromProdOrderLine(ProdOrderLine: Record "Prod. Order Line"; var TempSalesLine: Record "Sales Line" temporary)
     var
         SalesLine: Record "Sales Line";
@@ -286,7 +286,7 @@ codeunit 50013 "Function Management"
         IsSalesLine := false;
 
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutMessage();
 
         while not IsSalesLine do begin
             i += 1;
@@ -311,7 +311,7 @@ codeunit 50013 "Function Management"
     end;
 
     [EventSubscriber(ObjectType::Page, 99000786, 'OnAfterGetRecordEvent', '', false, false)]
-    [Scope('Internal')]
+    //
     procedure P99000786_OnAfterGetRecord(var Rec: Record "Production BOM Header")
     var
         VersionMgt: Codeunit VersionManagement;
@@ -331,7 +331,7 @@ codeunit 50013 "Function Management"
     end;
 
     [EventSubscriber(ObjectType::Page, 99000766, 'OnAfterGetRecordEvent', '', false, false)]
-    [Scope('Internal')]
+    //
     procedure P99000766_OnAfterGetRecord(var Rec: Record "Routing Header")
     var
         VersionMgt: Codeunit VersionManagement;
