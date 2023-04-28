@@ -47,6 +47,9 @@ page 50020 "gimTANOutputJournal"
     PageType = Worksheet;
     SaveValues = true;
     SourceTable = "Item Journal Line";
+    ApplicationArea = all;
+    UsageCategory = Tasks;
+
 
     layout
     {

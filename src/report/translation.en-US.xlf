@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 3288079768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Phys. Invt. Order Diff.</source>
+          <target>Posted Phys. Invt. Order Diff.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target>Options</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - Control 2457079412 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Dimensions</source>
+          <target>Show Dimensions</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - Control ShowDimensions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Page</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 2029485314" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Phys. Inventory Order Difference List</source>
+          <target>Posted Phys. Inventory Order Difference List</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Posted_Phys__Inventory_Order_Difference_ListCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 70112434" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target>Posting Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Post__Phys__Invt__Order_Header___Posting_Date_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 664497440" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. Pos.</source>
+          <target>Qty. Pos.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType QtyPosCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 362815904" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. Neg.</source>
+          <target>Qty. Neg.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType QtyNegCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1234636120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Pos.</source>
+          <target>Amount Pos.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType AmountPosCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 3928774744" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Neg.</source>
+          <target>Amount Neg.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType AmountNegCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1346389021" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Recorded without Order</source>
+          <target>Recorded without Order</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Posted_Phys__Invt__Order_Line__Recorded_without_Order_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 4221438143" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Totals</source>
+          <target>Totals</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TotalsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 4146993757" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Tracking Lines</source>
+          <target>Item Tracking Lines</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Item_Tracking_LinesCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 4272566831" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. Pos. (Base)</source>
+          <target>Qty. Pos. (Base)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Track__Qty__Pos___Base__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 636715071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty Neg. (Base)</source>
+          <target>Qty Neg. (Base)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Track__Qty__Neg___Base__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 460336442" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot No.</source>
+          <target>Lot No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Track__Lot_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1959799027" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No.</source>
+          <target>Serial No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Track__Serial_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 2020575326" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Recorded Qty. (Base)</source>
+          <target>Recorded Qty. (Base)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Rec__Qty___Base__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 216969149" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Recording Lines</source>
+          <target>Recording Lines</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Recording_LinesCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 2078652327" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot No.</source>
+          <target>Lot No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Rec__Lot_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1838083086" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No.</source>
+          <target>Serial No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Rec__Serial_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 202919503" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Recording No.</source>
+          <target>Recording No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Rec__No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 2199415813" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exp. Qty. (Base)</source>
+          <target>Exp. Qty. (Base)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Exp__Qty___Base__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 4204685692" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expected Tracking Lines</source>
+          <target>Expected Tracking Lines</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType Expected_Tracking_LinesCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1253772576" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot No.</source>
+          <target>Lot No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Exp__Lot_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 748473773" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No.</source>
+          <target>Serial No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TempPhysInvtDiffListBuffer__Exp__Serial_No__CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 4124235599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Totals</source>
+          <target>Totals</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType TotalsCaption_Control91Lbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3288079768 - NamedType 1467972219" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line Dimensions</source>
+          <target>Line Dimensions</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Post.Phys.Invt.OrderDiff. Düp - NamedType DimTextCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Production Slip</source>
+          <target>Production Slip</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 1751217211" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Production Order</source>
+          <target>Production Order</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType PoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 1310562988" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order</source>
+          <target>Order</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType OrderCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 2847555574" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer</source>
+          <target>Customer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType CustomerCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 2640936308" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship Date</source>
+          <target>Ship Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType ShipDateCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 971094045" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prod. Order Rtng.</source>
+          <target>Prod. Order Rtng.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType ProdOrderRoutingLineCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 70267132" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Description</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType DescriptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 523671286" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target>Quantity</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType QtyCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 1168252705" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Packing</source>
+          <target>Packing</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType PackingCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 394097655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>TAN</source>
+          <target>TAN</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType TANCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 2937116369" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Serial No.</source>
+          <target>Serial No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType SerialNoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 1959709183" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Print Date</source>
+          <target>Print Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType PrintDate</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 3980898799" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer</source>
+          <target>Transfer</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType TransferCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 15054037" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer to location</source>
+          <target>Transfer to location</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType TransferToLocationCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1019258159 - NamedType 2087342171" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target>Name</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Production Slip - NamedType NameCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 514741837 - NamedType 4184802958" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Valid values for the barcode size are 1, 2, 3, 4 &amp; 5</source>
+          <target>Valid values for the barcode size are 1, 2, 3, 4 &amp; 5</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Item Label - NamedType txcErrorSize</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Typ Label (inside)</source>
+          <target>Typ Label (inside)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - NamedType 70267132" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Model:</source>
+          <target>Model:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - NamedType DescriptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - NamedType 3499610157" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Base:</source>
+          <target>Base:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - NamedType BaseCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - NamedType 3352664566" size-unit="char" translate="yes" xml:space="preserve">
+          <source>R/N:</source>
+          <target>R/N:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - NamedType ItemNoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - NamedType 2937116369" size-unit="char" translate="yes" xml:space="preserve">
+          <source>S/N:</source>
+          <target>S/N:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - NamedType SerialNoCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1857745351 - NamedType 355103212" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quality inspected by:</source>
+          <target>Quality inspected by:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Typ Label (Packaging) - NamedType CheckedByCaption2</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
