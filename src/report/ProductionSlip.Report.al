@@ -13,9 +13,9 @@ report 50079 "Production Slip"
 
     dataset
     {
-        dataitem(DataItem1000000000; Table5405)
+        dataitem("Production Order"; "Production Order")
         {
-            DataItemTableView = SORTING (Status, No.);
+            DataItemTableView = SORTING(Status, "No.");
             RequestFilterFields = "No.";
             column(PoCaption; PoCaption)
             {
@@ -83,11 +83,11 @@ report 50079 "Production Slip"
             column(NameCaption; NameCaption)
             {
             }
-            dataitem(DataItem1000000002; Table5406)
+            dataitem("Prod. Order Line"; "Prod. Order Line")
             {
-                DataItemLink = Status = FIELD (Status),
-                               Prod. Order No.=FIELD(No.);
-                DataItemTableView = SORTING (Status, Prod. Order No., Line No.);
+                DataItemLink = Status = FIELD(Status),
+                               "Prod. Order No." = FIELD("No.");
+                DataItemTableView = SORTING(Status, "Prod. Order No.", "Line No.");
                 column(Status; Status)
                 {
                 }
@@ -100,7 +100,7 @@ report 50079 "Production Slip"
                 column(RoutingLineNo; TempProdOrderRoutingLine."No.")
                 {
                 }
-                column(RoutingTan; TempProdOrderRoutingLine."Routing TAN")
+                column(RoutingTan; TempProdOrderRoutingLine."CCS PM Routing TAN")
                 {
                 }
                 column(CustomerName; TempCustomer.Name)
@@ -145,9 +145,9 @@ report 50079 "Production Slip"
                 column(TranferToLocation_Name; TranferToLocation.Name)
                 {
                 }
-                dataitem(DataItem1000000001; Table2000000026)
+                dataitem(DataItem1000000001; Integer)
                 {
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(Number; Number)
                     {
                     }
@@ -221,29 +221,29 @@ report 50079 "Production Slip"
         RoutingTan: Code[20];
         RoutingLineNo: Code[20];
         PrintDate: Label 'Print Date';
-        TempCustomer: Record "18" temporary;
-        TempSalesLine: Record "37" temporary;
-        TempProdOrderRoutingLine: Record "5409" temporary;
-        SalesHeader: Record "36";
+        TempCustomer: Record 18 temporary;
+        TempSalesLine: Record 37 temporary;
+        TempProdOrderRoutingLine: Record 5409 temporary;
+        SalesHeader: Record 36;
         POLineItemNo: Text;
         POLineDescription: Text;
         POLineDescription2: Text;
         PackingPosition: Text;
         PackingItemNo: Text;
         SerialNoArray: array[20] of Code[20];
-        TempTransferLine: Record "5741" temporary;
+        TempTransferLine: Record 5741 temporary;
         TransferCaption: Label 'Transfer';
         STLTANCaption: Label 'TAN Stückliste';
         TANSerialCaption: Label 'TAN + Seriennummer';
         ShipmentDateCaption: Label 'Waren-ausgangsdatum';
         SerRoutingTAN: Code[20];
-        TranferToLocation: Record "14";
+        TranferToLocation: Record 14;
         TransferToLocationCaption: Label 'Transfer to location';
         NameCaption: Label 'Name';
 
     local procedure GetCustomer(CustomerNo: Code[20])
     var
-        Customer: Record "18";
+        Customer: Record 18;
     begin
         TempCustomer.DELETEALL;
         IF NOT Customer.GET(CustomerNo) THEN
@@ -252,18 +252,18 @@ report 50079 "Production Slip"
         TempCustomer.INSERT;
     end;
 
-    local procedure GetSalesLine(ProdOrderLine: Record "5406")
+    local procedure GetSalesLine(ProdOrderLine: Record 5406)
     var
-        SalesLine: Record "37";
-        TempOrderTrackingEntry: Record "99000799" temporary;
-        TrackingMgt: Codeunit "99000778";
+        SalesLine: Record 37;
+        TempOrderTrackingEntry: Record 99000799 temporary;
+        TrackingMgt: Codeunit 99000778;
         IsSalesLine: Boolean;
         i: Integer;
     begin
         IsSalesLine := FALSE;
 
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutmessage();
 
         WHILE NOT IsSalesLine DO BEGIN
             i += 1;
@@ -287,19 +287,19 @@ report 50079 "Production Slip"
         END;
     end;
 
-    local procedure GetTransferLine(ProdOrderLine: Record "5406")
+    local procedure GetTransferLine(ProdOrderLine: Record 5406)
     var
         IsTransferLine: Boolean;
-        TempOrderTrackingEntry: Record "99000799" temporary;
-        TrackingMgt: Codeunit "99000778";
+        TempOrderTrackingEntry: Record 99000799 temporary;
+        TrackingMgt: Codeunit 99000778;
         i: Integer;
-        TransferLine: Record "5741";
+        TransferLine: Record 5741;
     begin
         // >> CC01
         IsTransferLine := FALSE;
 
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutMessage();  //TODO: Überprüfen ob das wirklich das gleiche ist wie FindRecordsProductionSlip
 
         WHILE NOT IsTransferLine DO BEGIN
             i += 1;
@@ -327,9 +327,9 @@ report 50079 "Production Slip"
         // << CC01
     end;
 
-    local procedure GetProdOrderRtngLine(ProdOrderLine: Record "5406")
+    local procedure GetProdOrderRtngLine(ProdOrderLine: Record 5406)
     var
-        ProdOrderRoutingLine: Record "5409";
+        ProdOrderRoutingLine: Record 5409;
     begin
         TempProdOrderRoutingLine.DELETEALL;
 
@@ -342,9 +342,9 @@ report 50079 "Production Slip"
         TempProdOrderRoutingLine.INSERT;
     end;
 
-    local procedure GetPackingItems(SalesLine: Record "37")
+    local procedure GetPackingItems(SalesLine: Record 37)
     var
-        SalesLine2: Record "37";
+        SalesLine2: Record 37;
         CRLF: Text[2];
     begin
         PackingItemNo := '';
@@ -369,9 +369,9 @@ report 50079 "Production Slip"
         UNTIL SalesLine2.NEXT = 0;
     end;
 
-    local procedure GetAllPoLines(ProductionOrder: Record "5405")
+    local procedure GetAllPoLines(ProductionOrder: Record 5405)
     var
-        ProdOrderLine: Record "5406";
+        ProdOrderLine: Record 5406;
         CRLF: Text[2];
     begin
         POLineDescription := '';
@@ -392,9 +392,9 @@ report 50079 "Production Slip"
         UNTIL ProdOrderLine.NEXT = 0;
     end;
 
-    local procedure GetSerialNoArray(ProdOrderLine: Record "5406")
+    local procedure GetSerialNoArray(ProdOrderLine: Record 5406)
     var
-        ReservationEntry: Record "337";
+        ReservationEntry: Record 337;
         i: Integer;
     begin
         CLEAR(SerialNoArray);
