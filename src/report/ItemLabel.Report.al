@@ -51,7 +51,7 @@ report 50110 "Item Label"
         strBlob: text;
         bxtBarcodeBinary: BigText;
 
-    [Scope('Internal')]
+    // [Scope('Internal')]
     /// <summary>
     /// EncodeCode128.
     /// </summary>

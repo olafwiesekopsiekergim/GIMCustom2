@@ -124,7 +124,7 @@ report 50124 "Typ Label (Packaging)"
         CompanyInformation: Record 79;
         ItemBarcode: Text;
 
-    [Scope('Internal')]
+    // [Scope('Internal')]
     procedure SetValues(i: Integer; _ItemNo: Code[20]; _SerialNo: Text; _ProdDate: Date)
     begin
         Counter := i;

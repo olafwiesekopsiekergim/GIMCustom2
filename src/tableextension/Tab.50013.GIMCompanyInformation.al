@@ -13,6 +13,11 @@ tableextension 50013 "GIM Company Information" extends "Company Information"
         field(50501; "Picture 3"; BLOB)
         {
             SubType = Bitmap;
+
+        }
+        field(50502; "Black Logo"; BLOB)
+        {
+            SubType = Bitmap;
         }
         field(50600; "Report Receipts"; Boolean)
         {

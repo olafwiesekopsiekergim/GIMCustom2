@@ -97,6 +97,16 @@ tableextension 50010 "GIM Sales Line" extends "Sales Line"
                 // << P0008
             end;
         }
+        field(50400; "Print on Slip"; Boolean)
+        {
+            Caption = 'Print on Slip';
+            Description = '';
+
+            trigger OnValidate()
+            begin
+
+            end;
+        }
 
     }
 
