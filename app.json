@@ -14,36 +14,28 @@
     {"id": "551d85cb-2152-4144-9464-a16791aff492", 
       "name": "COSMO Licensing", 
       "publisher": "Cosmo Consult", 
-      "version": "1.5.0.86008"},
-      {"id": "86a7fe06-b61b-4649-9c4f-12704e8282c5", 
-      "name": "COSMO Graphical Extension", 
-      "publisher": "Cosmo Consult", 
-      "version": " 2.11.87644.0"},
+      "version": "1.2.0.34119"},
+      
       {"id": "1b26c6f6-4689-4dc3-af55-f39e95a781f8", 
         "name": "COSMO Advanced Manufacturing Pack", 
         "publisher": "Cosmo Consult", 
-        "version": "3.2.95462.0"},
+        "version": "2.2.11074.0"},
       {"id": "63aa5c1b-6e26-4572-aa2d-8b333b3ff1a4", 
         "name": "COSMO Quality Assurance", 
         "publisher": "Cosmo Consult", 
-        "version": "2.7.97733.0"}
+        "version": "2.2.25971.0"}
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "19.0.0.0",
+  "application": "16.0.0.0",
   "idRanges": [
     {
       "from": 50000,
       "to": 59999
     }
   ],
-  "resourceExposurePolicy": {
-    "allowDebugging": true,
-    "allowDownloadingSource": true,
-    "includeSourceInSymbolFile": true
-  },
-  "runtime": "8.0",
+  "showMyCode": true,
+  "runtime": "5.0",
   "target": "OnPrem"
-  
-  
+   
 }
