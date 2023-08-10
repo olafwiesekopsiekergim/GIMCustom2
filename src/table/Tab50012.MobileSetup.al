@@ -81,7 +81,7 @@ table 50012 "Mobile Setup"
         {
             Caption = 'Mobile Administrator Role';
             Description = 'LM2.00.05';
-            TableRelation = "Permission Set";
+            // TableRelation = "Permission Set";
 
             trigger OnValidate()
             begin

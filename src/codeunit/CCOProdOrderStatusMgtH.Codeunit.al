@@ -103,7 +103,7 @@ codeunit 50002 "CCO Prod. Order Status Mgt. H."
         ProdOrderLine.SetRange(Status, ProductionOrder.Status);
         ProdOrderLine.SetRange("Prod. Order No.", ProductionOrder."No.");
         ProdOrderLine.SetFilter(Quantity, '>0');
-        if ProdOrderLine.FindSet(false, false) then begin
+        if ProdOrderLine.FindSet(false) then begin
             repeat
                 i := 0;
                 DummySNTracking.ModifyExistingReservation(ProdOrderLine."Item No.", ProdOrderLine.Quantity, ProdOrderLine.RowID1);

@@ -29,7 +29,7 @@ codeunit 50105 "GIMServiceManagement"
         //  ELSE
         //    iOffset:=0,
 
-        if ToServiceContractLine.FindSet(true, false) then begin
+        if ToServiceContractLine.FindSet(true) then begin
             repeat
                 ToServiceContractLine.Validate("Service Item No.");
                 //ToServiceContractLine.VALIDATE(Type,FromServiceContractLine.Type);
@@ -67,7 +67,7 @@ codeunit 50105 "GIMServiceManagement"
         ToServiceLine.SetRange("Document No.", FromServiceLine."Document No.");
         ToServiceLine.SetFilter("Line No.", '>%1', FromServiceLine."Line No.");
         i := iOffset;
-        if ToServiceLine.FindSet(true, false) then
+        if ToServiceLine.FindSet(true) then
             repeat
 
                 i += 1;
@@ -104,7 +104,7 @@ codeunit 50105 "GIMServiceManagement"
     begin
         ToServItemLine.SetRange("Document Type", FromServItemLine."Document Type");
         ToServItemLine.SetRange("Document No.", FromServItemLine."Document No.");
-        if ToServItemLine.FindSet(true, false) then
+        if ToServItemLine.FindSet(true) then
             repeat
             //
             //  ToServItemLine."Shortcut Dimension 1 Code"

@@ -377,21 +377,21 @@ page 50040 "DS-Katalogartikel"
             //     AccessByPermission = Page "DMS - Doc. Box FactBox Async" = X;
             //     Visible = DocumentBoxVisible;
             // }
-            part(Control3; "Social Listening FactBox")
-            {
-                SubPageLink = "Source Type" = CONST(Item),
-                              "Source No." = FIELD("No.");
-                Visible = SocialListeningVisible;
-                ApplicationArea = All;
-            }
-            part(Control26; "Social Listening Setup FactBox")
-            {
-                SubPageLink = "Source Type" = CONST(Item),
-                              "Source No." = FIELD("No.");
-                UpdatePropagation = Both;
-                Visible = SocialListeningSetupVisible;
-                ApplicationArea = All;
-            }
+            // part(Control3; "Social Listening FactBox")
+            // {
+            //     SubPageLink = "Source Type" = CONST(Item),
+            //                   "Source No." = FIELD("No.");
+            //     Visible = SocialListeningVisible;
+            //     ApplicationArea = All;
+            // }
+            // part(Control26; "Social Listening Setup FactBox")
+            // {
+            //     SubPageLink = "Source Type" = CONST(Item),
+            //                   "Source No." = FIELD("No.");
+            //     UpdatePropagation = Both;
+            //     Visible = SocialListeningSetupVisible;
+            //     ApplicationArea = All;
+            // }
             part(Control1901314507; "Item Invoicing FactBox")
             {
                 SubPageLink = "No." = FIELD("No."),

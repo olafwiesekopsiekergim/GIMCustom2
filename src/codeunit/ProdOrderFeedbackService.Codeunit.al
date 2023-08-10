@@ -938,7 +938,7 @@ codeunit 50006 "Prod. Order Feedback Service"
                             ReservationEntry.Reset;
                             ReservationEntry.SetRange("Serial No.", SerialNo);
                             ReservationEntry.SetRange("Item No.", ItemJnlLine2."Item No.");
-                            if ReservationEntry.FindSet(true, false) then begin
+                            if ReservationEntry.FindSet(true) then begin
                                 repeat
                                     ReservationEntry."Qty. to Handle (Base)" := ReservationEntry."Quantity (Base)";
                                     ReservationEntry.Modify;
