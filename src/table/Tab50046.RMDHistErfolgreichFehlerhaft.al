@@ -234,37 +234,37 @@ table 50046 "RMDHist Erfolgreich&Fehlerhaft"
     // end;
 
     //[Scope('OnPrem')]
-    procedure GetEmail_An(pZuordnungsnr: Integer): list of [text]
-    var
-        lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
-        ret: List of [text];
-    begin
-        lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
-        ret.add(lEMailPerRMDBelegSetupRec."EMail An");
-        exit(ret);
-    end;
+    // procedure GetEmail_An(pZuordnungsnr: Integer): list of [text]
+    // var
+    //     lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
+    //     ret: List of [text];
+    // begin
+    //     lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
+    //     ret.add(lEMailPerRMDBelegSetupRec."EMail An");
+    //     exit(ret);
+    // end;
+
+    // //[Scope('OnPrem')]
+    // procedure GetEmail_Kopie(pZuordnungsnr: Integer): list of [text]
+    // var
+    //     lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
+    //     ret: List of [Text];
+    // begin
+    //     lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
+    //     ret.add(lEMailPerRMDBelegSetupRec."EMail Kopie");
+    //     exit(ret);
+    // end;
 
     //[Scope('OnPrem')]
-    procedure GetEmail_Kopie(pZuordnungsnr: Integer): list of [text]
-    var
-        lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
-        ret: List of [Text];
-    begin
-        lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
-        ret.add(lEMailPerRMDBelegSetupRec."EMail Kopie");
-        exit(ret);
-    end;
-
-    //[Scope('OnPrem')]
-    procedure GetEmail_BlindKopie(pZuordnungsnr: Integer): list of [Text]
-    var
-        lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
-        ret: List of [Text];
-    begin
-        lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
-        ret.add(lEMailPerRMDBelegSetupRec."EMail Blind Kopie");
-        exit(ret);
-    end;
+    // procedure GetEmail_BlindKopie(pZuordnungsnr: Integer): list of [Text]
+    // var
+    //     lEMailPerRMDBelegSetupRec: Record "EMail per RMD-Beleg Setup";
+    //     ret: List of [Text];
+    // begin
+    //     lEMailPerRMDBelegSetupRec.Get(pZuordnungsnr);
+    //     ret.add(lEMailPerRMDBelegSetupRec."EMail Blind Kopie");
+    //     exit(ret);
+    // end;
 
     //[Scope('OnPrem')]
     procedure GetEmail_Betreff(pZuordnungsnr: Integer): Text[250]

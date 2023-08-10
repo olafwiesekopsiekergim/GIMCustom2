@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="PoCaption">
+          <DataField>PoCaption</DataField>
+        </Field>
+        <Field Name="OrderCaption">
+          <DataField>OrderCaption</DataField>
+        </Field>
+        <Field Name="CustomerCaption">
+          <DataField>CustomerCaption</DataField>
+        </Field>
+        <Field Name="ShipDateCaption">
+          <DataField>ShipDateCaption</DataField>
+        </Field>
+        <Field Name="ShipmentDateCaption">
+          <DataField>ShipmentDateCaption</DataField>
+        </Field>
+        <Field Name="ProdOrderRoutingLineCaption">
+          <DataField>ProdOrderRoutingLineCaption</DataField>
+        </Field>
+        <Field Name="DescriptionCaption">
+          <DataField>DescriptionCaption</DataField>
+        </Field>
+        <Field Name="QtyCaption">
+          <DataField>QtyCaption</DataField>
+        </Field>
+        <Field Name="PackingCaption">
+          <DataField>PackingCaption</DataField>
+        </Field>
+        <Field Name="TANCaption">
+          <DataField>TANCaption</DataField>
+        </Field>
+        <Field Name="SerialNoCaption">
+          <DataField>SerialNoCaption</DataField>
+        </Field>
+        <Field Name="STLTANCaption">
+          <DataField>STLTANCaption</DataField>
+        </Field>
+        <Field Name="TANSerialCaption">
+          <DataField>TANSerialCaption</DataField>
+        </Field>
+        <Field Name="PrintDate">
+          <DataField>PrintDate</DataField>
+        </Field>
+        <Field Name="Workdate">
+          <DataField>Workdate</DataField>
+        </Field>
+        <Field Name="POLineItemNo">
+          <DataField>POLineItemNo</DataField>
+        </Field>
+        <Field Name="POLineDescription">
+          <DataField>POLineDescription</DataField>
+        </Field>
+        <Field Name="POLineDescription2">
+          <DataField>POLineDescription2</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="TransferCaption">
+          <DataField>TransferCaption</DataField>
+        </Field>
+        <Field Name="TransferToLocationCaption">
+          <DataField>TransferToLocationCaption</DataField>
+        </Field>
+        <Field Name="NameCaption">
+          <DataField>NameCaption</DataField>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+        </Field>
+        <Field Name="ProdOrderNo">
+          <DataField>ProdOrderNo</DataField>
+        </Field>
+        <Field Name="LineNo">
+          <DataField>LineNo</DataField>
+        </Field>
+        <Field Name="RoutingLineNo">
+          <DataField>RoutingLineNo</DataField>
+        </Field>
+        <Field Name="RoutingTan">
+          <DataField>RoutingTan</DataField>
+        </Field>
+        <Field Name="CustomerName">
+          <DataField>CustomerName</DataField>
+        </Field>
+        <Field Name="CustomerName2">
+          <DataField>CustomerName2</DataField>
+        </Field>
+        <Field Name="CustomerAddress">
+          <DataField>CustomerAddress</DataField>
+        </Field>
+        <Field Name="CustomerPostCode">
+          <DataField>CustomerPostCode</DataField>
+        </Field>
+        <Field Name="CustomerCity">
+          <DataField>CustomerCity</DataField>
+        </Field>
+        <Field Name="CustomerCountryRegion">
+          <DataField>CustomerCountryRegion</DataField>
+        </Field>
+        <Field Name="OrderNo">
+          <DataField>OrderNo</DataField>
+        </Field>
+        <Field Name="TransferNo">
+          <DataField>TransferNo</DataField>
+        </Field>
+        <Field Name="FixDateDelivery">
+          <DataField>FixDateDelivery</DataField>
+        </Field>
+        <Field Name="ShipmentDate">
+          <DataField>ShipmentDate</DataField>
+        </Field>
+        <Field Name="PackingItemNo">
+          <DataField>PackingItemNo</DataField>
+        </Field>
+        <Field Name="PackingPosition">
+          <DataField>PackingPosition</DataField>
+        </Field>
+        <Field Name="TranferToLocation_Code">
+          <DataField>TranferToLocation_Code</DataField>
+        </Field>
+        <Field Name="TranferToLocation_Name">
+          <DataField>TranferToLocation_Name</DataField>
+        </Field>
+        <Field Name="Number">
+          <DataField>Number</DataField>
+        </Field>
+        <Field Name="SerialNo">
+          <DataField>SerialNo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
