@@ -18,9 +18,9 @@ pageextension 50051 gimPurchaseInvoices extends "Purchase Invoices"
                 end;
             }
 
-            field(Genehmigungsstatus; Genehmigungsstatus)
-            {
-            }
+            // field(Genehmigungsstatus; Genehmigungsstatus)
+            // {
+            // }
         }
     }
     actions

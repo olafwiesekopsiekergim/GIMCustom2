@@ -245,7 +245,7 @@ codeunit 50004 "CC Item Tracking Mgt."
           ShipmentDate,                           // Shipment Date
           0,
           tmpReservationEntry."Reservation Status"::Surplus,                                // Status = Surplus
-                                                                                             //'',
+                                                                                            //'',
           TempTrackingSpecification);
     end;
 
@@ -470,7 +470,7 @@ codeunit 50004 "CC Item Tracking Mgt."
 
         // Handle Expiration Date
         if TempTrackSpec."Expiration Date" = 0D then begin
-            ExpDate := ItemTrkMgmt.ExistingExpirationDate(TempTrackSpec, false, EntriesExist);
+            // ExpDate := ItemTrkMgmt.ExistingExpirationDate(TempTrackSpec, false, EntriesExist);
             //ExpDate := ItemTrkMgmt.ExistingExpirationDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", false, EntriesExist);
             if EntriesExist then begin
                 TempTrackSpec."Expiration Date" := ExpDate;
@@ -483,7 +483,7 @@ codeunit 50004 "CC Item Tracking Mgt."
                 tmpItemTrackingSetup.INIT;
                 tmpItemTrackingSetup."Lot No." := tempTrackSpec."Lot No.";
                 tmpItemTrackingSetup."serial no." := tempTrackSpec."Serial No.";
-                TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, tmpItemTrackingSetup, EntriesExist);
+                // TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, tmpItemTrackingSetup, EntriesExist);
 
                 //TempTrackSpec."Warranty Date" := ItemTrkMgmt.ExistingWarrantyDate(ForItemNo, ForVariantCode, TempTrackSpec."Lot No.", TempTrackSpec."Serial No.", EntriesExist);
             end;
@@ -535,7 +535,7 @@ codeunit 50004 "CC Item Tracking Mgt."
         // Reclass
         if (TempTrackSpec."Source Type" = DATABASE::"Item Journal Line") and (TempTrackSpec."Source Subtype" = 4) then begin
             //CreateReservEntry.SetNewSerialLotNo(TempTrackSpec."New Serial No.", TempTrackSpec."New Lot No.");
-            CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(tempTrackSpec);
+            // CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(tempTrackSpec);
             CreateReservEntry.SetNewExpirationDate(TempTrackSpec."New Expiration Date");
             // >> AMP
             //  CreateReservEntry.SetNewTradingUnit(TempTrackSpec."New Lot No. Trading Unit", TempTrackSpec."New Trading Unit No.");
@@ -590,8 +590,8 @@ codeunit 50004 "CC Item Tracking Mgt."
         ExpDate: Date;
         EntriesExist: Boolean;
     begin
-        ExpDate := ItemTrackingMgt.ExistingExpirationDate(
-            TrackingSpecification, false, EntriesExist);
+        // ExpDate := ItemTrackingMgt.ExistingExpirationDate(
+        // TrackingSpecification, false, EntriesExist);
 
         if ExpDate <> 0D then begin
             TrackingSpecification."Expiration Date" := ExpDate;
@@ -616,7 +616,7 @@ codeunit 50004 "CC Item Tracking Mgt."
     var
         ItemTrackingMgt: Codeunit "Item Tracking Management";
     begin
-        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Header", AssemblyHeader."Document Type".AsInteger(), AssemblyHeader."No.", '', 0, 0));
+        // exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Header", AssemblyHeader."Document Type".AsInteger(), AssemblyHeader."No.", '', 0, 0));
     end;
 
 
@@ -624,7 +624,7 @@ codeunit 50004 "CC Item Tracking Mgt."
     var
         ItemTrackingMgt: Codeunit "Item Tracking Management";
     begin
-        exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Line", AssemblyLine."Document Type".asInteger(), AssemblyLine."Document No.", '', 0, AssemblyLine."Line No."));
+        // exit(ItemTrackingMgt.ComposeRowID(DATABASE::"Assembly Line", AssemblyLine."Document Type".asInteger(), AssemblyLine."Document No.", '', 0, AssemblyLine."Line No."));
     end;
 
     local procedure "---Core"()
@@ -1041,32 +1041,32 @@ codeunit 50004 "CC Item Tracking Mgt."
     end;
 
     // {Purchase,Sale,"Positive Adjmt.","Negative Adjmt.",Transfer,Consumption,Output," ","Assembly Consumption","Assembly Output"}
-    procedure GetItemTrackingSettings(ItemNo: Code[20]; EntryType: Enum "Item Ledger Entry Type"; Inbound: Boolean; BinRequired: Boolean; var SNRequired: Boolean; var LotRequired: Boolean)
-    var
-        Item: Record Item;
-        ItemTrackingManagement: Codeunit "Item Tracking Management";
-        ItemTrackingCode: Record "Item Tracking Code";
-        SNInfoRequired: Boolean;
-        LotInfoRequired: Boolean;
-        ItemTrackingSetup: record "Item Tracking Setup" temporary;
-    begin
-        SNRequired := false;
-        LotRequired := false;
-        if not Item.Get(ItemNo) then
-            exit;
+    // procedure GetItemTrackingSettings(ItemNo: Code[20]; EntryType: Enum "Item Ledger Entry Type"; Inbound: Boolean; BinRequired: Boolean; var SNRequired: Boolean; var LotRequired: Boolean)
+    // var
+    //     Item: Record Item;
+    //     ItemTrackingManagement: Codeunit "Item Tracking Management";
+    //     ItemTrackingCode: Record "Item Tracking Code";
+    //     SNInfoRequired: Boolean;
+    //     LotInfoRequired: Boolean;
+    //     ItemTrackingSetup: record "Item Tracking Setup" temporary;
+    // begin
+    //     SNRequired := false;
+    //     LotRequired := false;
+    //     if not Item.Get(ItemNo) then
+    //         exit;
 
-        if (Item."Item Tracking Code" = '') or not ItemTrackingCode.Get(Item."Item Tracking Code") then
-            exit;
+    //     if (Item."Item Tracking Code" = '') or not ItemTrackingCode.Get(Item."Item Tracking Code") then
+    //         exit;
 
-        ItemTrackingManagement.GetItemTrackingSetup(ItemTrackingCode, EntryType, Inbound, ItemTrackingSetup);
-        if BinRequired then
-            ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo);
-        // ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo, SNRequired, LotRequired, false);
+    //     ItemTrackingManagement.GetItemTrackingSetup(ItemTrackingCode, EntryType, Inbound, ItemTrackingSetup);
+    //     if BinRequired then
+    //         ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo);
+    //     // ItemTrackingManagement.CheckWhseItemTrkgSetup(ItemNo, SNRequired, LotRequired, false);
 
-        // Wesco special
-        // IF (SNRequired) AND (Item."Serial Nos." <> '') THEN
-        //  SNRequired := FALSE;
-    end;
+    //     // Wesco special
+    //     // IF (SNRequired) AND (Item."Serial Nos." <> '') THEN
+    //     //  SNRequired := FALSE;
+    // end;
 
 
     procedure IsSNSpecTracking(TrackingCode: Code[10]): Boolean

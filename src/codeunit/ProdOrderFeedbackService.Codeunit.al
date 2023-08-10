@@ -567,9 +567,9 @@ codeunit 50006 "Prod. Order Feedback Service"
 
                 // >> :PMW14.02:169:1
                 if CheckDeliveryTolerance then begin
-                    if ProdOrderLine."Remaining Quantity" <> ItemJnlLine."Output Quantity" then begin
-                        ItemJnlLine.ccspmCheckDeliveryTolerance(ItemJnlLine, ProdOrderLine, ItemJnlLine.FieldNo("Output Quantity"));
-                    end;
+                    // if ProdOrderLine."Remaining Quantity" <> ItemJnlLine."Output Quantity" then begin
+                    //     ItemJnlLine.ccspmCheckDeliveryTolerance(ItemJnlLine, ProdOrderLine, ItemJnlLine.FieldNo("Output Quantity"));
+                    // end;
                     CheckDeliveryTolerance := false;
                 end;
                 // << :PMW14.02:169:1
@@ -1007,23 +1007,23 @@ codeunit 50006 "Prod. Order Feedback Service"
         LotReservEntry."Serial No." := SerialNo;
         LotReservEntry."lot no." := '';
         CurrentEntryStatus := CurrentEntryStatus::Prospect;
-        CreateReservEntry.CreateReservEntryFor(
-          DATABASE::"Item Journal Line",
-          ItemJournalLine."Entry Type".AsInteger(),
-          ItemJournalLine."Journal Template Name",
-          ItemJournalLine."Journal Batch Name",
-          0,
-          ItemJournalLine."Line No.",
-          ItemJournalLine."Qty. per Unit of Measure",
-          1,
-          1,
-          LotReservEntry);
+        // CreateReservEntry.CreateReservEntryFor(
+        //   DATABASE::"Item Journal Line",
+        // //   ItemJournalLine."Entry Type".AsInteger(),
+        //   ItemJournalLine."Journal Template Name",
+        //   ItemJournalLine."Journal Batch Name",
+        //   0,
+        //   ItemJournalLine."Line No.",
+        //   ItemJournalLine."Qty. per Unit of Measure",
+        //   1,
+        //   1,
+        //   LotReservEntry);
         //CreateReservEntry.SetNewSerialLotNo(WarehouseEntry."Serial No.",NewLotNo);
         TrackingSpec.INIT;
         TrackingSpec."Serial No." := SerialNo;
         TrackingSpec."Lot No." := '';
         // CreateReservEntry.SetNewSerialLotNo(SerialNo, '');
-        CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(TrackingSpec);
+        // CreateReservEntry.SetNewTrackingFromNewTrackingSpecification(TrackingSpec);
         //  IF NewTradingunitNo <> '' THEN
         //    CreateReservEntry.SetNewTradingUnit(NewLotNoTradingUnit,NewTradingunitNo);
 

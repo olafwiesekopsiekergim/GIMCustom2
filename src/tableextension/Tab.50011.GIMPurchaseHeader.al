@@ -21,16 +21,16 @@ tableextension 50011 "GIM Purchase Header" extends "Purchase Header"
             Description = 'P0013 - Anbindung an D3';
             Numeric = true;
         }
-        field(50401; Genehmigungsstatus; enum "Approval Status")
-        {
-            CalcFormula = Max("Approval Entry".Status WHERE("Table ID" = CONST(38),
-                                                             "Document Type" = FIELD("Document Type"),
-                                                             "Document No." = FIELD("No.")));
-            Editable = false;
-            FieldClass = FlowField;
-            // OptionCaption = 'Created,Open,Canceled,Rejected,Approved';
-            // OptionMembers = Created,Open,Canceled,Rejected,Approved;
-        }
+        // field(50401; Genehmigungsstatus; enum "Approval Status")
+        // {
+        //     CalcFormula = Max("Approval Entry".Status WHERE("Table ID" = CONST(38),
+        //                                                      "Document Type" = FIELD("Document Type"),
+        //                                                      "Document No." = FIELD("No.")));
+        //     Editable = false;
+        //     FieldClass = FlowField;
+        //     // OptionCaption = 'Created,Open,Canceled,Rejected,Approved';
+        //     // OptionMembers = Created,Open,Canceled,Rejected,Approved;
+        // }
         field(77000; Sachbearbeiter; Code[50])
         {
             Description = 'P0014';

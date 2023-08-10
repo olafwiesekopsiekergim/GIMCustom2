@@ -26,7 +26,7 @@ codeunit 50002 "CCO Prod. Order Status Mgt. H."
                     if Item.Get(ProdOrderComp."Item No.") then begin
                         if Item."Item Tracking Code" <> '' then begin
                             RemainingQty := ProdOrderComp."Remaining Quantity";
-                            ReservationEntry.SetSourceFilter(DATABASE::"Prod. Order Component", ProdOrderComp.Status.asinteger(), ProdOrderComp."Prod. Order No.", ProdOrderComp."Line No.", false);
+                            // ReservationEntry.SetSourceFilter(DATABASE::"Prod. Order Component", ProdOrderComp.Status.asinteger(), ProdOrderComp."Prod. Order No.", ProdOrderComp."Line No.", false);
                             ReservationEntry.SetSourceFilter('', ProdOrderComp."Prod. Order Line No.");
                             if RemainingQty > 0 then begin
                                 if ReservationEntry.FindSet() then

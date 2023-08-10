@@ -67,14 +67,14 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         {
             Description = '#AT';
         }
-        field(50013; Blocked; Enum "Customer Blocked")
-        {
-            CalcFormula = Lookup(Customer.Blocked WHERE("No." = FIELD("Sell-to Customer No.")));
-            Caption = 'Blocked';
-            Editable = false;
-            FieldClass = FlowField;
+        // field(50013; Blocked; Enum "Customer Blocked")
+        // {
+        //     CalcFormula = Lookup(Customer.Blocked WHERE("No." = FIELD("Sell-to Customer No.")));
+        //     Caption = 'Blocked';
+        //     Editable = false;
+        //     FieldClass = FlowField;
 
-        }
+        // }
         field(50047; "RMD Sammelsendung"; Boolean)
         {
             Description = 'P0001';

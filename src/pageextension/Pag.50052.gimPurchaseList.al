@@ -24,9 +24,9 @@ pageextension 50052 gimPurchaseList extends "Purchase List"
             field("Confirmation received"; "Confirmation received")
             {
             }
-            field(Genehmigungsstatus; Genehmigungsstatus)
-            {
-            }
+            // field(Genehmigungsstatus; Genehmigungsstatus)
+            // {
+            // }
         }
     }
 

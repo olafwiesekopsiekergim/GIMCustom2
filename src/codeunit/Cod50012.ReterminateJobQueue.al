@@ -35,10 +35,10 @@ codeunit 50012 "ReterminateJobQueue"
         Subject: Text;
         FoundError: Boolean;
         cr: Text[2];
-        // SMTPSetup: Record "SMTP Mail Setup";
+    // SMTPSetup: Record "SMTP Mail Setup";
 
-        EmailMessage: Codeunit "Email message";
-        Email: codeunit "Email";
+    // EmailMessage: Codeunit "Email message";
+    // Email: codeunit "Email";
     //outs: OutStream;
     begin
         tmpBody := '';
@@ -71,8 +71,8 @@ codeunit 50012 "ReterminateJobQueue"
 
         if FoundError then BEGIN
 
-            EmailMessage.Create(ToName, Subject, tmpbody, False);
-            Email.Send(EmailMessage);
+            // EmailMessage.Create(ToName, Subject, tmpbody, False);
+            // Email.Send(EmailMessage);
             //SMTPMail.Send;
         END;
         // end;

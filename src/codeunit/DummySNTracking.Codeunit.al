@@ -297,7 +297,7 @@ codeunit 50003 "Dummy SN Tracking"
         if ItemJournalLine."Value Entry Type" = ItemJournalLine."Value Entry Type"::Revaluation then
             exit;
 
-        SignFactor := ItemJournalLine."Quantity (Base)" * SetSignFactor(83, ItemJournalLine."Entry Type".asinteger(), (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Transfer) and (ItemJournalLine.Quantity < 0));
+        // SignFactor := ItemJournalLine."Quantity (Base)" * SetSignFactor(83, ItemJournalLine."Entry Type".asinteger(), (ItemJournalLine."Entry Type" = ItemJournalLine."Entry Type"::Transfer) and (ItemJournalLine.Quantity < 0));
 
         if SignFactor > 0 then begin
             CreateInboundSN(ItemJournalLine, ItemJournalLine."Item No.", Abs(ItemJournalLine."Quantity (Base)"));
@@ -892,7 +892,7 @@ codeunit 50003 "Dummy SN Tracking"
         TempTrackingSpecification."Item No." := ProdOrderLine."Item No.";
         TempTrackingSpecification."Quantity (Base)" := ReservationEntry.Quantity * -1;
         TempTrackingSpecification."Source Type" := DATABASE::"Prod. Order Line";
-        TempTrackingSpecification."Source Subtype" := ProdOrderLine.Status.AsInteger();
+        // TempTrackingSpecification."Source Subtype" := ProdOrderLine.Status.AsInteger();
         TempTrackingSpecification."Source ID" := ProdOrderLine."Prod. Order No.";
         TempTrackingSpecification."Source Batch Name" := '';
         TempTrackingSpecification."Source Prod. Order Line" := ProdOrderLine."Line No.";
