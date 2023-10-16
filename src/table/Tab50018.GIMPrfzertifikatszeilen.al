@@ -73,6 +73,22 @@ table 50018 "GIMPrüfzertifikatszeilen"
         {
             DataClassification = ToBeClassified;
         }
+        field(24; Beschreibung; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(25; Model; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(26; Hersteller; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(27; "Key-No"; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

@@ -13,6 +13,10 @@ tableextension 50058 GIMServiceContractLine extends "Service Contract Line"
         field(50005; Menge; Integer)
         {
         }
+        field(50100; Servicebetrag; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
     var
         myInt: Integer;

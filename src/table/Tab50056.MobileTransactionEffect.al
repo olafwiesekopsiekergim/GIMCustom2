@@ -107,6 +107,25 @@ table 50056 "Mobile Transaction Effect"
         field(310; "Location Key Bin Code"; Code[20])
         {
             Caption = 'Location Key Bin Code';
+
+        }
+        field(400; "Move List Key"; Code[50])
+        {
+            Caption = 'Warehouse Document No.';
+            DataClassification = ToBeClassified;
+            Description = 'UWH-7.0-  FIX Posting EFFECT';
+        }
+        field(410; "Move Key List Key"; Code[50])
+        {
+            Caption = 'Warehouse Document No.';
+            DataClassification = ToBeClassified;
+            Description = 'UWH-7.0-  FIX Posting EFFECT';
+        }
+        field(420; "Move Key Move Key"; Integer)
+        {
+            Caption = 'Warehouse Document Line No.';
+            DataClassification = ToBeClassified;
+            Description = 'UWH-7.0-  FIX Posting EFFECT';
         }
         field(1000; "Create Date"; DateTime)
         {

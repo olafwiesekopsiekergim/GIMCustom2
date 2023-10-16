@@ -695,7 +695,7 @@ page 50020 "gimTANOutputJournal"
     /// </summary>
     procedure HandleRoutingTAN()
     var
-        lProdOrderFeedbackService: Codeunit "Prod. Order Feedback Service";
+        lProdOrderFeedbackService: Codeunit "GIM Prod. Order Feedback Svc";
         myNotification: Notification;
     begin
         // >> #PMW16.00.02.05:T511
@@ -801,7 +801,7 @@ page 50020 "gimTANOutputJournal"
         OutputQty: Decimal;
         ScrapQty: Decimal;
         LableQty: Decimal;
-        lProdOrderFeedbackService: Codeunit "Prod. Order Feedback Service";
+        lProdOrderFeedbackService: Codeunit "GIM Prod. Order Feedback Svc";
         IsLastOperation: Boolean;
     begin
         //Ermittle FA-Zeile

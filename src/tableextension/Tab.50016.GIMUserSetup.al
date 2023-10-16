@@ -16,6 +16,12 @@ tableextension 50016 "GIM User Setup" extends "User Setup"
         {
             Description = '#AT';
         }
+        field(50010; "Create PO From SO"; Boolean)
+        {
+            Caption = 'Create Prod. Order from Sales Order';
+            DataClassification = ToBeClassified;
+            Description = 'CC01';
+        }
         field(80042; "Telefonnr."; Text[30])
         {
             Caption = 'Telefonnr.';

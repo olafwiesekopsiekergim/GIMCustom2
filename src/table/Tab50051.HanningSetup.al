@@ -111,6 +111,10 @@ table 50051 "Hanning Setup"
             Description = 'P0033';
             TableRelation = "VAT Product Posting Group";
         }
+        field(91; BuchBlattNameNoIncrease; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
 
         field(100; "Düperthal Processes"; Boolean)
         {

@@ -60,6 +60,10 @@ table 50058 "Mobile Stock Control"
             Caption = 'Function Name';
             TableRelation = "Mobile Stock Control Function";
         }
+        field(111; "Blocking Reason"; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

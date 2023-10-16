@@ -340,6 +340,12 @@ tableextension 50008 "GIM Item" extends Item
         {
             Caption = '<Max Tragfähigkeit Stellfläche, rechts>';
         }
+        field(50600; "Print on Slip"; Boolean)
+        {
+            Caption = 'Print on Slip';
+            DataClassification = ToBeClassified;
+            Description = 'CC01';
+        }
         field(60068; BestellmengeAktuell; Decimal)
         {
             CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("No."),
@@ -427,6 +433,12 @@ tableextension 50008 "GIM Item" extends Item
             Description = '#AT';
             Editable = false;
             FieldClass = FlowField;
+        }
+        field(70000; "Variant Mandatory"; Boolean)
+        {
+            Caption = 'Variant Mandatory';
+            DataClassification = ToBeClassified;
+            Description = 'LM';
         }
         field(77850; "EAN-Code"; Code[13])
         {

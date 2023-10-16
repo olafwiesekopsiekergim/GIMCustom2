@@ -22,6 +22,13 @@ tableextension 50046 GIMProdOrderComponent extends "Prod. Order Component"
             Caption = 'Zeichnungsnr.';
             Description = '#AT';
         }
+        field(50010; "Item Blocked"; Boolean)
+        {
+            Caption = 'Blocked';
+            DataClassification = ToBeClassified;
+            Description = 'CC01';
+            Editable = false;
+        }
     }
 
     var

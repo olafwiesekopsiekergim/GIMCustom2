@@ -65,6 +65,10 @@ tableextension 50053 GIMServiceItemLine extends "Service Item Line"
             Description = '#AT';
             FieldClass = FlowField;
         }
+        field(50100; Servicebetrag; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     var

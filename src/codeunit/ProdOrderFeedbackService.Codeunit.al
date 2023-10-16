@@ -1,4 +1,4 @@
-codeunit 50006 "Prod. Order Feedback Service"
+codeunit 50006 "GIM Prod. Order Feedback Svc"
 {
     // Copyright (Exclusive Rights): COSMO CONSULT Licensing GmbH, Sarnen, Switzerland
     // 

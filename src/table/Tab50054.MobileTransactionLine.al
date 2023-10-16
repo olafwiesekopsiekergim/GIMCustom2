@@ -142,7 +142,7 @@ table 50054 "Mobile Transaction Line"
         {
             Caption = 'Serial No.';
         }
-        field(210; "Expiration Date"; Date)
+        field(210; "Expiration Date"; Datetime)
         {
             Caption = 'Expiration Date';
         }
@@ -360,39 +360,39 @@ table 50054 "Mobile Transaction Line"
         {
             Caption = 'NumberField_9';
         }
-        field(1700; DateField_1; Date)
+        field(1700; DateField_1; Datetime)
         {
             Caption = 'DateField_1';
         }
-        field(1710; DateField_2; Date)
+        field(1710; DateField_2; Datetime)
         {
             Caption = 'DateField_2';
         }
-        field(1720; DateField_3; Date)
+        field(1720; DateField_3; Datetime)
         {
             Caption = 'DateField_3';
         }
-        field(1730; DateField_4; Date)
+        field(1730; DateField_4; Datetime)
         {
             Caption = 'DateField_4';
         }
-        field(1740; DateField_5; Date)
+        field(1740; DateField_5; Datetime)
         {
             Caption = 'DateField_5';
         }
-        field(1750; DateField_6; Date)
+        field(1750; DateField_6; Datetime)
         {
             Caption = 'DateField_6';
         }
-        field(1760; DateField_7; Date)
+        field(1760; DateField_7; Datetime)
         {
             Caption = 'DateField_7';
         }
-        field(1770; DateField_8; Date)
+        field(1770; DateField_8; Datetime)
         {
             Caption = 'DateField_8';
         }
-        field(1780; DateField_9; Date)
+        field(1780; DateField_9; Datetime)
         {
             Caption = 'DateField_9';
         }
@@ -505,6 +505,11 @@ table 50054 "Mobile Transaction Line"
         field(5010; "Order Operation Key"; Code[20])
         {
             Caption = 'Order Operation Key';
+            Description = 'PROD';
+        }
+        field(5011; "Person Key"; Code[50])
+        {
+            Caption = 'Person Key';
             Description = 'PROD';
         }
     }

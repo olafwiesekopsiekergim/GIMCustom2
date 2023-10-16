@@ -70,7 +70,7 @@ table 50055 "Mobile Transaction Head"
         {
             Caption = 'Create Date';
         }
-        field(1010; "Create User Id"; Code[20])
+        field(1010; "Create User Id"; Code[50])
         {
             Caption = 'Create User Id';
         }
@@ -78,7 +78,7 @@ table 50055 "Mobile Transaction Head"
         {
             Caption = 'Modify Date';
         }
-        field(1030; "Modify User Id"; Code[20])
+        field(1030; "Modify User Id"; Code[50])
         {
             Caption = 'Modify User Id';
         }
@@ -86,13 +86,18 @@ table 50055 "Mobile Transaction Head"
         {
             Caption = 'Source Type';
         }
-        field(1050; "Source Document No."; Code[20])
+        field(1050; "Source Document No."; Code[50])
         {
             Caption = 'Source Document No.';
         }
         field(1060; "Document Date"; DateTime)
         {
             Caption = 'Document Date';
+        }
+        field(1070; "Move List Key"; Code[20])
+        {
+            Caption = 'Warehouse Document No';
+            DataClassification = ToBeClassified;
         }
     }
 
