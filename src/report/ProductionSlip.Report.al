@@ -14,9 +14,9 @@ report 50079 "Production Slip"
 
     dataset
     {
-        dataitem(DataItem1000000000; Table5405)
+        dataitem("Production Order"; "Production Order")
         {
-            DataItemTableView = SORTING (Status, No.);
+            DataItemTableView = SORTING(Status, "No.");
             RequestFilterFields = "No.";
             column(PoCaption; PoCaption)
             {
@@ -84,11 +84,11 @@ report 50079 "Production Slip"
             column(NameCaption; NameCaption)
             {
             }
-            dataitem(DataItem1000000002; Table5406)
+            dataitem("Prod. Order Line"; "Prod. Order Line")
             {
-                DataItemLink = Status = FIELD (Status),
-                               Prod. Order No.=FIELD(No.);
-                DataItemTableView = SORTING (Status, Prod. Order No., Line No.);
+                DataItemLink = Status = FIELD(Status),
+                               "Prod. Order No." = FIELD("No.");
+                DataItemTableView = SORTING(Status, "Prod. Order No.", "Line No.");
                 column(Status; Status)
                 {
                 }
@@ -101,7 +101,7 @@ report 50079 "Production Slip"
                 column(RoutingLineNo; TempProdOrderRoutingLine."No.")
                 {
                 }
-                column(RoutingTan; TempProdOrderRoutingLine."Routing TAN")
+                column(RoutingTan; TempProdOrderRoutingLine."CCS PM Routing TAN")
                 {
                 }
                 column(CustomerName; TempCustomer.Name)
@@ -146,9 +146,9 @@ report 50079 "Production Slip"
                 column(TranferToLocation_Name; TranferToLocation.Name)
                 {
                 }
-                dataitem(DataItem1000000001; Table2000000026)
+                dataitem(DataItem1000000001; Integer)
                 {
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(Number; Number)
                     {
                     }
@@ -269,7 +269,7 @@ report 50079 "Production Slip"
         IsSalesLine := FALSE;
 
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutmessage();
 
         WHILE NOT IsSalesLine DO BEGIN
             i += 1;
@@ -305,7 +305,7 @@ report 50079 "Production Slip"
         IsTransferLine := FALSE;
 
         TrackingMgt.SetProdOrderLine(ProdOrderLine);
-        TrackingMgt.FindRecordsProductionSlip;
+        TrackingMgt.FindRecordsWithoutmessage();
 
         WHILE NOT IsTransferLine DO BEGIN
             i += 1;
