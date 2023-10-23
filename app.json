@@ -26,7 +26,20 @@
       {"id": "63aa5c1b-6e26-4572-aa2d-8b333b3ff1a4", 
         "name": "COSMO Quality Assurance", 
         "publisher": "Cosmo Consult", 
-        "version": "4.3.168818.0"}
+        "version": "4.3.168818.0"},
+        {
+          "id": "6f0293d3-86fc-4ff8-9632-54a580be6546",
+          "name": "ForNAV Core",
+          "publisher": "ForNAV",
+          "version": "7.1.1.5"
+        },
+        {
+          "id": "ffa26420-b880-4d49-9b2c-c3e60c86b914",
+          "name": "COSMO Text Module",
+          "publisher": "Cosmo Consult",
+          "version": "2.8.89449.0"
+        }
+       
   ],
   "screenshots": [],
   "platform": "22.0.0.0",
@@ -34,7 +47,7 @@
   "idRanges": [
     {
       "from": 50000,
-      "to": 59999
+      "to": 89999
     }
   ],
   "resourceExposurePolicy": {

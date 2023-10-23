@@ -181,39 +181,40 @@ pageextension 50057 gimRelProductionOrder extends "Released Production Order"
                         // << CC02
                     end;
                 }
-                action(PrintPulverLabel)
-                {
-                    Caption = 'Drucke Pulver-Etiketten';
-                    Image = Print;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
+                // action(PrintPulverLabel)
+                // {
+                //     Caption = 'Drucke Pulver-Etiketten';
+                //     Image = Print;
+                //     Promoted = true;
+                //     PromotedCategory = Process;
+                //     PromotedIsBig = true;
 
-                    trigger OnAction()
-                    begin
-                        PrintPulverLabel();
-                    end;
-                }
+                //     trigger OnAction()
+                //     begin
+                //         PrintPulverLabel();
+                //     end;
             }
         }
     }
+
 
     //TODO: Report einbauen
     /// <summary>
     /// PrintPulverLabel.
     /// </summary>
-    procedure PrintPulverLabel()
-    var
-        ProdLine: Record "Prod. Order Line";
-        //ProdLabel: Report "Etikett Fertigung";
-        RoutingTAN: Code[30];
-    begin
-        // ProdLine.SetRange(Status, 3);
-        // ProdLine.SetRange("Prod. Order No.", Rec."No.");
+    // procedure PrintPulverLabel()
+    // var
+    //     ProdLine: Record "Prod. Order Line";
+    //     ProdLabel: Report "Etikett Fertigung";
+    //     RoutingTAN: Code[30];
+    // begin
+    //     ProdLine.SetRange(Status, 3);
+    //     ProdLine.SetRange("Prod. Order No.", Rec."No.");
 
-        // ProdLabel.SetTableView(ProdLine);
-        // ProdLabel.UseRequestPage(true);
-        // //ProdLabel.
-        // ProdLabel.RunModal;
-    end;
+    //     ProdLabel.SetTableView(ProdLine);
+    //     ProdLabel.UseRequestPage(true);
+    //     //ProdLabel.
+    //     ProdLabel.RunModal;
+    // end;
+
 }

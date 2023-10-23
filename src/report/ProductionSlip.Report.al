@@ -6,7 +6,7 @@ report 50079 "Production Slip"
     // Einfügen ShipmentDate "from Sales Line"
     // CC02  23.03.2023  CCMUE.WH  Print transfer to location
     DefaultLayout = RDLC;
-    RDLCLayout = './ProductionSlip.rdlc';
+    RDLCLayout = './ProductionSlip.rdl';
 
     Caption = 'Production Slip';
     PreviewMode = PrintLayout;
@@ -157,10 +157,10 @@ report 50079 "Production Slip"
 
                     trigger OnAfterGetRecord()
                     begin
-                        // //GIM0009 ++++ Wenn Seriennummer vorhanden mit in den TAN übernehmen
-                        // IF SerialNoArray[Number]<>'' THEN
-                        //  SerRoutingTAN:=TempProdOrderRoutingLine."Routing TAN"+'$'+SerialNoArray[Number];
-                        // //----
+                        //GIM0009 ++++ Wenn Seriennummer vorhanden mit in den TAN übernehmen
+                        IF SerialNoArray[Number] <> '' THEN
+                            SerRoutingTAN := TempProdOrderRoutingLine."CCS PM Routing TAN" + '$' + SerialNoArray[Number];
+                        //----
                     end;
 
                     trigger OnPreDataItem()
