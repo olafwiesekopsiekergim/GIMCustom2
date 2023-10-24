@@ -2,7 +2,7 @@ report 50043 "Typ Label (Outside)"
 {
     // CC01 19.01.2022 CC.NR # Object created
     DefaultLayout = RDLC;
-    RDLCLayout = './TypLabelOutside.rdlc';
+    RDLCLayout = 'TypLabelOutside.rdl';
 
     Caption = 'Typ Label (outside)';
     PreviewMode = PrintLayout;

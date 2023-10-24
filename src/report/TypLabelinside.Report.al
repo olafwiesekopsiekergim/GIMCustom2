@@ -2,7 +2,7 @@ report 50046 "Typ Label (inside)"
 {
     // CC01 19.01.2022 CC.NR # Object created
     DefaultLayout = RDLC;
-    RDLCLayout = './TypLabelinside.rdlc';
+    RDLCLayout = 'TypLabelinside.rdl';
 
     Caption = 'Typ Label (inside)';
     PreviewMode = PrintLayout;
