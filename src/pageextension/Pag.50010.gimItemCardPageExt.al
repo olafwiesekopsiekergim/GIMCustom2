@@ -2,6 +2,14 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
 {
     layout
     {
+        addlast("CCS DM Config. to Order")
+        {
+            field("Product Group Code"; rec."Production Group Code")
+            {
+                ApplicationArea = All;
+                Caption = 'Produktionsgruppencode';
+            }
+        }
         addlast(Item)
         {
             field("Lager RMD"; "Lager RMD")

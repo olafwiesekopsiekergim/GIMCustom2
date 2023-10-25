@@ -20,6 +20,11 @@ table 50035 "Production Group"
             Caption = 'Print Action Released';
             OptionMembers = "mit Details","ohne Details","kein Druck",Listendruck;
         }
+        field(50140; "Print Production Slips"; Boolean)
+        {
+            Caption = 'Print Production Slips';
+        }
+
     }
 
     keys

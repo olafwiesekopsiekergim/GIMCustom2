@@ -5,6 +5,8 @@ page 50054 "Production Groups"
     Caption = 'Production Groups';
     PageType = List;
     SourceTable = "Production Group";
+    ApplicationArea = All;
+    UsageCategory = lists;
 
     layout
     {
@@ -24,6 +26,12 @@ page 50054 "Production Groups"
                 {
                     ApplicationArea = All;
                 }
+                field("Print Production Slips"; rec."Print Production Slips")
+                {
+                    ApplicationArea = All;
+                }
+
+
             }
         }
         area(factboxes)

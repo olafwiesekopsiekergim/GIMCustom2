@@ -13,6 +13,8 @@ page 50038 "Production Orders-Pulver"
     // P0020 02.03.16 DEBIE.ARE New object
 
     Caption = 'Production Orders';
+    ApplicationArea = All;
+    UsageCategory = Lists;
     Editable = false;
     PageType = List;
     SourceTable = "Production Order";

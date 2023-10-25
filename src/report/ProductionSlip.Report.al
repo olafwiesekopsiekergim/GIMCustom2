@@ -159,8 +159,8 @@ report 50079 "Production Slip"
                     trigger OnAfterGetRecord()
                     begin
                         // //GIM0009 ++++ Wenn Seriennummer vorhanden mit in den TAN übernehmen
-                        // IF SerialNoArray[Number]<>'' THEN
-                        //  SerRoutingTAN:=TempProdOrderRoutingLine."Routing TAN"+'$'+SerialNoArray[Number];
+                        // IF SerialNoArray[Number] <> '' THEN
+                        //     SerRoutingTAN := TempProdOrderRoutingLine."CCS PM Routing TAN" + '$' + SerialNoArray[Number];
                         // //----
                     end;
 
