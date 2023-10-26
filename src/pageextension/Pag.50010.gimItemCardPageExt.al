@@ -2,6 +2,54 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
 {
     layout
     {
+        modify("Routing No.")
+        {
+            trigger OnAssistEdit()
+            var
+                RoutingL: record "Routing Header";
+            begin
+                //GIM0002 ow 18.02.2022 ++++
+                IF "Routing No." = '' THEN BEGIN
+                    RoutingL.INIT;
+                    RoutingL."No." := "No.";
+                    RoutingL.Description := Description;
+                    RoutingL."Description 2" := "Description 2";
+                    RoutingL."Search Description" := "Search Description";
+                    RoutingL.INSERT(TRUE);
+                    "Routing No." := "No."
+                END ELSE
+                    RoutingL.GET("Routing No.");
+
+                PAGE.RUN(PAGE::Routing, RoutingL);
+                //GIM0002 ----
+            end;
+        }
+        modify("Production BOM No.")
+        {
+            trigger OnAssistEdit()
+            var
+                ProdBomL: record "production BOM Header";
+            begin
+                //GIM0002 ow 18.02.2022 ++++
+                IF "Production BOM No." = '' THEN BEGIN
+                    ProdBomL.INIT;
+                    ProdBomL."No." := "No.";
+                    ProdBomL.Description := Description;
+                    ProdBomL."Description 2" := "Description 2";
+                    ProdBomL."Search Name" := "Search Description";
+                    ProdBomL."Unit of Measure Code" := "Base Unit of Measure";
+                    ProdBomL.INSERT(TRUE);
+                    "Production BOM No." := "No."
+                END ELSE
+                    ProdBomL.GET("Production BOM No.");
+
+                IF rec."CCS PM Production BOM Type" = rec."ccs pm Production BOM Type"::" " THEN
+                    PAGE.RUN(PAGE::"Production BOM", ProdBomL);
+                //GIM0002 ----
+            end;
+        }
+
+
         addlast("CCS DM Config. to Order")
         {
             field("Product Group Code"; rec."Production Group Code")
