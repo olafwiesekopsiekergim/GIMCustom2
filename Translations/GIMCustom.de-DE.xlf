@@ -4660,7 +4660,6 @@
         </trans-unit>
         <trans-unit id="Codeunit 1364158839 - Method 3713241823 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
           <source>The routing TAN %1 was already registered.</source>
-          <target>Diese Routing wurde bereits registriert.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit GIM Prod. Order Feedback Svc - Method InsertTANOutputJnlLine - NamedType Text001</note>
         </trans-unit>
@@ -4991,7 +4990,7 @@
         </trans-unit>
         <trans-unit id="Page 1754429658 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Düperthal TAN Output Journal</source>
-          <trans>Düperthal TAN Istmeldung-Buchblatt</trans>
+          <target>Düperthal TAN Istmeldungs-Buchblatt</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page gimTANOutputJournal - Property Caption</note>
         </trans-unit>
@@ -5743,7 +5742,7 @@
         </trans-unit>
         <trans-unit id="Page 2326345770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Production Orders</source>
-          <source>FA Übersicht</target>
+          <target>FA Übersicht</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Production Orders - Property Caption</note>
         </trans-unit>
@@ -13388,6 +13387,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension gimPostedServiceInvoice - Control PO Date - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2660485243 - Action 2064699320 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 673425998">
+          <source>Verbrauch an Istmeldung anpassen</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension gimProductionJournal - Action AdjustConsumptionToOutput - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1457462067 - Action 1506743720 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2437096118">
           <source>Öffne D3-Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -14377,6 +14381,7 @@
         </trans-unit>
         <trans-unit id="TableExtension 3391273831 - Field 87167459 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
           <source>Create Prod. Order from Sales Order</source>
+          <target>FA erstellen aus Verkaufsauftrag</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension GIM User Setup - Field Create PO From SO - Property Caption</note>
         </trans-unit>

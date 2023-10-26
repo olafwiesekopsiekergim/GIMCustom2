@@ -142,123 +142,126 @@ codeunit 50002 "CCO Prod. Order Status Mgt. H."
         //  CreateReservationForProdLine(ProductionOrder);
     end;
 
-    //TODO: Function wieder reinnehmen wenn die Reports da sind
-    procedure OnAfterChangeStatusOnProdOrder(var ProductionOrder: Record "Production Order"; NewStatus: Option Quote,Planned,"Firm Planned",Released,Finished)
-    // var
-    //     ProdOrderLine: Record "Prod. Order Line";
-    //     Item: Record Item;
-    //     ItemTrackingCode: Record "Item Tracking Code";
-    //     ProdOrderRoutingLine: Record "Prod. Order Routing Line";
-    //     RecRef: RecordRef;
-    //     CreateTestOrder: Codeunit "ccs qa Create Test Order";
-    //     i: Integer;
-    //     FunctionManagement: Codeunit "Function Management";
-    //     ProductionOrder2: Record "Production Order";
-    //     ProductionSlip: Report "Production Slip";
-    //     ProdOrder2: Record "Production Order";
-    //     ProdReport: Report "Montage Entnahmestückliste";
-    //     TempSalesLine: Record "Sales Line" temporary;
-    //     noReporting: Boolean;
+
+    //TODO: Ein Report fehlt
+    [EventSubscriber(ObjectType::Codeunit, 5407, 'OnAfterChangeStatusOnProdOrder', '', true, true)]
+    procedure OnAfterChangeStatusOnProdOrder(var ProdOrder: Record "Production Order"; var ToProdOrder: Record "Production Order"; NewStatus: Enum "Production Order Status"; NewPostingDate: Date; NewUpdateUnitCost: Boolean; var SuppressCommit: Boolean)
+    var
+        ProdOrderLine: Record "Prod. Order Line";
+        Item: Record Item;
+        ItemTrackingCode: Record "Item Tracking Code";
+        ProdOrderRoutingLine: Record "Prod. Order Routing Line";
+        RecRef: RecordRef;
+        CreateTestOrder: Codeunit "ccs qa Create Test Order";
+        i: Integer;
+        FunctionManagement: Codeunit "Function Management";
+        ProductionOrder2: Record "Production Order";
+        ProductionSlip: Report "Production Slip";
+        ProdOrder2: Record "Production Order";
+        // ProdReport: Report "Montage Entnahmestückliste";
+        TempSalesLine: Record "Sales Line" temporary;
+        noReporting: Boolean;
     begin
 
-        //     if NewStatus = NewStatus::Released then begin
+        if NewStatus = NewStatus::Released then begin
 
-        //         // >> P0035
+            // >> P0035
 
-        //         CreateReservationForProdLine(ProductionOrder);
+            CreateReservationForProdLine(ProdOrder);
 
-        //         // >> CC01
-        //         FunctionManagement.CreateSerialInfoFromPO(ProductionOrder);
-        //         // << CC01
+            // >> CC01
+            FunctionManagement.CreateSerialInfoFromPO(ProdOrder);
+            // << CC01
 
-        //         // >> CC02
-        //         //IF (ProductionOrder."Production Group Code" = 'ZELLEN') OR (ProductionOrder."Production Group Code" = 'VERPACK') THEN BEGIN
-        //         if (ProductionOrder."Production Group Code" = 'ZELLEN') or (ProductionOrder."Production Group Code" = 'VERPACK') or (ProductionOrder."Production Group Code" = 'HS') or (ProductionOrder."Production Group Code" = 'UTS') then begin
+            // >> CC02
+            //IF (ProductionOrder."Production Group Code" = 'ZELLEN') OR (ProductionOrder."Production Group Code" = 'VERPACK') THEN BEGIN
+            if (ProdOrder."Production Group Code" = 'ZELLEN') or (ProdOrder."Production Group Code" = 'VERPACK') or (ProdOrder."Production Group Code" = 'HS') or (ProdOrder."Production Group Code" = 'UTS') then begin
 
-        //             //GIM0013 ++++ Reports deaktivieren für Tests noReporting:=true;
-        //             noReporting := false;
-        //             if not noReporting then begin
-        //                 //GIM0013 ----
-        //                 ProductionOrder2 := ProductionOrder;
-        //                 ProductionOrder2.SetRange(Status, ProductionOrder.Status);
-        //                 ProductionOrder2.SetRange("No.", ProductionOrder."No.");
-        //                 ProductionSlip.SetTableView(ProductionOrder2);
-        //                 ProductionSlip.UseRequestPage(false);
-        //                 ProductionSlip.RunModal;
+                //GIM0013 ++++ Reports deaktivieren für Tests noReporting:=true;
+                noReporting := false;
+                if not noReporting then begin
+                    //GIM0013 ----
+                    ProductionOrder2 := ProdOrder;
+                    ProductionOrder2.SetRange(Status, ProdOrder.Status);
+                    ProductionOrder2.SetRange("No.", ProdOrder."No.");
+                    ProductionSlip.SetTableView(ProductionOrder2);
+                    ProductionSlip.UseRequestPage(false);
+                    ProductionSlip.RunModal;
 
-        //                 FunctionManagement.PrintTypShieldFromPO(ProductionOrder);
-        //                 //GIM0013 ++++
-        //             end;
-        //             //GIM0013 -----
-        //         end else begin
+                    FunctionManagement.PrintTypShieldFromPO(ProdOrder);
+                    //GIM0013 ++++
+                end;
+                //GIM0013 -----
+            end else begin
 
-        //             case ProductionOrder."Print Action Released" of
-        //                 ProductionOrder."Print Action Released"::"mit Details", ProductionOrder."Print Action Released"::"ohne Details":
-        //                     begin
-        //                         if not (ProdOrder2."Production Group Code" = 'PULVERN') then begin
-        //                             ProdOrder2 := ProductionOrder;
-        //                             ProdOrder2.SetRange(Status, ProductionOrder.Status);
-        //                             ProdOrder2.SetRange("No.", ProductionOrder."No.");
-        //                             ProdReport.SetTableView(ProdOrder2);
-        //                             ProdReport.SetDetails(ProductionOrder."Print Action Released" = ProductionOrder."Print Action Released"::"mit Details");
-        //                             ProdReport.UseRequestPage(false);
-        //                             ProdReport.RunModal;
-        //                         end;
-        //                     end;
-        //             end;
+                //TODO:Report mu0 designed werden unddieser Block wieder einkommentiert
+                // case ProductionOrder."Print Action Released" of
+                //     ProductionOrder."Print Action Released"::"mit Details", ProductionOrder."Print Action Released"::"ohne Details":
+                //         begin
+                //             if not (ProdOrder2."Production Group Code" = 'PULVERN') then begin
+                //                 ProdOrder2 := ProductionOrder;
+                //                 ProdOrder2.SetRange(Status, ProductionOrder.Status);
+                //                 ProdOrder2.SetRange("No.", ProductionOrder."No.");
+                //                 ProdReport.SetTableView(ProdOrder2);
+                //                 ProdReport.SetDetails(ProductionOrder."Print Action Released" = ProductionOrder."Print Action Released"::"mit Details");
+                //                 ProdReport.UseRequestPage(false);
+                //                 ProdReport.RunModal;
+                //             end;
+                //         end;
+                // end;
 
 
 
-        //         end;
-        //         // << CC02
-        //         // << P0035
+            end;
+            // << CC02
+            // << P0035
 
-        //         ProdOrderLine.SetRange(Status, ProductionOrder.Status);
-        //         ProdOrderLine.SetRange("Prod. Order No.", ProductionOrder."No.");
-        //         if ProdOrderLine.FindSet(false, false) then begin
+            ProdOrderLine.SetRange(Status, ProdOrder.Status);
+            ProdOrderLine.SetRange("Prod. Order No.", ProdOrder."No.");
+            if ProdOrderLine.FindSet(false) then begin
 
-        //             //dori
-        //             FunctionManagement.GetSalesLineFromProdOrderLine(ProdOrderLine, TempSalesLine);
-        //             if (TempSalesLine."Document No." <> '') then begin
-        //                 ProductionOrder."Evtl. Auftragsnr." := TempSalesLine."Document No.";
-        //                 ProductionOrder."Evtl. Auftragszeilennr." := TempSalesLine."Line No.";
-        //                 ProductionOrder.Modify;
-        //             end;
+                //dori
+                FunctionManagement.GetSalesLineFromProdOrderLine(ProdOrderLine, TempSalesLine);
+                if (TempSalesLine."Document No." <> '') then begin
+                    ProdOrder."Evtl. Auftragsnr." := TempSalesLine."Document No.";
+                    ProdOrder."Evtl. Auftragszeilennr." := TempSalesLine."Line No.";
+                    ProdOrder.Modify;
+                end;
 
-        //             repeat
-        //                 ProdOrderRoutingLine.SetRange(Status, ProductionOrder.Status);
-        //                 ProdOrderRoutingLine.SetRange("Prod. Order No.", ProductionOrder."No.");
-        //                 ProdOrderRoutingLine.SetRange("Routing Reference No.", ProdOrderLine."Line No.");
-        //                 if ProdOrderRoutingLine.FindFirst then begin
-        //                     Clear(CreateTestOrder);
-        //                     Clear(RecRef);
-        //                     repeat
-        //                         i := 0;
-        //                         if ProdOrderRoutingLine."CCS QA Test Plan No." <> '' then begin
-        //                             RecRef.GetTable(ProdOrderRoutingLine);
+                repeat
+                    ProdOrderRoutingLine.SetRange(Status, ProdOrder.Status);
+                    ProdOrderRoutingLine.SetRange("Prod. Order No.", ProdOrder."No.");
+                    ProdOrderRoutingLine.SetRange("Routing Reference No.", ProdOrderLine."Line No.");
+                    if ProdOrderRoutingLine.FindFirst then begin
+                        Clear(CreateTestOrder);
+                        Clear(RecRef);
+                        repeat
+                            i := 0;
+                            if ProdOrderRoutingLine."CCS QA Test Plan No." <> '' then begin
+                                RecRef.GetTable(ProdOrderRoutingLine);
 
-        //                             Item.Get(ProdOrderLine."Item No.");
-        //                             if (ItemTrackingCode.Get(Item."Item Tracking Code")) and (ItemTrackingCode."SN Specific Tracking") then begin
-        //                                 CreateTestOrder.SetSourceLine(RecRef);
-        //                                 CreateTestOrder.SetCalculation(true);
-        //                                 CreateTestOrder.SetGuiAllowed(false);
-        //                                 CreateTestOrder.Run;
-        //                             end else begin
-        //                                 i := 0;
-        //                                 repeat
-        //                                     i += 1;
-        //                                     CreateTestOrder.SetSourceLine(RecRef);
-        //                                     CreateTestOrder.SetCalculation(true);
-        //                                     CreateTestOrder.SetGuiAllowed(false);
-        //                                     CreateTestOrder.Run;
-        //                                 until (i = 1);
-        //                             end;
-        //                         end;
-        //                     until ProdOrderRoutingLine.Next = 0;
-        //                 end;
-        //             until ProdOrderLine.Next = 0;
-        //         end;
-        //     end;
+                                Item.Get(ProdOrderLine."Item No.");
+                                if (ItemTrackingCode.Get(Item."Item Tracking Code")) and (ItemTrackingCode."SN Specific Tracking") then begin
+                                    CreateTestOrder.SetSourceLine(RecRef);
+                                    CreateTestOrder.SetCalculation(true);
+                                    CreateTestOrder.SetGuiAllowed(false);
+                                    CreateTestOrder.Run;
+                                end else begin
+                                    i := 0;
+                                    repeat
+                                        i += 1;
+                                        CreateTestOrder.SetSourceLine(RecRef);
+                                        CreateTestOrder.SetCalculation(true);
+                                        CreateTestOrder.SetGuiAllowed(false);
+                                        CreateTestOrder.Run;
+                                    until (i = 1);
+                                end;
+                            end;
+                        until ProdOrderRoutingLine.Next = 0;
+                    end;
+                until ProdOrderLine.Next = 0;
+            end;
+        end;
     end;
 
     [EventSubscriber(ObjectType::Table, 337, 'OnAfterModifyEvent', '', false, false)]

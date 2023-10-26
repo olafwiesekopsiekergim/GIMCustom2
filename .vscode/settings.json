@@ -1,3 +1,4 @@
 {
-    "al.showHomeAtStartup": "Always"
+    "al.showHomeAtStartup": "Always",
+    "xliffSync.baseFile": "GIMCustom.en-US.xlf"
 }
