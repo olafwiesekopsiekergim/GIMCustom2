@@ -38,4 +38,12 @@ pageextension 50054 gimRequestsToApprove extends "Requests to Approve"
         }
     }
 
+    /// <summary>
+    /// OnAfterGetCurrRecord.
+    /// </summary>
+    trigger OnAfterGetCurrRecord()
+    begin
+        if CurrPage.ApprovCommentFactBoxGIM.PAGE.SetFilterFromApprovalEntry(Rec) then;
+    end;
+
 }
