@@ -5,6 +5,8 @@ page 50006 TestOrderPropGIM
     PageType = List;
     ShowFilter = false;
     SourceTable = "ccs qa Test Order Property";
+    ApplicationArea = All;
+    Usagecategory = lists;
 
     layout
     {

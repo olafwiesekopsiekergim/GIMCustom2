@@ -1,3 +1,4 @@
+#pragma implicitwith disable
 pageextension 50010 "gimItemCardPageExt" extends "Item Card"
 {
     layout
@@ -9,16 +10,16 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
                 RoutingL: record "Routing Header";
             begin
                 //GIM0002 ow 18.02.2022 ++++
-                IF "Routing No." = '' THEN BEGIN
-                    RoutingL.INIT;
-                    RoutingL."No." := "No.";
-                    RoutingL.Description := Description;
-                    RoutingL."Description 2" := "Description 2";
-                    RoutingL."Search Description" := "Search Description";
-                    RoutingL.INSERT(TRUE);
-                    "Routing No." := "No."
-                END ELSE
-                    RoutingL.GET("Routing No.");
+                if Rec."Routing No." = '' then begin
+                    RoutingL.INIT();
+                    RoutingL."No." := Rec."No.";
+                    RoutingL.Description := Rec.Description;
+                    RoutingL."Description 2" := Rec."Description 2";
+                    RoutingL."Search Description" := Rec."Search Description";
+                    RoutingL.INSERT(true);
+                    Rec."Routing No." := Rec."No."
+                end else
+                    RoutingL.GET(Rec."Routing No.");
 
                 PAGE.RUN(PAGE::Routing, RoutingL);
                 //GIM0002 ----
@@ -31,22 +32,30 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
                 ProdBomL: record "production BOM Header";
             begin
                 //GIM0002 ow 18.02.2022 ++++
-                IF "Production BOM No." = '' THEN BEGIN
-                    ProdBomL.INIT;
-                    ProdBomL."No." := "No.";
-                    ProdBomL.Description := Description;
-                    ProdBomL."Description 2" := "Description 2";
-                    ProdBomL."Search Name" := "Search Description";
-                    ProdBomL."Unit of Measure Code" := "Base Unit of Measure";
-                    ProdBomL.INSERT(TRUE);
-                    "Production BOM No." := "No."
-                END ELSE
-                    ProdBomL.GET("Production BOM No.");
+                if Rec."Production BOM No." = '' then begin
+                    ProdBomL.INIT();
+                    ProdBomL."No." := Rec."No.";
+                    ProdBomL.Description := Rec.Description;
+                    ProdBomL."Description 2" := Rec."Description 2";
+                    ProdBomL."Search Name" := Rec."Search Description";
+                    ProdBomL."Unit of Measure Code" := Rec."Base Unit of Measure";
+                    ProdBomL.INSERT(true);
+                    Rec."Production BOM No." := Rec."No."
+                end else
+                    ProdBomL.GET(Rec."Production BOM No.");
 
-                IF rec."CCS PM Production BOM Type" = rec."ccs pm Production BOM Type"::" " THEN
+                if rec."CCS PM Production BOM Type" = rec."ccs pm Production BOM Type"::" " then
                     PAGE.RUN(PAGE::"Production BOM", ProdBomL);
                 //GIM0002 ----
             end;
+        }
+
+        addlast(Warehouse)
+        {
+            field("Stand.Lagerort"; Rec."Stand.Lagerort")
+            {
+                ApplicationArea = all;
+            }
         }
 
 
@@ -55,35 +64,39 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             field("Product Group Code"; rec."Production Group Code")
             {
                 ApplicationArea = All;
-                Caption = 'Produktionsgruppencode';
+                Caption = 'Fertigungsgruppencode';
             }
         }
         addlast(Item)
         {
-            field("Lager RMD"; "Lager RMD")
+            field("Lager RMD"; Rec."Lager RMD")
             {
                 ApplicationArea = All;
             }
-            field("RMD Labelanweisungscode"; "RMD Labelanweisungscode")
+            field("RMD Labelanweisungscode"; Rec."RMD Labelanweisungscode")
             {
                 ApplicationArea = All;
             }
-            field("Menge in RMD Umlagerung"; "Menge in RMD Umlagerung")
+            field("Menge in RMD Umlagerung"; Rec."Menge in RMD Umlagerung")
             {
                 ApplicationArea = All;
             }
-            field(Frachtkosten; Frachtkosten)
+            field(Frachtkosten; Rec.Frachtkosten)
             {
                 ApplicationArea = All;
             }
-            field(Frachtkostencode; Frachtkostencode)
+            field(Frachtkostencode; Rec.Frachtkostencode)
+            {
+                ApplicationArea = All;
+            }
+            field("CCO Print on Slip"; Rec."Print on Slip")
             {
                 ApplicationArea = All;
             }
         }
         addlast("Posting Details")
         {
-            field("EP-pflichtig"; "EP-pflichtig")
+            field("EP-pflichtig"; Rec."EP-pflichtig")
             {
                 ApplicationArea = All;
             }
@@ -94,35 +107,35 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             group(Abmessungen)
             {
                 Caption = 'Abmessungen';
-                field(Abmessung1; Abmessung1)
+                field(Abmessung1; Rec.Abmessung1)
                 {
                     ApplicationArea = All;
                 }
-                field(Abmessung2; Abmessung2)
+                field(Abmessung2; Rec.Abmessung2)
                 {
                     ApplicationArea = All;
                 }
-                field(Abmessung3; Abmessung3)
+                field(Abmessung3; Rec.Abmessung3)
                 {
                     ApplicationArea = All;
                 }
-                field(Innenabmessung1; Innenabmessung1)
+                field(Innenabmessung1; Rec.Innenabmessung1)
                 {
                     ApplicationArea = All;
                 }
-                field(Innenabmessung2; Innenabmessung2)
+                field(Innenabmessung2; Rec.Innenabmessung2)
                 {
                     ApplicationArea = All;
                 }
-                field(Innenabmessung3; Innenabmessung3)
+                field(Innenabmessung3; Rec.Innenabmessung3)
                 {
                     ApplicationArea = All;
                 }
-                field(Durchmesser2; Durchmesser2)
+                field(Durchmesser2; Rec.Durchmesser2)
                 {
                     ApplicationArea = All;
                 }
-                field(Durchmesser1; Durchmesser1)
+                field(Durchmesser1; Rec.Durchmesser1)
                 {
                     ApplicationArea = All;
                 }
@@ -130,15 +143,15 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             group(Pulverprogramm)
             {
                 Caption = 'Pulverprogramm';
-                field("Pulvernr.(einseitig)"; "Pulvernr.(einseitig)")
+                field("Pulvernr.(einseitig)"; Rec."Pulvernr.(einseitig)")
                 {
                     ApplicationArea = All;
                 }
-                field("Pulvernr.(beidseitig)"; "Pulvernr.(beidseitig)")
+                field("Pulvernr.(beidseitig)"; Rec."Pulvernr.(beidseitig)")
                 {
                     ApplicationArea = All;
                 }
-                field("Pulvernr.(doppelt)"; "Pulvernr.(doppelt)")
+                field("Pulvernr.(doppelt)"; Rec."Pulvernr.(doppelt)")
                 {
                     ApplicationArea = All;
                 }
@@ -146,50 +159,50 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             group(Vertriebsportal)
             {
                 Caption = 'Vertriebsportal';
-                field(Partnerportal; Partnerportal)
+                field(Partnerportal; Rec.Partnerportal)
                 {
                     ApplicationArea = All;
                 }
-                field(Kategorie; Kategorie)
+                field(Kategorie; Rec.Kategorie)
                 {
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID-DE"; "Vimeo-ID-DE")
+                field("Vimeo-ID-DE"; Rec."Vimeo-ID-DE")
                 {
                     Caption = 'Vimeo-ID-DE';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID2-DE"; "Vimeo-ID2-DE")
+                field("Vimeo-ID2-DE"; Rec."Vimeo-ID2-DE")
                 {
                     Caption = 'Vimeo-ID2-DE';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID3-DE"; "Vimeo-ID3-DE")
+                field("Vimeo-ID3-DE"; Rec."Vimeo-ID3-DE")
                 {
                     Caption = 'Vimeo-ID3-DE';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID4-DE"; "Vimeo-ID4-DE")
+                field("Vimeo-ID4-DE"; Rec."Vimeo-ID4-DE")
                 {
                     Caption = 'Vimeo-ID4-DE';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID-ENU"; "Vimeo-ID-ENU")
+                field("Vimeo-ID-ENU"; Rec."Vimeo-ID-ENU")
                 {
                     Caption = 'Vimeo-ID-ENU';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID2-ENU"; "Vimeo-ID2-ENU")
+                field("Vimeo-ID2-ENU"; Rec."Vimeo-ID2-ENU")
                 {
                     Caption = 'Vimeo-ID2-ENU';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID3-ENU"; "Vimeo-ID3-ENU")
+                field("Vimeo-ID3-ENU"; Rec."Vimeo-ID3-ENU")
                 {
                     Caption = 'Vimeo-ID3-ENU';
                     ApplicationArea = All;
                 }
-                field("Vimeo-ID4-ENU"; "Vimeo-ID4-ENU")
+                field("Vimeo-ID4-ENU"; Rec."Vimeo-ID4-ENU")
                 {
                     Caption = 'Vimeo-ID4-ENU';
                     ApplicationArea = All;
@@ -198,15 +211,15 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             group(Katalog)
             {
                 Caption = 'Katalog';
-                field(Control1000000018; Katalog)
+                field(Control1000000018; Rec.Katalog)
                 {
                     ApplicationArea = All;
                 }
-                field(Katalogseite; Katalogseite)
+                field(Katalogseite; Rec.Katalogseite)
                 {
                     ApplicationArea = All;
                 }
-                field(Preisrelevant; Preisrelevant)
+                field(Preisrelevant; Rec.Preisrelevant)
                 {
                     ApplicationArea = All;
                 }
@@ -214,27 +227,30 @@ pageextension 50010 "gimItemCardPageExt" extends "Item Card"
             group("QM-Etikett")
             {
                 Caption = 'QM-Etikett';
-                field("Basis Zertifikat"; "Basis Zertifikat")
+                field("Basis Zertifikat"; Rec."Basis Zertifikat")
                 {
                     ApplicationArea = All;
                 }
-                field("Max Gebindegr. links"; "Max Gebindegr. links")
+                field("Max Gebindegr. links"; Rec."Max Gebindegr. links")
                 {
                     ApplicationArea = All;
                 }
-                field("Max Gebindegr. rechts"; "Max Gebindegr. rechts")
+                field("Max Gebindegr. rechts"; Rec."Max Gebindegr. rechts")
                 {
                     ApplicationArea = All;
                 }
-                field("Max Tragf. Stellf. links"; "Max Tragf. Stellf. links")
+                field("Max Tragf. Stellf. links"; Rec."Max Tragf. Stellf. links")
                 {
                     ApplicationArea = All;
                 }
-                field("Max Tragf. Stellf. rechts"; "Max Tragf. Stellf. rechts")
+                field("Max Tragf. Stellf. rechts"; Rec."Max Tragf. Stellf. rechts")
                 {
                     ApplicationArea = All;
                 }
+
+
             }
         }
     }
 }
+#pragma implicitwith restore

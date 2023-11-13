@@ -34,13 +34,31 @@ codeunit 50001 "GIM Events"
     local procedure OnAfterDelegateApprovalRequest(var ApprovalEntry: Record "Approval Entry")
     var
         GimApprovalMgmt: codeunit GIMApprovalManagement;
-    BEGIN
+    begin
         //GIM0008 14.4.22 ++++
         GIMApprovalMgmt.DeleteDelegateIDOnApprovalEntries(ApprovalEntry);
         //----
     end;
 
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterCopyFromItem', '', true, true)]
+    local procedure T37_OnAfterCopyFromItem(CurrentFieldNo: Integer; Item: Record Item; var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line")
+    begin
+        SalesLine."Print on Slip" := Item."Print on Slip";
+    end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Release Sales Document", 'OnAfterManualReleaseSalesDoc', '', true, true)]
+
+    local procedure OnAfterManualReleaseSalesDoc(var SalesHeader: Record "Sales Header"; PreviewMode: Boolean)
+    begin
+        salesHeader.CreateReservEntry();
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnCopyFromItemOnAfterCheck', '', false, false)]
+    local procedure OnCopyFromItemOnAfterCheck(var SalesLine: Record "Sales Line"; Item: Record Item)
+    begin
+        IF Item."Stand.Lagerort" <> '' THEN
+            SalesLine."Location Code" := Item."Stand.Lagerort";
+    end;
 }
 
 

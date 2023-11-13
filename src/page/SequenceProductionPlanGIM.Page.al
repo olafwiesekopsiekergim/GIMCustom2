@@ -1,7 +1,10 @@
 page 50007 SequenceProductionPlanGIM
 {
     PageType = Worksheet;
+    ApplicationArea = All;
+    Usagecategory = lists;
     SourceTable = "Prod. Order Line";
+
     SourceTableView = SORTING("ccs px Sequence Work Center No", "ccs px Sequence Position")
                       ORDER(Ascending)
                       WHERE("ccs px Sequence Planning" = CONST(true),

@@ -26,7 +26,7 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         {
             Caption = 'Internal Job No.';
             Description = 'P0005';
-            TableRelation = "Internal Job"."No." WHERE("Win/Loss" = CONST(" "));
+            TableRelation = "Internal Job"."No." where("Win/Loss" = const(" "));
         }
         field(50005; "Win/Loss"; Option)
         {
@@ -69,7 +69,7 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         }
         field(50013; Blocked; Enum "Customer Blocked")
         {
-            CalcFormula = Lookup(Customer.Blocked WHERE("No." = FIELD("Sell-to Customer No.")));
+            CalcFormula = lookup(Customer.Blocked where("No." = field("Sell-to Customer No.")));
             Caption = 'Blocked';
             Editable = false;
             FieldClass = FlowField;
@@ -93,9 +93,9 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("Sales Line".Amount WHERE("Document Type" = FIELD("Document Type"),
-                                                         "Document No." = FIELD("No."),
-                                                         "Allow Invoice Disc." = CONST(true)));
+            CalcFormula = sum("Sales Line".Amount where("Document Type" = field("Document Type"),
+                                                         "Document No." = field("No."),
+                                                         "Allow Invoice Disc." = const(true)));
             Caption = 'Amount for Invoice Discount';
             Description = 'P0008';
             Editable = false;
@@ -105,9 +105,9 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("Sales Line"."Amount Including VAT" WHERE("Document Type" = FIELD("Document Type"),
-                                                                         "Document No." = FIELD("No."),
-                                                                         "Allow Invoice Disc." = CONST(true)));
+            CalcFormula = sum("Sales Line"."Amount Including VAT" where("Document Type" = field("Document Type"),
+                                                                         "Document No." = field("No."),
+                                                                         "Allow Invoice Disc." = const(true)));
             Caption = 'Amount Including VAT for Invoice Discount';
             Editable = false;
             FieldClass = FlowField;
@@ -152,10 +152,7 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
             begin
                 // >> P0023
                 if Zusatzstatus <> xRec.Zusatzstatus then begin
-                    // >> P0034
-                    //TESTFIELD(Status,Status::Released);
-                    // << P0034
-                    SetWarehouseRequest;
+                    SetWarehouseRequest();
                 end;
                 // << P0023
             end;
@@ -187,8 +184,7 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
             begin
                 // >> P0008
                 if "Check List created" then
-                    "Check List created on" := WorkDate
-                else begin
+                    "Check List created on" := WorkDate() else begin
                     TestField("Check List receive", false);
                     "Check List created on" := 0D;
                 end;
@@ -210,7 +206,7 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
                 // >> P0008
                 if "Check List receive" then begin
                     TestField("Check List created");
-                    "Check List receive on" := WorkDate;
+                    "Check List receive on" := WorkDate();
                 end else
                     "Check List receive on" := 0D;
                 // << P0008
@@ -232,8 +228,8 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
 
 
     var
-        myInt: Integer;
         Text053: Label 'You must cancel the approval process if you wish to change the %1.';
+        LastEntryNo: integer;
 
 
     //[Scope('Internal')]
@@ -252,4 +248,74 @@ tableextension 50009 "GIM Sales Header" extends "Sales Header"
         WarehouseRequest.ModifyAll("Zusatzstatus Auftrag", Zusatzstatus);
         // << P0023
     end;
+
+
+    procedure CreateReservEntry()
+    var
+        ReleaseSalesDoc: Codeunit "Release Sales Document";
+        EnterQuantityToCreate: Page "Enter Quantity to Create";
+        QtyToCreate: Decimal;
+        QtyToCreateInt: Integer;
+        CreateLotNo: Boolean;
+        ReservationEntry: Record "Reservation Entry";
+        NoSeriesManagement: Codeunit "NoSeriesManagement";
+        Item: Record Item;
+        i: Integer;
+        a: Integer;
+        e: Integer;
+    begin
+        // >> CCMUE.BS
+        SalesLine.SETRANGE("Document Type", Rec."Document Type");
+        SalesLine.SETRANGE("Document No.", Rec."No.");
+        SalesLine.SETRANGE(Type, SalesLine.Type::Item);
+        IF SalesLine.FINDSET THEN BEGIN
+            REPEAT
+                IF Item.GET(SalesLine."No.") THEN BEGIN
+                    IF (Item."Item Tracking Code" = 'SN ALLE') AND (Item."Serial Nos." <> '') THEN BEGIN
+                        // << CC01
+                        ReservationEntry.RESET;
+                        ReservationEntry.SETRANGE("Source Type", 37);
+                        ReservationEntry.SETRANGE("Source Subtype", SalesLine."Document Type");
+                        ReservationEntry.SETRANGE("Source ID", SalesLine."Document No.");
+                        ReservationEntry.SETRANGE("Source Ref. No.", SalesLine."Line No.");
+                        ReservationEntry.SETFILTER("Serial No.", '<>%1', '');
+                        IF ReservationEntry.ISEMPTY THEN BEGIN
+                            ReservationEntry.RESET;
+                            // << CC01
+                            IF ReservationEntry.FINDLAST() THEN BEGIN
+                                LastEntryNo := ReservationEntry."Entry No.";
+                            END;
+                            i := SalesLine."Quantity (Base)";
+                            REPEAT
+                                ReservationEntry.INIT;
+                                ReservationEntry."Source Type" := DATABASE::"Sales Line";
+                                ReservationEntry."Source ID" := SalesLine."Document No.";
+                                ReservationEntry."Source Subtype" := SalesLine."Document Type";
+                                ReservationEntry."Source Ref. No." := SalesLine."Line No.";
+                                ReservationEntry."Item No." := SalesLine."No.";
+                                ReservationEntry."Quantity (Base)" := -1;
+                                ReservationEntry."Qty. per Unit of Measure" := SalesLine."Qty. per Unit of Measure";
+                                ReservationEntry.Quantity := -1 / SalesLine."Qty. per Unit of Measure";
+                                ReservationEntry."Qty. to Handle (Base)" := -1;
+                                ReservationEntry."Qty. to Invoice (Base)" := -1;
+                                ReservationEntry."Serial No." := NoSeriesManagement.GetNextNo(Item."Serial Nos.", WORKDATE, TRUE);
+                                ReservationEntry."Creation Date" := TODAY;
+                                ReservationEntry."Created By" := USERID;
+                                ReservationEntry."Location Code" := SalesLine."Location Code";
+                                ReservationEntry."Reservation Status" := ReservationEntry."Reservation Status"::Surplus;
+                                ReservationEntry."Shipment Date" := SalesLine."Shipment Date";
+                                ReservationEntry."Entry No." := 0;   //Autowert
+                                ReservationEntry.INSERT;
+                                i := i - 1;
+                            UNTIL i = 0;
+                            // >> CC01
+                        END;
+                        // << CC01
+                    END;
+                END;
+            UNTIL SalesLine.NEXT = 0;
+        END;
+        // << CCMUE.BS
+    end;
+
 }

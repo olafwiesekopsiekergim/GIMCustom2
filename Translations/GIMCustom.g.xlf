@@ -12953,6 +12953,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Copy Service Item - Control CopyNo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3380775794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Execute calc. Low-level code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Execute calc. Low-level code - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 514741837 - NamedType 4184802958" size-unit="char" translate="yes" xml:space="preserve">
           <source>Valid values for the barcode size are 1, 2, 3, 4 &amp; 5</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -13304,7 +13309,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension gimCustomerCardPageExt - Control ForeignTrade - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1563551708 - Control 231643163 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1434786627">
-          <source>Produktionsgruppencode</source>
+          <source>Fertigungsgruppencode</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension gimItemCardPageExt - Control Product Group Code - Property Caption</note>
         </trans-unit>
@@ -13492,6 +13497,11 @@
           <source>Düperthal</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension GIMTestOrderValRecCard - Control Düperthal - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3491515077 - Field 4036070585 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1712825122">
+          <source>Only Approved PO</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension CCO Plan. Ext. Setup Ext - Field CCO Only Approved PO - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2728267644 - Field 712820192 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3469146285">
           <source>Black Logo</source>
