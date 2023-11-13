@@ -1,4 +1,4 @@
-codeunit 50100 "50100"
+codeunit 50100 "free50100"
 {
 
     trigger OnRun()
