@@ -22,4 +22,18 @@ page 50005 ApprovCommentFactBoxGIM
             }
         }
     }
+
+    /// <summary>
+    /// SetFilterFromApprovalEntry.
+    /// </summary>
+    /// <param name="ApprovalEntry">Record "Approval Entry".</param>
+    /// <returns>Return variable ReturnValue of type Boolean.</returns>
+    procedure SetFilterFromApprovalEntry(ApprovalEntry: Record "Approval Entry") ReturnValue: Boolean
+    begin
+        SetRange("Table ID", ApprovalEntry."Table ID");
+        SetRange("Record ID to Approve", ApprovalEntry."Record ID to Approve");
+
+        ReturnValue := FindSet;
+        CurrPage.Update(false);
+    end;
 }

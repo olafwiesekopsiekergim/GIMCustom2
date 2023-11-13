@@ -17,6 +17,7 @@ pageextension 50050 gimPurchaseInvoice extends "Purchase Invoice"
             field(Sachbearbeiter; Sachbearbeiter)
             {
                 Editable = false;
+                ApplicationArea = All;
 
                 trigger OnLookup(var Text: Text): Boolean
                 var

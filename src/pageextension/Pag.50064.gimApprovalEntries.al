@@ -1,23 +1,19 @@
-/// <summary>
-/// PageExtension gimRequestsToApprove (ID 50054) extends Record Requests to Approve.
-/// </summary>
-pageextension 50054 gimRequestsToApprove extends "Requests to Approve"
+pageextension 50064 gimApprovalEntries extends "Approval Entries"
 {
     layout
     {
-        addfirst(factboxes)
+        addlast(factboxes)
         {
-            part(ApprovCommentFactBoxGIM; ApprovCommentFactBoxGIM)
+            part(approvCommentFactbox; ApprovCommentFactBoxGIM)
             {
-                ShowFilter = true;
+                Caption = 'Genehmigungsbemerkungen';
+                Editable = false;
             }
-
         }
     }
-
     actions
     {
-        AddAfter(AllRequests)
+        AddAfter("&Delegate")
         {
             action(OpenD3Document)
             {
@@ -27,15 +23,20 @@ pageextension 50054 gimRequestsToApprove extends "Requests to Approve"
                 trigger OnAction()
                 var
                     PurchHeader: Record "Purchase Header";
-                    GimApprovalMgmt: Codeunit GIMApprovalManagement;
+                    GIMApprovalMgmt: Codeunit GIMApprovalManagement;
                 begin
                     if "Table ID" = 38 then begin
                         PurchHeader.Get("Document Type", "Document No.");
                         GIMApprovalMgmt.OpenD3Doc(PurchHeader);
                     end;
                 end;
+
             }
         }
     }
 
+    trigger OnAfterGetCurrRecord()
+    begin
+        if CurrPage.approvCommentFactbox.PAGE.SetFilterFromApprovalEntry(Rec) then;
+    end;
 }

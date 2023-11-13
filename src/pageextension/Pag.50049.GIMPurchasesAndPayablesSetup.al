@@ -9,6 +9,7 @@ pageextension 50049 gimPurchasesAndPayablesSetup extends "Purchases & Payables S
         {
             field(BaseURLForD3Documents; BaseURLForD3Documents)
             {
+                ApplicationArea = All;
             }
         }
     }

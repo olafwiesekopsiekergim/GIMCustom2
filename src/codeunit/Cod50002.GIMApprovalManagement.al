@@ -68,5 +68,26 @@ codeunit 50106 GIMApprovalManagement
     begin
         d3Journal.CreateLineFromPurchUnposted(Rec, Rec."No.");
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", 'OnBeforeDelegateApprovalRequests', '', false, false)]
+    local procedure OnBeforeDelegateApprovalRequests(var ApprovalEntry: Record "Approval Entry"; var IsHandled: Boolean)
+    begin
+        PrepareApprovalEntriesToDelegate(ApprovalEntry);
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", 'OnAfterDelegateApprovalRequest', '', false, false)]
+    local procedure OnAfterDelegateApprovalRequest(var ApprovalEntry: Record "Approval Entry")
+    begin
+        DeleteDelegateIDOnApprovalEntries(ApprovalEntry);
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Approvals Mgmt.", 'OnSubstituteUserIdForApprovalEntryOnBeforeAssignApproverID', '', false, false)]
+
+    local procedure OnSubstituteUserIdForApprovalEntryOnBeforeAssignApproverID(ApprovalEntry: Record "Approval Entry"; var UserSetup: Record "User Setup")
+    begin
+        if ApprovalEntry.DelegateToUserID <> '' then
+            UserSetup.Get(ApprovalEntry.DelegateToUserID);
+    end;
+
 }
 
